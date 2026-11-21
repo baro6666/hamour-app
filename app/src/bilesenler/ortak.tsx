@@ -10,7 +10,7 @@ type Tur = 'govde' | 'kucuk' | 'ust' | 'baslik' | 'buyukBaslik' | 'kalin' | 'ita
 const turler: Record<Tur, TextStyle> = {
   govde: { fontFamily: yazi.normal, fontSize: 15, lineHeight: 22, color: renk.soluk },
   kucuk: { fontFamily: yazi.normal, fontSize: 13, lineHeight: 18, color: renk.soluk },
-  ust: { fontFamily: yazi.orta, fontSize: 12, letterSpacing: 2, textTransform: 'uppercase', color: renk.anaKoyu },
+  ust: { fontFamily: yazi.orta, fontSize: 12, letterSpacing: 2, color: renk.anaKoyu },
   baslik: { fontFamily: yazi.baslik, fontSize: 21, color: renk.kahve },
   buyukBaslik: { fontFamily: yazi.baslik, fontSize: 30, lineHeight: 36, color: renk.kahve },
   kalin: { fontFamily: yazi.kalin, fontSize: 16, color: renk.kahve },
@@ -18,8 +18,12 @@ const turler: Record<Tur, TextStyle> = {
   fiyat: { fontFamily: yazi.fiyat, fontSize: 15, color: renk.fiyat },
 };
 
+// Türkçe büyük harf: textTransform 'uppercase' i→I yapar (KİŞİ yerine KIŞI); bu yüzden tr-TR ile çevrilir.
+export const buyukHarf = (s: string) => s.toLocaleUpperCase('tr-TR');
+
 export function Yazi({ tur = 'govde', style, children, ...p }: { tur?: Tur; style?: StyleProp<TextStyle>; children: ReactNode } & ComponentProps<typeof Text>) {
-  return <Text {...p} style={[turler[tur], style]}>{children}</Text>;
+  const icerik = tur === 'ust' && typeof children === 'string' ? buyukHarf(children) : children;
+  return <Text {...p} style={[turler[tur], style]}>{icerik}</Text>;
 }
 
 // Kaydırılabilir ekran; üstte güvenli alan

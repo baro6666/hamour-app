@@ -74,6 +74,9 @@ export const ILETISIM = {
     { etiket: 'Sipariş hattı', numara: '0532 050 27 17' },
     { etiket: 'Şube', numara: '0216 525 50 50' },
   ],
+  // WhatsApp rezervasyon hattı (uluslararası biçim, + ve boşluk yok). Sitedeki sipariş hattı; Hamour'un WhatsApp'ı
+  // farklıysa yalnız bu satır değişir.
+  whatsapp: '905320502717',
   eposta: 'info@hamour.com.tr',
   calismaSaatleri: null as string | null, // Hamour'dan alınacak
   instagram: 'hamour.ist',

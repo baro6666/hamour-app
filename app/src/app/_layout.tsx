@@ -35,6 +35,7 @@ export default function KokDuzen() {
         >
           <Stack.Screen name="(sekmeler)" />
           <Stack.Screen name="urun/[id]" />
+          <Stack.Screen name="rezervasyon" options={{ presentation: 'modal' }} />
         </Stack>
       </VeriSaglayici>
     </SafeAreaProvider>

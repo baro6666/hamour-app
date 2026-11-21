@@ -13,6 +13,9 @@ Kapsam ve kararlar: `docs/kapsam.md`.
   - **Tanıtım ve vitrin menüsü uygulaması** (Kasım 2026 kararı): üyelik, giriş, kahve kartı, sipariş yok.
     Sekmeler: Keşfet, Menü (sitedeki 6 bölüm), Hamour (hikâye, kurumsal yapı, işbirlikleri, sosyal medya), İletişim.
     Sabit marka içeriği `src/veri/icerik.ts` (bilinmeyen alan null → ekranda görünmez).
+    **Rezervasyon** `src/app/rezervasyon.tsx`: gün / öğün / saat / kişi / ad / not → WhatsApp'ta hazır mesaj
+    (`wa.me/<ILETISIM.whatsapp>`); hiçbir yere kaydedilmez, onay Hamour'da.
+    Üst başlık (`Yazi tur="ust"`) büyük harfi `toLocaleUpperCase('tr-TR')` ile yapılır; `textTransform: 'uppercase'` kullanma (i→I).
   - `src/tema.ts`: marka renkleri (hamour_pantoneler.pdf) ekranda "baskı tonu" (Hamour'un seçimi C): dolu alan
     `#8E4630`, yazı/logo koyu kahve `#3D1D0E`, zemin `#F2E2C6`, koyu zemin üstü krem `#F6DCAF`. Turuncu kiremit `#B45A3C`
     büyük alanda kullanılmaz. Yeni renk uydurma. Başlıklar Playfair Display, gövde Jost, fiyatlar Montserrat.

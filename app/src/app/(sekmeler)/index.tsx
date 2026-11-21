@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Foto, fotoKaynak } from '../../bilesenler/Foto';
 import { Logo } from '../../bilesenler/Logo';
 import { Dugme, Yazi } from '../../bilesenler/ortak';
-import { ara, BolumBaslik, FotoKart, menuyeGit, Perde, Sus } from '../../bilesenler/vitrin';
+import { ara, BolumBaslik, FotoKart, menuyeGit, Perde, rezervasyonAc, Sus } from '../../bilesenler/vitrin';
 import { renk, yazi } from '../../tema';
 import { BOLUMLER, GORSEL, HIKAYE, ILETISIM } from '../../veri/icerik';
 import { useVeri } from '../../veri/VeriSaglayici';
@@ -37,7 +37,7 @@ export default function Kesfet() {
           <Yazi style={{ color: renk.krem, fontFamily: yazi.baslikItalik, fontSize: 23, lineHeight: 31 }}>Paris’in büyülü bir caddesindeymiş gibi.</Yazi>
           <View style={{ flexDirection: 'row', gap: 10, marginTop: 6 }}>
             <Dugme yazi="Menüyü keşfet" ters onPress={() => menuyeGit()} style={{ flex: 1 }} />
-            <Dugme yazi="Ara" tur="cizgi" yaziRengi={renk.krem} onPress={() => ara(ILETISIM.telefonlar[0].numara)} style={{ paddingHorizontal: 28 }} />
+            <Dugme yazi="Rezervasyon" tur="cizgi" yaziRengi={renk.krem} onPress={rezervasyonAc} style={{ flex: 1 }} />
           </View>
         </View>
       </View>
@@ -117,9 +117,9 @@ export default function Kesfet() {
       {/* Ziyaret */}
       <FotoKart gorsel={GORSEL.salonGenis} yukseklik={190} ust="Bizi ziyaret edin" baslik={ILETISIM.sube} metin={ILETISIM.adres}>
         <View style={{ flexDirection: 'row', gap: 10, marginTop: 6 }}>
-          <Dugme yazi="Yol tarifi" ters style={{ flex: 1, height: 44 }}
+          <Dugme yazi="Rezervasyon" ters style={{ flex: 1, height: 44 }} onPress={rezervasyonAc} />
+          <Dugme yazi="Yol tarifi" tur="cizgi" yaziRengi={renk.krem} style={{ flex: 1, height: 44 }}
             onPress={() => Linking.openURL(`https://maps.google.com/?q=${encodeURIComponent('Hamour ' + ILETISIM.adres)}`)} />
-          <Dugme yazi="İletişim" tur="cizgi" yaziRengi={renk.krem} style={{ flex: 1, height: 44 }} onPress={() => router.navigate('/iletisim')} />
         </View>
       </FotoKart>
 

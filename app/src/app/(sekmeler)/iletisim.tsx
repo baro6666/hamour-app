@@ -2,7 +2,7 @@ import { Linking, Pressable, ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Foto } from '../../bilesenler/Foto';
 import { Dugme, Ikon, Yazi } from '../../bilesenler/ortak';
-import { ara, Perde } from '../../bilesenler/vitrin';
+import { ara, Perde, rezervasyonAc } from '../../bilesenler/vitrin';
 import { renk, yazi } from '../../tema';
 import { GORSEL, ILETISIM } from '../../veri/icerik';
 import type { ComponentProps } from 'react';
@@ -38,6 +38,7 @@ export default function Iletisim() {
       </View>
 
       <View style={{ marginHorizontal: 20, borderRadius: 20, backgroundColor: renk.kart, borderWidth: 1, borderColor: renk.cizgi, paddingHorizontal: 16 }}>
+        <Satir ikon="message-circle" baslik="WhatsApp ile rezervasyon" deger="Masa ayırtın" onPress={rezervasyonAc} />
         <Satir ikon="map-pin" baslik="Adres" deger={ILETISIM.adres} onPress={harita} />
         {ILETISIM.calismaSaatleri ? <Satir ikon="clock" baslik="Çalışma saatleri" deger={ILETISIM.calismaSaatleri} /> : null}
         {ILETISIM.telefonlar.map((t) => <Satir key={t.numara} ikon="phone" baslik={t.etiket} deger={t.numara} onPress={() => ara(t.numara)} />)}
@@ -47,7 +48,7 @@ export default function Iletisim() {
       </View>
 
       <View style={{ flexDirection: 'row', gap: 10, paddingHorizontal: 20 }}>
-        <Dugme yazi="Yol tarifi" onPress={harita} style={{ flex: 1 }} />
+        <Dugme yazi="Rezervasyon" onPress={rezervasyonAc} style={{ flex: 1 }} />
         <Dugme yazi="Hemen ara" tur="cizgi" onPress={() => ara(ILETISIM.telefonlar[0].numara)} style={{ flex: 1 }} />
       </View>
     </ScrollView>

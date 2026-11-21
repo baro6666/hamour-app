@@ -10,6 +10,10 @@ import { Yazi } from './ortak';
 
 export const ara = (numara: string) => Linking.openURL(`tel:${numara.replace(/\s/g, '')}`);
 
+/** WhatsApp'ta Hamour'a hazır mesajla sohbet açar */
+export const whatsapp = (numara: string, mesaj: string) => Linking.openURL(`https://wa.me/${numara}?text=${encodeURIComponent(mesaj)}`);
+export const rezervasyonAc = () => router.push('/rezervasyon');
+
 /** Bölüm başlığı: küçük üst yazı + Playfair başlık + isteğe bağlı sağ bağlantı */
 export function BolumBaslik({ ust, baslik, sag, onSag, koyu = false }: { ust?: string; baslik: string; sag?: string; onSag?: () => void; koyu?: boolean }) {
   return (

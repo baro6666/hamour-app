@@ -1,5 +1,6 @@
 import { Jost_400Regular, Jost_500Medium, Jost_500Medium_Italic, Jost_700Bold, useFonts } from '@expo-google-fonts/jost';
 import { Montserrat_700Bold } from '@expo-google-fonts/montserrat';
+import { PlayfairDisplay_500Medium_Italic, PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { ActivityIndicator, Platform, View } from 'react-native';
@@ -14,7 +15,7 @@ function BildirimYonlendirici() {
 }
 
 export default function KokDuzen() {
-  const [yuklendi] = useFonts({ Jost_400Regular, Jost_500Medium, Jost_500Medium_Italic, Jost_700Bold, Montserrat_700Bold });
+  const [yuklendi] = useFonts({ Jost_400Regular, Jost_500Medium, Jost_500Medium_Italic, Jost_700Bold, Montserrat_700Bold, PlayfairDisplay_700Bold, PlayfairDisplay_500Medium_Italic });
   if (!yuklendi) {
     return <View style={{ flex: 1, backgroundColor: renk.ana, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator color={renk.krem} /></View>;
   }
@@ -29,7 +30,7 @@ export default function KokDuzen() {
             headerShown: false,
             contentStyle: { backgroundColor: renk.kagit },
             headerTintColor: renk.ana,
-            headerTitleStyle: { fontFamily: yazi.kalin },
+            headerTitleStyle: { fontFamily: yazi.baslik },
           }}
         >
           <Stack.Screen name="(sekmeler)" />

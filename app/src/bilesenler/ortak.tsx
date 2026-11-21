@@ -3,16 +3,17 @@ import type { ComponentProps, ReactNode } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View, type StyleProp, type TextStyle, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { renk, yazi } from '../tema';
+import { Simge } from './Logo';
 
 type Tur = 'govde' | 'kucuk' | 'ust' | 'baslik' | 'buyukBaslik' | 'kalin' | 'italik' | 'fiyat';
 
 const turler: Record<Tur, TextStyle> = {
   govde: { fontFamily: yazi.normal, fontSize: 15, lineHeight: 22, color: renk.soluk },
   kucuk: { fontFamily: yazi.normal, fontSize: 13, lineHeight: 18, color: renk.soluk },
-  ust: { fontFamily: yazi.orta, fontSize: 12, letterSpacing: 2, textTransform: 'uppercase', color: renk.ana },
-  baslik: { fontFamily: yazi.kalin, fontSize: 20, color: renk.ana },
-  buyukBaslik: { fontFamily: yazi.kalin, fontSize: 28, color: renk.ana },
-  kalin: { fontFamily: yazi.kalin, fontSize: 16, color: renk.ana },
+  ust: { fontFamily: yazi.orta, fontSize: 12, letterSpacing: 2, textTransform: 'uppercase', color: renk.anaKoyu },
+  baslik: { fontFamily: yazi.baslik, fontSize: 21, color: renk.kahve },
+  buyukBaslik: { fontFamily: yazi.baslik, fontSize: 30, lineHeight: 36, color: renk.kahve },
+  kalin: { fontFamily: yazi.kalin, fontSize: 16, color: renk.kahve },
   italik: { fontFamily: yazi.italik, fontSize: 13, color: renk.soluk },
   fiyat: { fontFamily: yazi.fiyat, fontSize: 15, color: renk.fiyat },
 };
@@ -90,7 +91,15 @@ export function Satir({ children, onPress, son = false }: { children: ReactNode;
 }
 
 export function Kutu({ children, style, tur = 'kart' }: { children: ReactNode; style?: StyleProp<ViewStyle>; tur?: 'kart' | 'krem' | 'ana' | 'cizgi' }) {
-  return <View style={[s.kutu, s[tur], style]}>{children}</View>;
+  return (
+    <View style={[s.kutu, s[tur], style]}>
+      {tur === 'ana' ? (
+        // Doku: marka simgesi kiremit kartların köşesinde silik filigran
+        <View pointerEvents="none" style={s.filigran}><Simge boy={170} renkKodu={renk.krem} opaklik={0.09} /></View>
+      ) : null}
+      {children}
+    </View>
+  );
 }
 
 export const s = StyleSheet.create({
@@ -101,9 +110,10 @@ export const s = StyleSheet.create({
   anahtarTop: { width: 26, height: 26, borderRadius: 13, backgroundColor: '#FFFFFF' },
   satir: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12 },
   satirCizgi: { borderBottomWidth: 1, borderBottomColor: renk.cizgi },
-  kutu: { borderRadius: 18, padding: 18, gap: 8 },
+  kutu: { borderRadius: 18, padding: 18, gap: 8, overflow: 'hidden' },
+  filigran: { position: 'absolute', right: -40, bottom: -30 },
   kart: { backgroundColor: renk.kart, borderWidth: 1, borderColor: renk.cizgi },
-  krem: { backgroundColor: renk.krem },
+  krem: { backgroundColor: renk.kremKutu },
   ana: { backgroundColor: renk.ana },
   cizgi: { backgroundColor: renk.kart, borderWidth: 2, borderColor: renk.ana },
   kenar: { paddingHorizontal: 20 },

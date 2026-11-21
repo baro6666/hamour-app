@@ -5,9 +5,8 @@ Uygulama yalnız Hamour'a aittir; Fincosto'dan ve butter'dan bağımsızdır, ba
 
 ## Hamour'a uyarlananlar
 
-- **Marka:** hamour.com.tr'den ilham; Paris esintili patiseri, brasserie, bistro. Renkler ve logo **geçici**
-  (bordo / krem, "H" monogramı); Hamour'un resmî logosu ve renkleri gelince `app/src/tema.ts`, `Logo.tsx`,
-  `app/assets/` ve `panel/src/stil.css` değişir.
+- **Marka:** hamour.com.tr'den ilham; Paris esintili patiseri, brasserie, bistro. Renkler hamour_pantoneler.pdf'ten
+  (%60 krem `#F6DCAF`, %30 kiremit `#B45A3C`, %10 koyu kahve `#3D1D0E`), logo ve simge Hamour_Logo.ai'den.
 - **Menü:** sitedeki kategoriler ve ürün adları (`supabase/seed.sql`). **Sitede fiyat yok**, fiyatlar panelden girilir.
   Patiseri ve pasta ürün adları sitede yok; Hamour'dan alınacak.
 - **Alkollü içecekler** kategorisi var ama gizli (`gorunur = false`); mağaza yaş sınırı kuralları nedeniyle.

@@ -1,28 +1,28 @@
 import { router } from 'expo-router';
 import { Pressable, ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Logo } from '../bilesenler/Logo';
+import { Logo, Simge } from '../bilesenler/Logo';
 import { Dugme, Ikon, Kutu, s, Yazi } from '../bilesenler/ortak';
-import { renk } from '../tema';
+import { renk, yazi } from '../tema';
 
 // Metinler hamour.com.tr "Hikayemiz" sayfasından özetlendi (Kasım 2026); Hamour onaylayınca kesinleşir
 export default function Marka() {
   const ic = useSafeAreaInsets();
   return (
     <ScrollView style={{ flex: 1, backgroundColor: renk.kagit }} contentContainerStyle={{ paddingBottom: ic.bottom + 32 }}>
-      <View style={{ backgroundColor: renk.ana, paddingTop: ic.top + 16, paddingHorizontal: 24, paddingBottom: 32, gap: 18 }}>
+      <View style={{ backgroundColor: renk.ana, paddingTop: ic.top + 16, paddingHorizontal: 24, paddingBottom: 32, gap: 18, overflow: 'hidden' }}>
+        <View pointerEvents="none" style={{ position: 'absolute', right: -70, bottom: -60 }}>
+          <Simge boy={300} renkKodu={renk.krem} opaklik={0.08} />
+        </View>
         <Pressable accessibilityRole="button" accessibilityLabel="Geri" onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))}
           style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: renk.anaKoyu, alignItems: 'center', justifyContent: 'center' }}>
           <Ikon ad="arrow-left" renkKodu={renk.krem} />
         </Pressable>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 18 }}>
-          <Logo boy={70} renkKodu={renk.krem} />
-          <View>
-            <Yazi tur="buyukBaslik" style={{ color: renk.krem, fontSize: 46, lineHeight: 48 }}>Hamour</Yazi>
-            <Yazi style={{ color: renk.krem, letterSpacing: 4, fontSize: 13 }}>pâtisserie · brasserie · bistro</Yazi>
-          </View>
+        <View style={{ gap: 6 }}>
+          <Logo boy={230} renkKodu={renk.krem} />
+          <Yazi style={{ color: renk.krem, letterSpacing: 4, fontSize: 13 }}>pâtisserie · brasserie · bistro</Yazi>
         </View>
-        <Yazi tur="baslik" style={{ color: renk.krem, fontSize: 24, lineHeight: 30 }}>Paris’in büyülü bir caddesindeymiş gibi.</Yazi>
+        <Yazi tur="baslik" style={{ color: renk.krem, fontFamily: yazi.baslikItalik, fontSize: 24, lineHeight: 32 }}>Paris’in büyülü bir caddesindeymiş gibi.</Yazi>
       </View>
       <View style={[s.kenar, { gap: 18, paddingTop: 24 }]}>
         <Yazi style={{ fontSize: 16, lineHeight: 25 }}>

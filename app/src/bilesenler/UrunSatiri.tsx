@@ -20,7 +20,7 @@ export function UrunSatiri({ urun, favori, foto = true }: { urun: Urun; favori?:
       style={({ pressed }) => [{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 14, borderBottomWidth: 1, borderBottomColor: renk.cizgi }, pressed && { opacity: 0.7 }]}
     >
       {foto ? (
-        <View style={{ width: 64, height: 64, borderRadius: 16, backgroundColor: renk.krem, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ width: 64, height: 64, borderRadius: 16, backgroundColor: renk.kremKutu, alignItems: 'center', justifyContent: 'center' }}>
           <Ikon ad="image" renkKodu={renk.soluk} />
         </View>
       ) : null}

@@ -1,13 +1,14 @@
 :root {
-  --ana: #5E1A2B; --ana-koyu: #4A1422; --krem: #EFE2CC; --kagit: #FBF7F1; --kart: #FFFDF9;
-  --cizgi: #E8DDCC; --murekkep: #2A1A1E; --soluk: #5C4B4F; --uyari: #7A4E0E; --uyari-zemin: #F4E6CF;
-  --tehlike: #8A2F22; --tamam-zemin: #F1E4E6;
+  /* Hamour (hamour_pantoneler.pdf): krem #F6DCAF %60, kiremit #B45A3C %30, koyu kahve #3D1D0E %10 */
+  --ana: #B45A3C; --ana-koyu: #963F24; --krem: #F6DCAF; --kagit: #F6DCAF; --kart: #FBEBD1;
+  --cizgi: #E6C38C; --murekkep: #3D1D0E; --soluk: #6A4632; --uyari: #3D1D0E; --uyari-zemin: #F1D09A;
+  --tehlike: #8E2A1A; --tamam-zemin: #F1D09A;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; background: var(--kagit); color: var(--murekkep); font-family: 'Jost', 'Trebuchet MS', sans-serif; font-size: 16px; }
 button, input, select, textarea { font: inherit; color: inherit; }
 a { color: var(--ana); }
-h1, h2, h3 { color: var(--ana); margin: 0; }
+h1, h2, h3 { color: var(--murekkep); margin: 0; font-family: 'Playfair Display', Georgia, serif; }
 h1 { font-size: 26px; } h2 { font-size: 19px; } h3 { font-size: 16px; }
 p { margin: 0; }
 

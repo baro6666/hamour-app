@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { router } from 'expo-router';
 import { Linking, Pressable, RefreshControl, ScrollView, View } from 'react-native';
 import { DamgaKarti } from '../../bilesenler/DamgaKarti';
-import { Logo } from '../../bilesenler/Logo';
+import { Logo, Simge } from '../../bilesenler/Logo';
 import { Dugme, Ekran, Ikon, Kutu, s, Yazi } from '../../bilesenler/ortak';
 import { UrunSatiri } from '../../bilesenler/UrunSatiri';
 import { renk } from '../../tema';
@@ -25,12 +25,12 @@ export default function AnaSayfa() {
 
   return (
     <Ekran yenile={<RefreshControl refreshing={yenileniyor} tintColor={renk.ana} onRefresh={async () => { setYenileniyor(true); await v.yenile(); setYenileniyor(false); }} />}>
-      <View style={[s.kenar, { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }]}>
+      <View style={[s.kenar, { gap: 14 }]}>
+        <Logo boy={128} />
         <View>
           <Yazi>{selam()},</Yazi>
           <Yazi tur="buyukBaslik">{v.uye?.ad?.split(' ')[0] ?? 'hoş geldiniz'}</Yazi>
         </View>
-        <Logo />
       </View>
 
       <View style={s.kenar}>
@@ -86,7 +86,7 @@ export default function AnaSayfa() {
 
       <Pressable accessibilityRole="button" onPress={() => router.push('/marka')} style={s.kenar}>
         <Kutu tur="ana" style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
-          <Logo boy={44} renkKodu={renk.krem} />
+          <Simge boy={52} renkKodu={renk.krem} />
           <View style={{ flex: 1, gap: 2 }}>
             <Yazi tur="kalin" style={{ color: renk.krem, fontSize: 17 }}>Hamour’u tanıyın</Yazi>
             <Yazi tur="kucuk" style={{ color: renk.anaUstuSoluk }}>Paris esintili patiseri, brasserie ve bistro</Yazi>

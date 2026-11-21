@@ -15,7 +15,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#5E1A2B",
+        "backgroundColor": "#B45A3C",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -34,19 +34,19 @@
       [
         "expo-notifications",
         {
-          "color": "#5E1A2B"
+          "color": "#B45A3C"
         }
       ]
     ],
     "scheme": "hamour",
-    "backgroundColor": "#FBF7F1",
+    "backgroundColor": "#F6DCAF",
     "experiments": {
       "typedRoutes": true
     },
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#5E1A2B"
+      "backgroundColor": "#B45A3C"
     },
     "owner": "baro6",
     "runtimeVersion": {

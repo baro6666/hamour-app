@@ -27,7 +27,7 @@ export default function UrunSayfasi() {
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: renk.kagit }} contentContainerStyle={{ paddingBottom: ic.bottom + 32 }}>
-      <View style={{ height: 280 + ic.top, backgroundColor: renk.krem, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ height: 280 + ic.top, backgroundColor: renk.kremKutu, alignItems: 'center', justifyContent: 'center' }}>
         <Ikon ad="image" boy={40} renkKodu={renk.soluk} />
         <Pressable accessibilityRole="button" accessibilityLabel="Geri" onPress={() => (router.canGoBack() ? router.back() : router.replace('/menu'))}
           style={[yuvarlak, { position: 'absolute', left: 16, top: ic.top + 12 }]}>

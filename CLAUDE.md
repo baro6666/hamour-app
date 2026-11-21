@@ -10,8 +10,11 @@ Kapsam ve kararlar: `docs/kapsam.md`.
 - `app/` — müşteri uygulaması (Expo SDK 58, Expo Router, TypeScript). Ekranlar `app/src/app/`.
   `app/AGENTS.md`'deki Expo kurallarına uy (paket eklerken `npx expo install`).
   - `src/veri/kaynak.ts`: Supabase ayarlıysa canlı, değilse cihaz içi örnek veri (`ornekMod`, SMS kodu 123456).
-  - `src/tema.ts`: **geçici** marka renkleri (bordo `#5E1A2B`, krem `#EFE2CC`), Jost + fiyatlarda Montserrat.
-    Logo da geçici "H" monogramı (`bilesenler/Logo.tsx`, `assets/*.png`). Resmî logo/renkler gelince bunlar değişir.
+  - `src/tema.ts`: marka renkleri (hamour_pantoneler.pdf): %60 krem `#F6DCAF` (zemin), %30 kiremit `#B45A3C`
+    (`renk.ana`: dolu kartlar, düğmeler), %10 koyu kahve `#3D1D0E` (yazı, logo). Yeni renk uydurma; bu üçünün tonlarını kullan.
+    Başlıklar Playfair Display, gövde Jost, fiyatlar Montserrat.
+  - `bilesenler/Logo.tsx`: `Logo` (yazı) ve `Simge` (üç yaprak) Hamour_Logo.ai'den vektör; kiremit kartlarda simge
+    silik filigran (doku). Uygulama simgeleri `assets/*.png` aynı dosyadan üretildi.
 - `panel/` — kasa ("Damga ver") ve yönetim paneli (Vite + React, HashRouter; yayın `panel/README.md`).
   Renkler `panel/src/stil.css`. Denetim: `cd panel && npm run build`.
 - `supabase/functions/` — `personel-ekle`, `bildirim-gonder`, `sms-gonder` (SMS sağlayıcı bekliyor).

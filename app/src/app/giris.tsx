@@ -19,7 +19,7 @@ function Alan({ etiket, ...p }: { etiket: string } & React.ComponentProps<typeof
   return (
     <View style={{ gap: 6 }}>
       <Yazi tur="kucuk" style={{ fontFamily: yazi.orta }}>{etiket}</Yazi>
-      <TextInput accessibilityLabel={etiket} placeholderTextColor="#8C9488" style={girdi} {...p} />
+      <TextInput accessibilityLabel={etiket} placeholderTextColor={renk.sekmeSoluk} style={girdi} {...p} />
     </View>
   );
 }
@@ -59,7 +59,7 @@ export default function Giris() {
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: renk.kagit }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <ScrollView contentContainerStyle={{ padding: 24, paddingTop: ic.top + 24, paddingBottom: ic.bottom + 24, gap: 18 }} keyboardShouldPersistTaps="handled">
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Logo boy={44} />
+          <Logo boy={112} />
           <Dugme yazi="Kapat" tur="metin" onPress={kapat} />
         </View>
 

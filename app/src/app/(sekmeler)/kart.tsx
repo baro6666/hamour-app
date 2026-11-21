@@ -109,7 +109,7 @@ export default function KahveKarti() {
           `${k.hedef} damga dolunca bir kahve bizden; istediğiniz boy ve çeşit.`,
         ].map((m, i) => (
           <View key={i} style={{ flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: renk.cizgi }}>
-            <View style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: renk.krem, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: renk.kremKutu, alignItems: 'center', justifyContent: 'center' }}>
               <Yazi tur="kalin">{i + 1}</Yazi>
             </View>
             <Yazi style={{ flex: 1, color: renk.murekkep }}>{m}</Yazi>

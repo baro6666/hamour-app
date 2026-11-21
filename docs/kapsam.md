@@ -1,5 +1,16 @@
 # Hamour uygulaması — kapsam (ilk sürüm)
 
+> **Güncel karar (22 Kasım 2026):** Hamour bir **tanıtım ve vitrin menüsü** uygulamasıdır. Kahve kartı, üyelik,
+> giriş ve ön sipariş talebi uygulamadan ve panelden kaldırıldı; yerine "Hamour" sekmesi (hikâye, kurumsal yapı,
+> işbirlikleri, sosyal medya) geldi. Sipariş ve pasta talepleri telefonla. Aşağıdaki butter'dan kalan bölümler
+> (kahve kartı kuralları vb.) yalnız arşiv bilgisidir.
+>
+> - Menü: hamour.com.tr'deki 6 bölüm (Royal Breakfast, Ana yemekler, İçecekler, Bar [gizli], Patiseri, Pastalar),
+>   175 ürün, 59 ürün fotoğrafı (site çekimleri). Patiseri ve pasta ürünleri sitede yok: vitrin için arama düğmesi.
+> - Renk: Hamour'un seçtiği "baskı tonu" (C). Fotoğraflar sitedeki çekimlerden; Hamour kendi çekimlerini verince değişir.
+> - Hamour'dan beklenenler: fiyatlar, çalışma saatleri, şirket unvanı / kuruluş, işbirlikleri listesi (ad, görsel),
+>   patiseri ve pasta ürünleri.
+
 Bu belge Hamour'un ilk sürümünü tanımlar. İskelet ve kurallar butter uygulamasından alındı (Kasım 2026).
 Uygulama yalnız Hamour'a aittir; Fincosto'dan ve butter'dan bağımsızdır, başka firmalara açılmaz.
 

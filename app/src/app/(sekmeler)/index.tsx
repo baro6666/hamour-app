@@ -1,126 +1,129 @@
-import { useState } from 'react';
 import { router } from 'expo-router';
+import { useState } from 'react';
 import { Linking, Pressable, RefreshControl, ScrollView, View } from 'react-native';
-import { DamgaKarti } from '../../bilesenler/DamgaKarti';
-import { Logo, Simge } from '../../bilesenler/Logo';
-import { Dugme, Ekran, Ikon, Kutu, s, Yazi } from '../../bilesenler/ortak';
-import { UrunSatiri } from '../../bilesenler/UrunSatiri';
-import { renk } from '../../tema';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Foto, fotoKaynak } from '../../bilesenler/Foto';
+import { Logo } from '../../bilesenler/Logo';
+import { Dugme, Yazi } from '../../bilesenler/ortak';
+import { ara, BolumBaslik, FotoKart, menuyeGit, Perde, Sus } from '../../bilesenler/vitrin';
+import { renk, yazi } from '../../tema';
+import { BOLUMLER, GORSEL, HIKAYE, ILETISIM } from '../../veri/icerik';
 import { useVeri } from '../../veri/VeriSaglayici';
 
-function selam(): string {
-  const saat = new Date().getHours();
-  if (saat < 11) return 'Günaydın';
-  if (saat < 18) return 'İyi günler';
-  return 'İyi akşamlar';
-}
+// Ana sayfada yatay şeritte gösterilecek tabaklar (fotoğrafı olan ürünlerden; sıra elle seçildi)
+const SERIT = ['avocado-toast', 'classic-eggs-benedict', 'speculoos-pancake', 'burrata', 'cafe-de-paris', 'hamour-burger', 'somon-bowl', 'french-toast'];
 
-export default function AnaSayfa() {
+export default function Kesfet() {
   const v = useVeri();
+  const ic = useSafeAreaInsets();
   const [yenileniyor, setYenileniyor] = useState(false);
-  const firin = v.menu.urunler.find((u) => u.vitrin_durumu === 'firin');
-  const onecikan = v.menu.urunler.filter((u) => u.vitrin_durumu !== 'normal' && u.vitrin_durumu !== 'tukendi').slice(0, 4);
-  const kampanyalar = v.duyurular.filter((d) => d.tur === 'kampanya' || d.tur === 'yeni').slice(0, 5);
-  const sube = v.menu.sube;
+  const serit = SERIT.map((id) => v.menu.urunler.find((u) => u.id === id || u.foto_url === `yerel:${id}`)).filter((u) => u && u.foto_url);
+  const haberler = v.duyurular.slice(0, 3);
+  const bolumler = BOLUMLER.filter((b) => b.urunsuz || v.menu.kategoriler.some((k) => k.bolum === b.id));
 
   return (
-    <Ekran yenile={<RefreshControl refreshing={yenileniyor} tintColor={renk.ana} onRefresh={async () => { setYenileniyor(true); await v.yenile(); setYenileniyor(false); }} />}>
-      <View style={[s.kenar, { gap: 14 }]}>
-        <Logo boy={128} />
-        <View>
-          <Yazi>{selam()},</Yazi>
-          <Yazi tur="buyukBaslik">{v.uye?.ad?.split(' ')[0] ?? 'hoş geldiniz'}</Yazi>
+    <ScrollView
+      style={{ flex: 1, backgroundColor: renk.kagit }}
+      contentContainerStyle={{ paddingBottom: 40, gap: 34 }}
+      refreshControl={<RefreshControl refreshing={yenileniyor} tintColor={renk.krem} onRefresh={async () => { setYenileniyor(true); await v.yenile(); setYenileniyor(false); }} />}
+    >
+      {/* Kapak */}
+      <View style={{ height: 560 + ic.top, backgroundColor: renk.kahve }}>
+        <Foto kaynak={GORSEL.giris} style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }} />
+        <Perde guc={0.92} />
+        <View style={{ flex: 1, justifyContent: 'flex-end', padding: 24, paddingBottom: 30, gap: 14 }}>
+          <Logo boy={210} renkKodu={renk.krem} />
+          <Yazi style={{ color: renk.krem, letterSpacing: 4, fontSize: 12, fontFamily: yazi.orta }}>PÂTISSERIE · BRASSERIE · BISTRO</Yazi>
+          <Yazi style={{ color: renk.krem, fontFamily: yazi.baslikItalik, fontSize: 23, lineHeight: 31 }}>Paris’in büyülü bir caddesindeymiş gibi.</Yazi>
+          <View style={{ flexDirection: 'row', gap: 10, marginTop: 6 }}>
+            <Dugme yazi="Menüyü keşfet" ters onPress={() => menuyeGit()} style={{ flex: 1 }} />
+            <Dugme yazi="Ara" tur="cizgi" yaziRengi={renk.krem} onPress={() => ara(ILETISIM.telefonlar[0].numara)} style={{ paddingHorizontal: 28 }} />
+          </View>
         </View>
       </View>
 
-      <View style={s.kenar}>
-        {v.kart ? (
-          <DamgaKarti kart={v.kart}>
-            <View style={{ flexDirection: 'row', gap: 10 }}>
-              <Dugme yazi="Kasada okut" ters onPress={() => router.navigate('/kart')} style={{ flex: 1 }} />
-              <Dugme yazi="Menüye bak" tur="cizgi" ters onPress={() => router.navigate('/menu')} style={{ flex: 1 }} />
-            </View>
-          </DamgaKarti>
-        ) : (
-          <Kutu tur="ana" style={{ gap: 12 }}>
-            <Yazi tur="ust" style={{ color: renk.krem }}>Kahve kartı</Yazi>
-            <Yazi tur="baslik" style={{ color: renk.krem, fontSize: 23 }}>Üye olun, her kahvede damga toplayın</Yazi>
-            <Yazi style={{ color: renk.anaUstuSoluk }}>Kart dolunca bir kahve bizden.</Yazi>
-            <Dugme yazi="Telefonla üye ol" ters onPress={() => router.push('/giris')} />
-          </Kutu>
-        )}
+      {/* Menü bölümleri */}
+      <View style={{ gap: 16 }}>
+        <BolumBaslik ust="Menü" baslik="Gün boyu Hamour" sag="Tümü" onSag={() => menuyeGit()} />
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20, gap: 12 }}>
+          {bolumler.map((b) => (
+            <Pressable key={b.id} accessibilityRole="button" accessibilityLabel={b.ad} onPress={() => menuyeGit(b.id)}
+              style={({ pressed }) => ({ width: 150, borderRadius: 20, backgroundColor: renk.kart, borderWidth: 1, borderColor: renk.cizgi, padding: 14, gap: 10, opacity: pressed ? 0.7 : 1 })}>
+              <Foto kaynak={b.gorsel} contentFit="contain" transition={0} style={{ height: 104 }} />
+              <Yazi style={{ fontFamily: yazi.baslik, fontSize: 17, color: renk.kahve }}>{b.ad}</Yazi>
+            </Pressable>
+          ))}
+        </ScrollView>
       </View>
 
-      {firin ? (
-        <Pressable accessibilityRole="button" onPress={() => router.push({ pathname: '/urun/[id]', params: { id: firin.id } })} style={s.kenar}>
-          <Kutu tur="krem" style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-            <Ikon ad="sun" boy={28} />
-            <View style={{ flex: 1, gap: 2 }}>
-              <Yazi tur="ust">Fırından yeni çıktı</Yazi>
-              <Yazi tur="kalin" style={{ fontSize: 17 }}>{firin.ad}</Yazi>
-              <Yazi tur="kucuk">Sıcakken gelin, vitrinde sizi bekliyor.</Yazi>
-            </View>
-          </Kutu>
-        </Pressable>
-      ) : null}
-
-      {kampanyalar.length ? (
-        <View style={{ gap: 12 }}>
-          <View style={[s.kenar, { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }]}>
-            <Yazi tur="baslik">Kampanyalar</Yazi>
-            <Dugme yazi="Tümü" tur="metin" onPress={() => router.navigate('/duyurular')} />
-          </View>
+      {/* Tabaklar */}
+      {serit.length ? (
+        <View style={{ gap: 16 }}>
+          <BolumBaslik ust="Hamour mutfağından" baslik="Zarif tabaklar" />
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20, gap: 12 }}>
-            {kampanyalar.map((d, i) => (
-              <Pressable key={d.id} accessibilityRole="button" onPress={() => d.urun_id && router.push({ pathname: '/urun/[id]', params: { id: d.urun_id } })}>
-                <Kutu tur={i % 2 ? 'ana' : 'krem'} style={{ width: 240, minHeight: 130 }}>
-                  <Yazi tur="ust" style={i % 2 ? { color: renk.krem } : undefined}>{d.tur === 'yeni' ? 'Yeni' : 'Kampanya'}</Yazi>
-                  <Yazi tur="kalin" style={[{ fontSize: 19 }, i % 2 ? { color: renk.krem } : null]}>{d.baslik}</Yazi>
-                  {d.metin ? <Yazi tur="kucuk" style={i % 2 ? { color: renk.anaUstuSoluk } : undefined}>{d.metin}</Yazi> : null}
-                </Kutu>
+            {serit.map((u) => (
+              <Pressable key={u!.id} accessibilityRole="button" accessibilityLabel={u!.ad}
+                onPress={() => router.push({ pathname: '/urun/[id]', params: { id: u!.id } })}
+                style={{ width: 210, height: 290, borderRadius: 20, overflow: 'hidden', backgroundColor: renk.kahve }}>
+                <Foto kaynak={fotoKaynak(u!.foto_url)} style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }} />
+                <Perde />
+                <View style={{ flex: 1, justifyContent: 'flex-end', padding: 16, gap: 4 }}>
+                  <Yazi style={{ color: renk.krem, fontFamily: yazi.kalin, fontSize: 15, letterSpacing: 0.8 }}>{u!.ad}</Yazi>
+                  {u!.aciklama ? <Yazi numberOfLines={2} style={{ color: renk.anaUstuSoluk, fontSize: 13, lineHeight: 18 }}>{u!.aciklama}</Yazi> : null}
+                </View>
               </Pressable>
             ))}
           </ScrollView>
         </View>
       ) : null}
 
-      <Pressable accessibilityRole="button" onPress={() => router.push('/marka')} style={s.kenar}>
-        <Kutu tur="ana" style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
-          <Simge boy={52} renkKodu={renk.krem} />
-          <View style={{ flex: 1, gap: 2 }}>
-            <Yazi tur="kalin" style={{ color: renk.krem, fontSize: 17 }}>Hamour’u tanıyın</Yazi>
-            <Yazi tur="kucuk" style={{ color: renk.anaUstuSoluk }}>Paris esintili patiseri, brasserie ve bistro</Yazi>
+      <Sus />
+
+      {/* Hikaye */}
+      <FotoKart gorsel={GORSEL.hikaye[1]} yukseklik={300} ust="Hikâyemiz" baslik="Taze ekmek kokusu, Paris’in büyüsü" metin={HIKAYE[0]}>
+        <Dugme yazi="Hamour’u tanıyın" ters onPress={() => router.navigate('/hamour')} style={{ marginTop: 6 }} />
+      </FotoKart>
+
+      {/* Kutlama */}
+      <View style={{ marginHorizontal: 20, borderRadius: 22, backgroundColor: renk.ana, padding: 22, gap: 16 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
+          <View style={{ flex: 1, gap: 8 }}>
+            <Yazi tur="ust" style={{ color: renk.anaUstuSoluk }}>Pasta siparişi</Yazi>
+            <Yazi tur="buyukBaslik" style={{ color: renk.krem, fontSize: 23, lineHeight: 29 }}>Günü Hamour’da kutlayalım</Yazi>
+            <Yazi style={{ color: renk.anaUstuSoluk, fontSize: 14, lineHeight: 20 }}>Özel günleriniz için kutlama pastaları.</Yazi>
           </View>
-          <Ikon ad="chevron-right" renkKodu={renk.krem} />
-        </Kutu>
-      </Pressable>
+          <Foto kaynak={BOLUMLER.find((b) => b.id === 'pasta')!.gorsel} contentFit="contain" style={{ width: 112, height: 112 }} />
+        </View>
+        <Dugme yazi="Pasta siparişi için arayın" ters onPress={() => ara(ILETISIM.telefonlar[0].numara)} />
+      </View>
 
-      {onecikan.length ? (
-        <View style={s.kenar}>
-          <Yazi tur="baslik">Vitrinde öne çıkanlar</Yazi>
-          {onecikan.map((u) => <UrunSatiri key={u.id} urun={u} foto={false} favori={v.favoriler.has(u.id)} />)}
+      {/* Haberler */}
+      {haberler.length ? (
+        <View style={{ gap: 12 }}>
+          <BolumBaslik ust="Duyurular" baslik="Hamour’dan haberler" />
+          <View style={{ marginHorizontal: 20, borderRadius: 20, backgroundColor: renk.kart, borderWidth: 1, borderColor: renk.cizgi, paddingHorizontal: 18 }}>
+            {haberler.map((d, i) => (
+              <Pressable key={d.id} accessibilityRole="button" disabled={!d.urun_id}
+                onPress={() => d.urun_id && router.push({ pathname: '/urun/[id]', params: { id: d.urun_id } })}
+                style={{ paddingVertical: 16, gap: 4, borderTopWidth: i ? 1 : 0, borderTopColor: renk.cizgi }}>
+                <Yazi style={{ fontFamily: yazi.baslik, fontSize: 17, color: renk.kahve }}>{d.baslik}</Yazi>
+                {d.metin ? <Yazi tur="kucuk">{d.metin}</Yazi> : null}
+              </Pressable>
+            ))}
+          </View>
         </View>
       ) : null}
 
-      {sube ? (
-        <View style={s.kenar}>
-          <Kutu style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-            <Ikon ad="map-pin" boy={24} />
-            <View style={{ flex: 1, gap: 2 }}>
-              <Yazi tur="kalin">{sube.ad}</Yazi>
-              {sube.calisma_saatleri ? <Yazi tur="kucuk">{sube.calisma_saatleri}</Yazi> : null}
-            </View>
-            {sube.telefon ? (
-              <Dugme yazi="Ara" tur="metin" onPress={() => Linking.openURL(`tel:${sube.telefon!.replace(/\s/g, '')}`)} />
-            ) : null}
-            {sube.enlem != null && sube.boylam != null ? (
-              <Dugme yazi="Yol tarifi" tur="metin" onPress={() => Linking.openURL(`https://maps.google.com/?q=${sube.enlem},${sube.boylam}`)} />
-            ) : null}
-          </Kutu>
+      {/* Ziyaret */}
+      <FotoKart gorsel={GORSEL.salonGenis} yukseklik={190} ust="Bizi ziyaret edin" baslik={ILETISIM.sube} metin={ILETISIM.adres}>
+        <View style={{ flexDirection: 'row', gap: 10, marginTop: 6 }}>
+          <Dugme yazi="Yol tarifi" ters style={{ flex: 1, height: 44 }}
+            onPress={() => Linking.openURL(`https://maps.google.com/?q=${encodeURIComponent('Hamour ' + ILETISIM.adres)}`)} />
+          <Dugme yazi="İletişim" tur="cizgi" yaziRengi={renk.krem} style={{ flex: 1, height: 44 }} onPress={() => router.navigate('/iletisim')} />
         </View>
-      ) : null}
+      </FotoKart>
 
-      {v.hata ? <Yazi tur="kucuk" style={[s.kenar, { color: renk.tehlike }]}>Bağlantı sorunu: {v.hata}</Yazi> : null}
-    </Ekran>
+      {v.hata ? <Yazi tur="kucuk" style={{ paddingHorizontal: 20, color: renk.tehlike }}>Bağlantı sorunu: {v.hata}</Yazi> : null}
+    </ScrollView>
   );
 }

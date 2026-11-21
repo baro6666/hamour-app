@@ -22,7 +22,7 @@ export default function KokDuzen() {
   return (
     <SafeAreaProvider>
       <VeriSaglayici>
-        <StatusBar style="dark" />
+        <StatusBar style="auto" />
         {/* expo-notifications web'de bildirim yanıtını desteklemez; web önizlemesi çökmesin */}
         {Platform.OS !== 'web' ? <BildirimYonlendirici /> : null}
         <Stack
@@ -35,8 +35,6 @@ export default function KokDuzen() {
         >
           <Stack.Screen name="(sekmeler)" />
           <Stack.Screen name="urun/[id]" />
-          <Stack.Screen name="marka" />
-          <Stack.Screen name="giris" options={{ presentation: 'modal' }} />
         </Stack>
       </VeriSaglayici>
     </SafeAreaProvider>

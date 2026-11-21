@@ -31,14 +31,13 @@ export async function bildirimKaydet(): Promise<void> {
   }
 }
 
-// Bildirime dokunulunca ilgili ürünü ya da duyuruları aç
+// Bildirime dokunulunca ilgili ürünü ya da ana sayfayı aç
 export function useBildirimYonlendirme() {
   const yanit = Notifications.useLastNotificationResponse();
   useEffect(() => {
     const veri = yanit?.notification.request.content.data as { urun_id?: string | null; tur?: string } | undefined;
     if (!veri) return;
     if (veri.urun_id) router.push({ pathname: '/urun/[id]', params: { id: veri.urun_id } });
-    else if (veri.tur === 'kart') router.navigate('/kart');
-    else router.navigate('/duyurular');
+    else router.navigate('/');
   }, [yanit]);
 }

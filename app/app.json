@@ -36,7 +36,8 @@
         {
           "color": "#B45A3C"
         }
-      ]
+      ],
+      "expo-image"
     ],
     "scheme": "hamour",
     "backgroundColor": "#F6DCAF",

@@ -2,7 +2,6 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HashRouter, Navigate, NavLink, Route, Routes } from 'react-router-dom';
 import { Giris } from './Giris';
-import { Kasa } from './Kasa';
 import { OturumSaglayici, useOturum } from './Oturum';
 import { sb } from './supabase';
 import './stil.css';
@@ -45,7 +44,7 @@ function Uygulama() {
       <div className="sayfa dar">
         <div className="kart">
           <h2>Bu hesap personel değil</h2>
-          <p className="soluk">Kasa ve yönetim ekranları yalnız Hamour personeli içindir. Yöneticinizden hesabınızı eklemesini isteyin.</p>
+          <p className="soluk">Yönetim paneli yalnız Hamour personeli içindir. Yöneticinizden hesabınızı eklemesini isteyin.</p>
           <button className="dugme cizgi" onClick={cikis}>Çıkış</button>
         </div>
       </div>
@@ -57,18 +56,20 @@ function Uygulama() {
       <header className="ust">
         <div className="marka"><Logo /></div>
         <nav aria-label="Bölümler">
-          <NavLink to="/kasa" className={({ isActive }) => (isActive ? 'etkin' : '')}>Damga ver</NavLink>
           {yonetici ? <NavLink to="/yonetim" className={({ isActive }) => (isActive ? 'etkin' : '')}>Yönetim</NavLink> : null}
         </nav>
         <div className="kim">{personel.ad} · {yonetici ? 'Yönetici' : 'Kasiyer'}
           <button className="dugme kucuk krem" onClick={sifreDegistir}>Şifre</button>
           <button className="dugme kucuk krem" onClick={cikis}>Çıkış</button></div>
       </header>
-      <Routes>
-        <Route path="/kasa" element={<Kasa />} />
-        {yonetici ? <Route path="/yonetim/*" element={<Yonetim />} /> : null}
-        <Route path="*" element={<Navigate to={yonetici ? '/yonetim' : '/kasa'} replace />} />
-      </Routes>
+      {yonetici ? (
+        <Routes>
+          <Route path="/yonetim/*" element={<Yonetim />} />
+          <Route path="*" element={<Navigate to="/yonetim" replace />} />
+        </Routes>
+      ) : (
+        <div className="sayfa"><p className="soluk">Menü ve duyuru yönetimi yalnız yöneticiler içindir.</p></div>
+      )}
     </>
   );
 }

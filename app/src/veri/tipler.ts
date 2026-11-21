@@ -1,7 +1,9 @@
 export type VitrinDurumu = 'normal' | 'son' | 'firin' | 'tukendi';
 export type DuyuruTuru = 'firin' | 'vitrin' | 'kampanya' | 'yeni' | 'etkinlik' | 'kart';
 
-export interface Kategori { id: string; ad: string; sira: number; damga_verir: boolean }
+export type BolumId = 'kahvalti' | 'ana' | 'alkol' | 'icecek' | 'patiseri' | 'pasta';
+
+export interface Kategori { id: string; ad: string; sira: number; damga_verir: boolean; bolum?: BolumId | string | null }
 
 export interface Urun {
   id: string;

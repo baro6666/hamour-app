@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "Hamour panel",
+    "slug": "hamour-panel",
+    "owner": "baro6",
+    "web": {
+      "output": "static"
+    }
+  }
+}

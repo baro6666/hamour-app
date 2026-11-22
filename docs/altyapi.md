@@ -42,5 +42,5 @@ Panelde personeli yönetici ekler; ilk yönetici bir kez elle açılır:
 
 ## Expo
 
-Hesap `baro6`. Uygulama (`@baro6/hamour`) ve panel (`@baro6/hamour-panel`) projeleri henüz açılmadı;
-`app/` ve `panel/` içinde `npx eas-cli@latest init` ile açılınca proje kimlikleri `app.json`'a yazılır.
+Hesap `baro6` (butter ile aynı). Uygulama projesi `@baro6/hamour` açıldı (22.11.2026; kimlik `app/app.json`'da,
+EAS Update `onizleme` dalı). Panel projesi (`@baro6/hamour-panel`) henüz açılmadı.

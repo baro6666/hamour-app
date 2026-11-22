@@ -47,3 +47,15 @@ Kapsam ve kararlar: `docs/kapsam.md`.
   - `node araclar/site_menu_test.js` (menü ayrıştırmasına ya da `menu_aktar.py`'ye dokunulduysa)
   - Ekran değiştiyse: `npx expo export --platform web` ile derleyip Playwright'la 390×844 ekran görüntüsüne bak.
 - Değişiklikler dalda yapılır, `main`'e PR ile girer.
+
+## Birleştirme (sahibin kalıcı kararı, 22.11.2026)
+
+T. Baran Dinç'in açık isteği: **Claude kendi açtığı PR'ları kendisi birleştirir**; sahip PR'da ayrıca onay/merge yapmaz.
+- Akış: dalda çalış → yukarıdaki denetimleri yerelde çalıştır → push → PR aç (taslak değil) → PR'ı izle →
+  GitHub Actions `Denetim` akışının (`.github/workflows/denetim.yml`) tüm işleri yeşil olunca **squash merge** →
+  dalı `main`'den yeniden başlat.
+- Denetimlerden biri kırmızıysa birleştirme yok: kök nedeni bul, düzelt, yeniden gönder. Testi atlama / kapatma yok.
+- Yalnız Claude'un kendi açtığı, bu oturumda kullanıcının istediği işi içeren PR'lar. Başkasının PR'ını birleştirme.
+- Mağazaya gönderim (EAS submit), Supabase'e yükleme, sürüm yayını gibi dışa dönük adımlar bu izne dahil değil: ayrıca sor.
+- `site-menusu` işi canlı hamour.com.tr'yi okur; site değiştiği için kırmızıysa bu PR'ın hatası değildir:
+  `python3 araclar/menu_aktar.py --html <sayfa>` ile kopyayı yenileyen ayrı bir değişiklik yap, sonra birleştir.

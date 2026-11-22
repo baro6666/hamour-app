@@ -5,9 +5,11 @@ import { Dugme, Ikon, Yazi } from '../../bilesenler/ortak';
 import { ara, Perde, rezervasyonAc } from '../../bilesenler/vitrin';
 import { renk, yazi } from '../../tema';
 import { GORSEL, ILETISIM } from '../../veri/icerik';
+import { useDil } from '../../dil/DilSaglayici';
 import type { ComponentProps } from 'react';
 
 function Satir({ ikon, baslik, deger, onPress }: { ikon: ComponentProps<typeof Ikon>['ad']; baslik: string; deger: string; onPress?: () => void }) {
+  const { rtl } = useDil();
   return (
     <Pressable accessibilityRole={onPress ? 'button' : undefined} disabled={!onPress} onPress={onPress}
       style={({ pressed }) => ({ flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 15, opacity: pressed ? 0.6 : 1 })}>
@@ -18,7 +20,7 @@ function Satir({ ikon, baslik, deger, onPress }: { ikon: ComponentProps<typeof I
         <Yazi tur="kucuk">{baslik}</Yazi>
         <Yazi style={{ color: renk.kahve, fontFamily: yazi.orta, fontSize: 15.5 }}>{deger}</Yazi>
       </View>
-      {onPress ? <Ikon ad="chevron-right" renkKodu={renk.soluk} boy={18} /> : null}
+      {onPress ? <Ikon ad={rtl ? 'chevron-left' : 'chevron-right'} renkKodu={renk.soluk} boy={18} /> : null}
     </Pressable>
   );
 }

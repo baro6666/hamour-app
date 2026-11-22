@@ -22,7 +22,16 @@ Kapsam ve kararlar: `docs/kapsam.md`.
     Sabit marka içeriği `src/veri/icerik.ts` (bilinmeyen alan null → ekranda görünmez).
     **Rezervasyon** `src/app/rezervasyon.tsx`: gün / öğün / saat / kişi / ad / not → WhatsApp'ta hazır mesaj
     (`wa.me/<ILETISIM.whatsapp>`); hiçbir yere kaydedilmez, onay Hamour'da.
-    Üst başlık (`Yazi tur="ust"`) büyük harfi `toLocaleUpperCase('tr-TR')` ile yapılır; `textTransform: 'uppercase'` kullanma (i→I).
+    Üst başlık (`Yazi tur="ust"`) büyük harfi dile göre `toLocaleUpperCase` ile yapılır; `textTransform: 'uppercase'` kullanma (i→I).
+  - **Diller: Türkçe (asıl), İngilizce, Arapça** (`src/dil/`). Telefon dili EN/AR ise o dil, yoksa TR; kullanıcı Keşfet kapağından
+    ya da Hamour sekmesinden değiştirir (cihazda saklanır). Metinler Türkçe yazılır: `Yazi` ve `Dugme` düz metni kendiliğinden
+    çevirir (`cevirme` ile kapatılır), hesaplanan metin `t('… {n} …', { n })`. Karşılıklar `src/dil/ceviriler.ts`;
+    **yeni metin eklerken İngilizce ve Arapçasını da ekle** — `node araclar/ceviri_test.js` eksikleri yakalar (CI'da).
+    Arapça: sağdan sola (kökte Yoga `direction: 'rtl'`, yeniden başlatma yok), Tajawal / Amiri yazı tipleri (`yaziAilesi`),
+    yön okları `rtl` ile çevrilir, yüzde `yuzde(n)` (TR %5, EN/AR 5%). WhatsApp rezervasyon mesajı her dilde Türkçe gider.
+  - Menü çevirisi `src/veri/menuCeviri.ts` (üretilir): İngilizce hamour.com.tr/en/menu/'den (`--html-en`, sırası farklı;
+    fotoğraf/fiyatla eşlenir, `ELLE_EN` düzeltmeleri), Arapça `araclar/ceviri-ar.json` (Claude çevirisi; gözden geçirilmeli).
+    Çevirisi olmayan yeni ürün: Arapçada İngilizce, o da yoksa Türkçe. `urunMetni(u, dil)`.
   - `src/tema.ts`: marka renkleri (hamour_pantoneler.pdf) ekranda "baskı tonu" (Hamour'un seçimi C): dolu alan
     `#8E4630`, yazı/logo koyu kahve `#3D1D0E`, zemin `#F2E2C6`, koyu zemin üstü krem `#F6DCAF`. Turuncu kiremit `#B45A3C`
     büyük alanda kullanılmaz. Yeni renk uydurma. Başlıklar Playfair Display, gövde Jost, fiyatlar Montserrat.

@@ -8,12 +8,16 @@ import { ara, Perde } from '../../bilesenler/vitrin';
 import { renk, tl, yazi } from '../../tema';
 import { BOLUMLER, ILETISIM } from '../../veri/icerik';
 import { useVeri } from '../../veri/VeriSaglayici';
+import { useDil } from '../../dil/DilSaglayici';
+import { urunMetni } from '../../dil/menuMetni';
 
 export default function UrunSayfasi() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const v = useVeri();
   const ic = useSafeAreaInsets();
   const urun = v.urun(id);
+  const { dil, t, rtl } = useDil();
+  const m = urun ? urunMetni(urun, dil) : null;
   const kategori = v.menu.kategoriler.find((k) => k.id === urun?.kategori_id);
   const bolum = BOLUMLER.find((b) => b.id === kategori?.bolum);
   const geri = () => (router.canGoBack() ? router.back() : router.replace('/menu'));
@@ -37,10 +41,9 @@ export default function UrunSayfasi() {
         </View>
 
         <View style={{ marginTop: -36, marginHorizontal: 16, borderRadius: 24, backgroundColor: renk.kart, padding: 22, gap: 12, borderWidth: 1, borderColor: renk.cizgi }}>
-          {kategori ? <Yazi tur="ust">{bolum && bolum.ad !== kategori.ad ? `${bolum.ad} · ${kategori.ad}` : kategori.ad}</Yazi> : null}
-          <Yazi tur="buyukBaslik" style={{ fontSize: 27, lineHeight: 33 }}>{urun?.ad ?? 'Ürün bulunamadı'}</Yazi>
-          {urun?.ad_en && urun.ad_en !== urun.ad ? <Yazi tur="italik" style={{ fontSize: 15 }}>{urun.ad_en}</Yazi> : null}
-          {urun?.aciklama ? <Yazi style={{ fontSize: 16, lineHeight: 25 }}>{urun.aciklama}</Yazi> : null}
+          {kategori ? <Yazi tur="ust" cevirme>{bolum && bolum.ad !== kategori.ad ? `${t(bolum.ad)} · ${t(kategori.ad)}` : t(kategori.ad)}</Yazi> : null}
+          <Yazi tur="buyukBaslik" style={{ fontSize: 27, lineHeight: 33 }} cevirme={!!m}>{m?.ad ?? 'Ürün bulunamadı'}</Yazi>
+          {m?.aciklama ? <Yazi cevirme style={{ fontSize: 16, lineHeight: 25 }}>{m.aciklama}</Yazi> : null}
           {urun?.fiyat != null ? <Yazi tur="fiyat" style={{ fontSize: 18 }}>{urun.fiyat_metni ?? tl(urun.fiyat)}</Yazi> : null}
           {urun?.alerjenler ? <Yazi tur="kucuk">Alerjen: {urun.alerjenler}</Yazi> : null}
           {urun?.kalori != null ? <Yazi tur="kucuk">{urun.kalori} kcal</Yazi> : null}
@@ -49,13 +52,13 @@ export default function UrunSayfasi() {
 
         {ayni.length ? (
           <View style={{ gap: 14, marginTop: 30 }}>
-            <Yazi style={{ paddingHorizontal: 20, fontFamily: yazi.baslik, fontSize: 21, color: renk.kahve }}>{kategori?.ad} menüsünden</Yazi>
+            <Yazi style={{ paddingHorizontal: 20, fontFamily: yazi.baslik, fontSize: 21, color: renk.kahve }}>{t('{kategori} menüsünden', { kategori: t(kategori?.ad ?? '') })}</Yazi>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20, gap: 12 }}>
               {ayni.map((u) => (
-                <Pressable key={u.id} accessibilityRole="button" accessibilityLabel={u.ad}
+                <Pressable key={u.id} accessibilityRole="button" accessibilityLabel={urunMetni(u, dil).ad}
                   onPress={() => router.replace({ pathname: '/urun/[id]', params: { id: u.id } })} style={{ width: 140, gap: 8 }}>
                   <Foto kaynak={fotoKaynak(u.foto_url)} style={{ width: 140, height: 175, borderRadius: 16 }} />
-                  <Yazi numberOfLines={2} style={{ fontFamily: yazi.kalin, fontSize: 13, letterSpacing: 0.6, color: renk.kahve }}>{u.ad}</Yazi>
+                  <Yazi numberOfLines={2} style={{ fontFamily: yazi.kalin, fontSize: 13, letterSpacing: 0.6, color: renk.kahve }} cevirme>{urunMetni(u, dil).ad}</Yazi>
                 </Pressable>
               ))}
             </ScrollView>
@@ -63,9 +66,9 @@ export default function UrunSayfasi() {
         ) : null}
       </ScrollView>
 
-      <Pressable accessibilityRole="button" accessibilityLabel="Geri" onPress={geri}
-        style={{ position: 'absolute', top: ic.top + 10, left: 16, width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(61,29,14,0.55)', alignItems: 'center', justifyContent: 'center' }}>
-        <Ikon ad="arrow-left" renkKodu={renk.krem} />
+      <Pressable accessibilityRole="button" accessibilityLabel={t('Geri')} onPress={geri}
+        style={{ position: 'absolute', top: ic.top + 10, start: 16, width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(61,29,14,0.55)', alignItems: 'center', justifyContent: 'center' }}>
+        <Ikon ad={rtl ? 'arrow-right' : 'arrow-left'} renkKodu={renk.krem} />
       </Pressable>
     </View>
   );

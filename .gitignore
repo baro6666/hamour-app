@@ -8,3 +8,4 @@ web-build/
 !.env.example
 .DS_Store
 supabase/.temp/
+__pycache__/

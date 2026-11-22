@@ -1,5 +1,6 @@
 import { Linking, Pressable, ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { DilSecici } from '../../bilesenler/DilSecici';
 import { Foto } from '../../bilesenler/Foto';
 import { Logo, Simge } from '../../bilesenler/Logo';
 import { Dugme, Ikon, Yazi } from '../../bilesenler/ortak';
@@ -22,7 +23,7 @@ export default function Hamour() {
         <View style={{ flex: 1, justifyContent: 'flex-end', padding: 24, gap: 10 }}>
           <Logo boy={170} renkKodu={renk.krem} />
           <Yazi style={{ color: renk.krem, fontFamily: yazi.baslikItalik, fontSize: 20, lineHeight: 27 }}>
-            Patiseri, brasserie ve bistro kültürü bir arada.
+            Patisserie, brasserie ve bistro kültürü bir arada.
           </Yazi>
         </View>
       </View>
@@ -114,6 +115,12 @@ export default function Hamour() {
             <Yazi style={{ color: renk.kahve, fontFamily: yazi.kalin }}>Facebook</Yazi>
           </Pressable>
         </View>
+      </View>
+
+      {/* Dil */}
+      <View style={{ gap: 12, paddingHorizontal: 20 }}>
+        <Yazi tur="ust">Dil</Yazi>
+        <DilSecici buyuk />
       </View>
     </ScrollView>
   );

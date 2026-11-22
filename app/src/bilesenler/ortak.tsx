@@ -1,8 +1,9 @@
 import Feather from '@expo/vector-icons/Feather';
 import type { ComponentProps, ReactNode } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View, type StyleProp, type TextStyle, type ViewStyle } from 'react-native';
+import { useDil } from '../dil/DilSaglayici';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { renk, yazi } from '../tema';
+import { renk, yaziAilesi, yazi } from '../tema';
 import { Simge } from './Logo';
 
 type Tur = 'govde' | 'kucuk' | 'ust' | 'baslik' | 'buyukBaslik' | 'kalin' | 'italik' | 'fiyat';
@@ -18,12 +19,18 @@ const turler: Record<Tur, TextStyle> = {
   fiyat: { fontFamily: yazi.fiyat, fontSize: 15, color: renk.fiyat },
 };
 
-// Türkçe büyük harf: textTransform 'uppercase' i→I yapar (KİŞİ yerine KIŞI); bu yüzden tr-TR ile çevrilir.
-export const buyukHarf = (s: string) => s.toLocaleUpperCase('tr-TR');
-
-export function Yazi({ tur = 'govde', style, children, ...p }: { tur?: Tur; style?: StyleProp<TextStyle>; children: ReactNode } & ComponentProps<typeof Text>) {
-  const icerik = tur === 'ust' && typeof children === 'string' ? buyukHarf(children) : children;
-  return <Text {...p} style={[turler[tur], style]}>{icerik}</Text>;
+// Yazi: düz metin çocuğu seçili dile çevrilir (dil/ceviriler.ts; karşılığı yoksa olduğu gibi kalır — ürün adı, üye adı).
+// 'ust' türü büyük harf: textTransform 'uppercase' Türkçede i→I yapar (KİŞİ yerine KIŞI); dile göre toLocaleUpperCase.
+// Arapçada yazı tipi Tajawal / Amiri'ye döner, metin sağdan sola ve sağa yaslı.
+export function Yazi({ tur = 'govde', style, children, cevirme = false, ...p }: { tur?: Tur; style?: StyleProp<TextStyle>; children: ReactNode; cevirme?: boolean } & ComponentProps<typeof Text>) {
+  const { t, buyukHarf, rtl } = useDil();
+  let icerik = typeof children === 'string' && !cevirme ? t(children) : children;
+  if (tur === 'ust' && typeof icerik === 'string') icerik = buyukHarf(icerik);
+  const duz: TextStyle = StyleSheet.flatten([turler[tur], style]) ?? {};
+  return (
+    <Text {...p} style={[rtl && { textAlign: 'right', writingDirection: 'rtl' }, duz,
+      rtl && { fontFamily: yaziAilesi(duz.fontFamily, true), letterSpacing: 0, lineHeight: duz.lineHeight ? duz.lineHeight * 1.12 : undefined }]}>{icerik}</Text>
+  );
 }
 
 // Kaydırılabilir ekran; üstte güvenli alan
@@ -43,6 +50,7 @@ export function Ekran({ children, ust = true, yenile }: { children: ReactNode; u
 export function Dugme({ yazi: metin, onPress, tur = 'dolu', ters = false, bekliyor = false, devreDisi = false, style, yaziRengi }: {
   yazi: string; onPress?: () => void; tur?: 'dolu' | 'cizgi' | 'metin'; ters?: boolean; bekliyor?: boolean; devreDisi?: boolean; style?: StyleProp<ViewStyle>; yaziRengi?: string;
 }) {
+  const { t, rtl } = useDil();
   const on = yaziRengi ?? (ters ? renk.krem : renk.ana);
   const arka = ters ? renk.ana : renk.krem;
   return (
@@ -60,7 +68,7 @@ export function Dugme({ yazi: metin, onPress, tur = 'dolu', ters = false, bekliy
       ]}
     >
       {bekliyor ? <ActivityIndicator color={tur === 'dolu' ? arka : on} /> : (
-        <Text style={[s.dugmeYazi, { color: tur === 'dolu' ? arka : on }]}>{metin}</Text>
+        <Text style={[s.dugmeYazi, rtl && { fontFamily: yaziAilesi(yazi.kalin, true) }, { color: tur === 'dolu' ? arka : on }]}>{t(metin)}</Text>
       )}
     </Pressable>
   );

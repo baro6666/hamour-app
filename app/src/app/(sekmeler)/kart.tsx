@@ -9,6 +9,7 @@ import { renk, yazi } from '../../tema';
 import { kaynak } from '../../veri/kaynak';
 import type { Kampanya } from '../../veri/tipler';
 import { useVeri } from '../../veri/VeriSaglayici';
+import { useDil } from '../../dil/DilSaglayici';
 
 // QR sunucuda imzalanır, her dakika değişir: ekran görüntüsüyle indirim alınamaz.
 function useQr(etkin: boolean) {
@@ -25,30 +26,31 @@ function useQr(etkin: boolean) {
   return { kod, hata };
 }
 
-function onayla(baslik: string, metin: string, evet: string): Promise<boolean> {
+function onayla(baslik: string, metin: string, evet: string, vazgec: string): Promise<boolean> {
   if (Platform.OS === 'web') return Promise.resolve(globalThis.confirm?.(`${baslik}\n\n${metin}`) ?? false);
   return new Promise((coz) => Alert.alert(baslik, metin, [
-    { text: 'Vazgeç', style: 'cancel', onPress: () => coz(false) },
+    { text: vazgec, style: 'cancel', onPress: () => coz(false) },
     { text: evet, style: 'destructive', onPress: () => coz(true) },
   ]));
 }
 
-const saat = (iso: string) => new Date(iso).toLocaleString('tr-TR', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' });
+const saat = (iso: string, yerel: string) => new Date(iso).toLocaleString(yerel, { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' });
 
 function KampanyaSatiri({ k, uye }: { k: Kampanya; uye: boolean }) {
+  const { t, yerel, yuzde } = useDil();
   const kullanildi = k.tek_kullanim && !!k.kullanildi;
   return (
     <View style={{ flexDirection: 'row', gap: 14, alignItems: 'center', padding: 16, borderRadius: 18, backgroundColor: kullanildi ? renk.kremKutu : renk.kart, borderWidth: 1, borderColor: renk.cizgi, opacity: kullanildi ? 0.75 : 1 }}>
       <View style={{ width: 62, height: 62, borderRadius: 31, backgroundColor: kullanildi ? renk.kapali : renk.ana, alignItems: 'center', justifyContent: 'center' }}>
-        <Yazi style={{ fontFamily: yazi.baslik, fontSize: 21, color: renk.krem }}>%{k.oran}</Yazi>
+        <Yazi style={{ fontFamily: yazi.baslik, fontSize: 21, color: renk.krem }} cevirme>{yuzde(k.oran)}</Yazi>
       </View>
       <View style={{ flex: 1, gap: 3 }}>
         <Yazi style={{ fontFamily: yazi.baslik, fontSize: 17, color: renk.kahve }}>{k.baslik}</Yazi>
         {k.kapsam ? <Yazi tur="kucuk">{k.kapsam}</Yazi> : null}
         <Yazi tur="kucuk" style={{ color: kullanildi ? renk.soluk : renk.ana, fontFamily: yazi.orta }}>
-          {kullanildi ? `Kullanıldı · ${saat(k.kullanildi!)}`
-            : k.tur === 'hosgeldin' ? (uye ? 'Kullanılabilir · ilk ziyaretinizde bir kez' : 'Üye olunca ilk ziyaretinizde')
-            : k.bitis ? `${saat(k.bitis)}'e kadar` : 'Geçerli'}
+          {kullanildi ? t('Kullanıldı · {zaman}', { zaman: saat(k.kullanildi!, yerel) })
+            : k.tur === 'hosgeldin' ? t(uye ? 'Kullanılabilir · ilk ziyaretinizde bir kez' : 'Üye olunca ilk ziyaretinizde')
+            : k.bitis ? t('{zaman} tarihine kadar', { zaman: saat(k.bitis, yerel) }) : t('Geçerli')}
         </Yazi>
       </View>
     </View>
@@ -57,6 +59,7 @@ function KampanyaSatiri({ k, uye }: { k: Kampanya; uye: boolean }) {
 
 export default function HamourKarti() {
   const v = useVeri();
+  const { t, yuzde } = useDil();
   const ic = useSafeAreaInsets();
   const { kod, hata } = useQr(!!v.uye);
   const { oturumYenile } = v;
@@ -87,7 +90,7 @@ export default function HamourKarti() {
           </>
         ) : (
           <>
-            <Yazi style={{ color: renk.krem, fontFamily: yazi.baslik, fontSize: 54, lineHeight: 60 }}>%5</Yazi>
+            <Yazi style={{ color: renk.krem, fontFamily: yazi.baslik, fontSize: 54, lineHeight: 60 }} cevirme>{yuzde(5)}</Yazi>
             <Yazi style={{ color: renk.krem, fontFamily: yazi.baslik, fontSize: 23, textAlign: 'center' }}>Hoş geldin indirimi</Yazi>
             <Yazi style={{ color: renk.anaUstuSoluk, textAlign: 'center' }}>
               Uygulamayı indirdiğiniz için ilk ziyaretinizde %5 indirim. Alkollü içecekler hariç.
@@ -132,12 +135,12 @@ export default function HamourKarti() {
           ) : null}
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
             <Yazi style={{ flex: 1, color: renk.kahve }}>Kampanya ve etkinlik bildirimleri</Yazi>
-            <Anahtar etiket="Kampanya bildirimleri" acik={v.uye.kampanya_izni} onChange={(acik) => v.bildirimAyari({ kampanya_izni: acik })} />
+            <Anahtar etiket={t('Kampanya bildirimleri')} acik={v.uye.kampanya_izni} onChange={(acik) => v.bildirimAyari({ kampanya_izni: acik })} />
           </View>
           <Dugme yazi="Çıkış yap" tur="cizgi" onPress={async () => { await kaynak.cikis(); await v.oturumYenile(); }} />
           <Dugme yazi="Hesabımı sil" tur="metin" yaziRengi={renk.tehlike}
             onPress={async () => {
-              if (!(await onayla('Hesabınız silinsin mi?', 'Hamour Kartı, indirim geçmişiniz ve e-posta adresiniz kalıcı olarak silinir.', 'Sil'))) return;
+              if (!(await onayla(t('Hesabınız silinsin mi?'), t('Hamour Kartı, indirim geçmişiniz ve e-posta adresiniz kalıcı olarak silinir.'), t('Sil'), t('Vazgeç')))) return;
               await kaynak.hesabiSil(); await v.oturumYenile();
             }} />
         </View>

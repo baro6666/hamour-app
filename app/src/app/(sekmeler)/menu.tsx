@@ -9,6 +9,8 @@ import { renk, tl, yazi } from '../../tema';
 import { BOLUMLER, ILETISIM } from '../../veri/icerik';
 import type { Urun } from '../../veri/tipler';
 import { useVeri } from '../../veri/VeriSaglayici';
+import { useDil } from '../../dil/DilSaglayici';
+import { urunMetni } from '../../dil/menuMetni';
 
 export default function Menu() {
   const v = useVeri();
@@ -105,13 +107,15 @@ function urunAc(u: Urun) {
 }
 
 function FotoluUrun({ urun: u }: { urun: Urun }) {
+  const { dil } = useDil();
+  const m = urunMetni(u, dil);
   return (
-    <Pressable accessibilityRole="button" accessibilityLabel={u.ad} onPress={() => urunAc(u)}
+    <Pressable accessibilityRole="button" accessibilityLabel={m.ad} onPress={() => urunAc(u)}
       style={({ pressed }) => ({ marginHorizontal: 20, flexDirection: 'row', gap: 14, alignItems: 'center', opacity: pressed ? 0.75 : 1 })}>
       <Foto kaynak={fotoKaynak(u.foto_url)} style={{ width: 112, height: 140, borderRadius: 16, backgroundColor: renk.kremKutu }} />
       <View style={{ flex: 1, gap: 6 }}>
-        <Yazi style={{ fontFamily: yazi.kalin, fontSize: 15, letterSpacing: 0.8, color: renk.kahve }}>{u.ad}</Yazi>
-        {u.aciklama ? <Yazi numberOfLines={4} style={{ fontSize: 13.5, lineHeight: 19 }}>{u.aciklama}</Yazi> : null}
+        <Yazi style={{ fontFamily: yazi.kalin, fontSize: 15, letterSpacing: 0.8, color: renk.kahve }} cevirme>{m.ad}</Yazi>
+        {m.aciklama ? <Yazi cevirme numberOfLines={4} style={{ fontSize: 13.5, lineHeight: 19 }}>{m.aciklama}</Yazi> : null}
         {u.fiyat != null ? <Yazi tur="fiyat">{u.fiyat_metni ?? tl(u.fiyat)}</Yazi> : null}
       </View>
     </Pressable>
@@ -119,13 +123,15 @@ function FotoluUrun({ urun: u }: { urun: Urun }) {
 }
 
 function YaziliUrun({ urun: u, ilk }: { urun: Urun; ilk: boolean }) {
+  const { dil } = useDil();
+  const m = urunMetni(u, dil);
   return (
     <View style={{ paddingVertical: 13, gap: 3, borderTopWidth: ilk ? 0 : 1, borderTopColor: renk.cizgi }}>
       <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 10 }}>
-        <Yazi style={{ flex: 1, fontFamily: yazi.orta, fontSize: 14.5, letterSpacing: 0.6, color: renk.kahve }}>{u.ad}</Yazi>
+        <Yazi style={{ flex: 1, fontFamily: yazi.orta, fontSize: 14.5, letterSpacing: 0.6, color: renk.kahve }} cevirme>{m.ad}</Yazi>
         {u.fiyat != null ? <Yazi tur="fiyat" style={{ fontSize: 14 }}>{u.fiyat_metni ?? tl(u.fiyat)}</Yazi> : null}
       </View>
-      {u.aciklama ? <Yazi tur="kucuk">{u.aciklama}</Yazi> : null}
+      {m.aciklama ? <Yazi tur="kucuk" cevirme>{m.aciklama}</Yazi> : null}
     </View>
   );
 }

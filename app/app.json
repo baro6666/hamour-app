@@ -37,7 +37,8 @@
           "color": "#B45A3C"
         }
       ],
-      "expo-image"
+      "expo-image",
+      "expo-localization"
     ],
     "scheme": "hamour",
     "backgroundColor": "#F6DCAF",

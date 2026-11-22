@@ -34,7 +34,7 @@ export const BOLUMLER: Bolum[] = [
     gorsel: require('../../assets/gorsel/bolum-alkol.png'),
   },
   {
-    id: 'patiseri', ad: 'Patiseri', baslik: 'Güne anlam katan lezzetler',
+    id: 'patiseri', ad: 'Patisserie', baslik: 'Güne anlam katan lezzetler',
     metin: 'Günlük taze kruvasanlar, özenle hazırlanan ekmekler ve Fransız esintili tatlılar. Vitrin her gün değişir.',
     gorsel: require('../../assets/gorsel/bolum-patiseri.png'), urunsuz: true,
   },
@@ -86,7 +86,7 @@ export const ILETISIM = {
 
 // Kurumsal yapı: yalnız bilinen bilgiler. Hamour'dan gelince doldurulur (null olanlar ekranda görünmez).
 export const KURUMSAL: { baslik: string; deger: string | null }[] = [
-  { baslik: 'Konsept', deger: 'Patiseri · brasserie · bistro' },
+  { baslik: 'Konsept', deger: 'Patisserie · brasserie · bistro' },
   { baslik: 'Şube', deger: 'Beykoz, İstanbul' },
   { baslik: 'Şirket unvanı', deger: null },
   { baslik: 'Kuruluş', deger: null },

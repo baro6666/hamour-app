@@ -1,0 +1,57 @@
+# Her PR'da ve main'e her gönderimde çalışan denetimler. Hepsi yeşil olmadan PR birleştirilmez (CLAUDE.md).
+# Not: GitHub makineleri www.hamour.com.tr'ye bağlanamıyor (bağlantı zaman aşımı, Kasım 2026). Bu yüzden
+# "Site menüsü" işi ayrıştırıcıyı depodaki sayfa kopyasına (araclar/site-menu.html) karşı dener; canlı siteyle
+# karşılaştırma siteye erişilen yerden yapılır: node araclar/site_menu_test.js
+name: Denetim
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: denetim-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  uygulama:
+    name: Uygulama (tip + lint)
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: app } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: app/package-lock.json }
+      - run: npm ci --no-audit --no-fund
+      - run: npx tsc --noEmit
+      - run: npx expo lint --max-warnings 0
+
+  panel:
+    name: Panel (derleme)
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: panel } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: panel/package-lock.json }
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+
+  veritabani:
+    name: Veritabanı (kural testleri + seed)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: supabase/tests/calistir.sh
+
+  site-menusu:
+    name: Site menüsü (ayrıştırıcı + uygulama içi kopya)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: app/package-lock.json }
+      - run: npm ci --no-audit --no-fund
+        working-directory: app
+      - run: node araclar/site_menu_test.js araclar/site-menu.html

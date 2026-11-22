@@ -4,7 +4,7 @@ import { Linking, Pressable, RefreshControl, ScrollView, View } from 'react-nati
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Foto, fotoKaynak } from '../../bilesenler/Foto';
 import { Logo } from '../../bilesenler/Logo';
-import { Dugme, Yazi } from '../../bilesenler/ortak';
+import { Dugme, Ikon, Yazi } from '../../bilesenler/ortak';
 import { ara, BolumBaslik, FotoKart, menuyeGit, Perde, rezervasyonAc, Sus } from '../../bilesenler/vitrin';
 import { renk, yazi } from '../../tema';
 import { BOLUMLER, GORSEL, HIKAYE, ILETISIM } from '../../veri/icerik';
@@ -41,6 +41,19 @@ export default function Kesfet() {
           </View>
         </View>
       </View>
+
+      {/* Hamour Kartı: hoş geldin indirimi */}
+      {!v.uye || v.kampanyalar.some((k) => k.tur === 'hosgeldin' && !k.kullanildi) ? (
+        <Pressable accessibilityRole="button" onPress={() => router.navigate('/kart')}
+          style={{ marginHorizontal: 20, marginTop: -6, borderRadius: 20, backgroundColor: renk.ana, padding: 18, flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+          <Yazi style={{ fontFamily: yazi.baslik, fontSize: 34, color: renk.krem }}>%5</Yazi>
+          <View style={{ flex: 1, gap: 2 }}>
+            <Yazi style={{ fontFamily: yazi.kalin, fontSize: 16, color: renk.krem }}>{v.uye ? 'Hoş geldin indiriminiz hazır' : 'Uygulamaya özel hoş geldin indirimi'}</Yazi>
+            <Yazi tur="kucuk" style={{ color: renk.anaUstuSoluk }}>{v.uye ? 'Kasada Hamour Kartı’nızı gösterin.' : 'İlk ziyaretinizde %5 · alkollü içecekler hariç'}</Yazi>
+          </View>
+          <Ikon ad="chevron-right" renkKodu={renk.krem} />
+        </Pressable>
+      ) : null}
 
       {/* Menü bölümleri */}
       <View style={{ gap: 16 }}>

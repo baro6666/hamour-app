@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HashRouter, Navigate, NavLink, Route, Routes } from 'react-router-dom';
 import { Giris } from './Giris';
+import { Kasa } from './Kasa';
 import { OturumSaglayici, useOturum } from './Oturum';
 import { sb } from './supabase';
 import './stil.css';
@@ -56,20 +57,18 @@ function Uygulama() {
       <header className="ust">
         <div className="marka"><Logo /></div>
         <nav aria-label="Bölümler">
+          <NavLink to="/kasa" className={({ isActive }) => (isActive ? 'etkin' : '')}>İndirim okut</NavLink>
           {yonetici ? <NavLink to="/yonetim" className={({ isActive }) => (isActive ? 'etkin' : '')}>Yönetim</NavLink> : null}
         </nav>
         <div className="kim">{personel.ad} · {yonetici ? 'Yönetici' : 'Kasiyer'}
           <button className="dugme kucuk krem" onClick={sifreDegistir}>Şifre</button>
           <button className="dugme kucuk krem" onClick={cikis}>Çıkış</button></div>
       </header>
-      {yonetici ? (
-        <Routes>
-          <Route path="/yonetim/*" element={<Yonetim />} />
-          <Route path="*" element={<Navigate to="/yonetim" replace />} />
-        </Routes>
-      ) : (
-        <div className="sayfa"><p className="soluk">Duyuru ve personel yönetimi yalnız yöneticiler içindir.</p></div>
-      )}
+      <Routes>
+        <Route path="/kasa" element={<Kasa />} />
+        {yonetici ? <Route path="/yonetim/*" element={<Yonetim />} /> : null}
+        <Route path="*" element={<Navigate to="/kasa" replace />} />
+      </Routes>
     </>
   );
 }

@@ -15,7 +15,7 @@ export function Giris() {
         setBekliyor(false);
       }}>
         <h1>Hamour personel girişi</h1>
-        <p className="soluk">Duyuru ve personel yönetimi. Menü hamour.com.tr’den otomatik gelir.</p>
+        <p className="soluk">Kasada indirim okutma; kampanya, duyuru ve personel yönetimi.</p>
         <label className="alan">E-posta<input type="email" autoComplete="username" required value={eposta} onChange={(e) => setEposta(e.target.value)} /></label>
         <label className="alan">Şifre<input type="password" autoComplete="current-password" required value={sifre} onChange={(e) => setSifre(e.target.value)} /></label>
         {hata ? <p className="mesaj hata" role="alert">{hata}</p> : null}

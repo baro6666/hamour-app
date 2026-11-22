@@ -38,6 +38,7 @@ export interface Uye {
   id: string;
   ad: string | null;
   telefon: string | null;
+  eposta?: string | null;
   dogum_gunu: string | null;
   davet_kodu: string;
   bildirim_firin: boolean;
@@ -49,3 +50,16 @@ export interface Uye {
 export interface KartDurumu { damga: number; hak: number; kart_doldu: number; hedef: number }
 
 export interface SonZiyaret { hareket_id: number; zaman: string; adet: number; puan: number | null }
+
+/** Hamour Kartı kampanyası (hoş geldin %5 ya da panelden açılan kampanya) */
+export interface Kampanya {
+  id: string;
+  tur: 'hosgeldin' | 'kampanya';
+  baslik: string;
+  metin: string | null;
+  oran: number;
+  kapsam: string | null;
+  bitis: string | null;
+  tek_kullanim: boolean;
+  kullanildi: string | null; // bu üyenin kullandığı an (tek kullanımlıkta bir daha uygulanmaz)
+}

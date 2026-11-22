@@ -57,5 +57,6 @@ T. Baran Dinç'in açık isteği: **Claude kendi açtığı PR'ları kendisi bir
 - Denetimlerden biri kırmızıysa birleştirme yok: kök nedeni bul, düzelt, yeniden gönder. Testi atlama / kapatma yok.
 - Yalnız Claude'un kendi açtığı, bu oturumda kullanıcının istediği işi içeren PR'lar. Başkasının PR'ını birleştirme.
 - Mağazaya gönderim (EAS submit), Supabase'e yükleme, sürüm yayını gibi dışa dönük adımlar bu izne dahil değil: ayrıca sor.
-- `site-menusu` işi canlı hamour.com.tr'yi okur; site değiştiği için kırmızıysa bu PR'ın hatası değildir:
-  `python3 araclar/menu_aktar.py --html <sayfa>` ile kopyayı yenileyen ayrı bir değişiklik yap, sonra birleştir.
+- GitHub makineleri www.hamour.com.tr'ye bağlanamıyor; CI'daki site menüsü işi ayrıştırıcıyı depodaki sayfa kopyasına
+  (`araclar/site-menu.html`) karşı dener. Canlı siteyle karşılaştırmayı (`node araclar/site_menu_test.js`) menüye
+  dokunan her işte oturumda çalıştır; fark varsa `python3 araclar/menu_aktar.py --html <yeni sayfa>` ile kopyayı yenile.

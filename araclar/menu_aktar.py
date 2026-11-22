@@ -72,7 +72,10 @@ def fiyat_coz(metin):
 
 def main():
     if '--html' in sys.argv:
-        menu = ayristir(Path(sys.argv[sys.argv.index('--html') + 1]).read_text(encoding='utf-8'))
+        kaynak_html = Path(sys.argv[sys.argv.index('--html') + 1]).read_text(encoding='utf-8')
+        menu = ayristir(kaynak_html)
+        # Sayfanın kendisi de saklanır: CI ayrıştırıcıyı bu kopyaya karşı dener (GitHub siteye bağlanamıyor)
+        (KOK / 'araclar/site-menu.html').write_text(kaynak_html, encoding='utf-8')
         json.dump(menu, open(KOK / 'araclar/site-menu.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     foto_klasor = Path(sys.argv[sys.argv.index('--foto') + 1]) if '--foto' in sys.argv else None
     site = json.load(open(KOK / 'araclar/site-menu.json', encoding='utf-8'))

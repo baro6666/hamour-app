@@ -1,14 +1,13 @@
 # Her PR'da ve main'e her gönderimde çalışan denetimler. Hepsi yeşil olmadan PR birleştirilmez (CLAUDE.md).
-# "Site menüsü" işi her sabah da çalışır: hamour.com.tr menü sayfasının yapısı değişirse kırmızı olur ve
-# GitHub depo sahibine e-posta atar (uygulama yine son kayıtlı menüyle çalışır).
+# Not: GitHub makineleri www.hamour.com.tr'ye bağlanamıyor (bağlantı zaman aşımı, Kasım 2026). Bu yüzden
+# "Site menüsü" işi ayrıştırıcıyı depodaki sayfa kopyasına (araclar/site-menu.html) karşı dener; canlı siteyle
+# karşılaştırma siteye erişilen yerden yapılır: node araclar/site_menu_test.js
 name: Denetim
 
 on:
   pull_request:
   push:
     branches: [main]
-  schedule:
-    - cron: '17 4 * * *' # her gün 07:17 (TSİ)
   workflow_dispatch:
 
 concurrency:
@@ -18,7 +17,6 @@ concurrency:
 jobs:
   uygulama:
     name: Uygulama (tip + lint)
-    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
     defaults: { run: { working-directory: app } }
     steps:
@@ -31,7 +29,6 @@ jobs:
 
   panel:
     name: Panel (derleme)
-    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
     defaults: { run: { working-directory: panel } }
     steps:
@@ -43,14 +40,13 @@ jobs:
 
   veritabani:
     name: Veritabanı (kural testleri + seed)
-    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: supabase/tests/calistir.sh
 
   site-menusu:
-    name: Site menüsü (hamour.com.tr ile karşılaştırma)
+    name: Site menüsü (ayrıştırıcı + uygulama içi kopya)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -58,4 +54,4 @@ jobs:
         with: { node-version: 22, cache: npm, cache-dependency-path: app/package-lock.json }
       - run: npm ci --no-audit --no-fund
         working-directory: app
-      - run: node araclar/site_menu_test.js
+      - run: node araclar/site_menu_test.js araclar/site-menu.html

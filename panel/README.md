@@ -1,7 +1,8 @@
 # Hamour panel — yönetim (web)
 
-- **Yönetim** (yalnız yönetici): menü (ürün, açıklama, fiyat, fotoğraf, görünürlük), duyurular, personel
-  (ekle / pasif yap; `supabase/functions/personel-ekle`). Kahve kartı ekranları Kasım 2026'da kaldırıldı.
+- **Yönetim** (yalnız yönetici): duyurular, personel (ekle / pasif yap; `supabase/functions/personel-ekle`).
+- Menü panelde düzenlenmez: uygulama hamour.com.tr/tr/menu/ sayfasını okur (sitede değişen her şey uygulamaya gelir).
+  Kahve kartı ekranları Kasım 2026'da kaldırıldı.
 
 Adres: [https://hamour-panel.expo.app] (Expo hosting, proje `@baro6/hamour-panel`; henüz yayımlanmadı).
 

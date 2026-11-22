@@ -67,7 +67,7 @@ function supabaseKaynak(sb: SupabaseClient): Kaynak {
     async menu() {
       const [k, u, s] = await Promise.all([
         sb.from('kategoriler').select('id, ad, sira, damga_verir, bolum').order('sira'),
-        sb.from('urunler').select('id, kategori_id, ad, ad_en, aciklama, fiyat, alerjenler, kalori, foto_url, eslik_urun_id, vitrin_durumu, vitrin_notu, on_siparis, sira').order('sira'),
+        sb.from('urunler').select('id, kategori_id, ad, ad_en, aciklama, fiyat, fiyat_metni, alerjenler, kalori, foto_url, eslik_urun_id, vitrin_durumu, vitrin_notu, on_siparis, sira').order('sira'),
         sb.from('subeler').select('id, ad, adres, telefon, calisma_saatleri, enlem, boylam').limit(1).maybeSingle(),
       ]);
       hata(k.error); hata(u.error); hata(s.error);

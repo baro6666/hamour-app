@@ -5,10 +5,12 @@
 > işbirlikleri, sosyal medya) geldi. Sipariş ve pasta talepleri telefonla. Aşağıdaki butter'dan kalan bölümler
 > (kahve kartı kuralları vb.) yalnız arşiv bilgisidir.
 >
-> - Menü: hamour.com.tr'deki 6 bölüm (Royal Breakfast, Ana yemekler, İçecekler, Bar [gizli], Patiseri, Pastalar),
->   175 ürün, 59 ürün fotoğrafı (site çekimleri). Patiseri ve pasta ürünleri sitede yok: vitrin için arama düğmesi.
+> - Menü: **hamour.com.tr/tr/menu/ sayfasından canlı** (uygulama açılışta okur; sitede değişen ürün, fiyat ve
+>   fotoğraf yeni sürüm gerekmeden gelir). 6 bölüm (Royal Breakfast, Ana yemekler, İçecekler, Bar [gizli], Patiseri,
+>   Pastalar), 175 ürün (111'i görünür), 59 ürün fotoğrafı. Patiseri ve pasta ürünleri sitede yok: arama düğmesi.
+> - Rezervasyon: WhatsApp (0532 050 27 17, Hamour teyit etti) üzerinden hazır mesaj; uygulama bilgi saklamaz.
 > - Renk: Hamour'un seçtiği "baskı tonu" (C). Fotoğraflar sitedeki çekimlerden; Hamour kendi çekimlerini verince değişir.
-> - Hamour'dan beklenenler: fiyatlar, çalışma saatleri, şirket unvanı / kuruluş, işbirlikleri listesi (ad, görsel),
+> - Hamour'dan beklenenler: çalışma saatleri, şirket unvanı / kuruluş, işbirlikleri listesi (ad, görsel),
 >   patiseri ve pasta ürünleri.
 
 Bu belge Hamour'un ilk sürümünü tanımlar. İskelet ve kurallar butter uygulamasından alındı (Kasım 2026).

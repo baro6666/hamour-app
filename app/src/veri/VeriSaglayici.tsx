@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { bildirimKaydet } from './bildirim';
 import { kaynak, supabase, type BildirimAyari, type Menu } from './kaynak';
+import { saklananMenu, siteMenusuGetir } from './siteMenu';
 import type { Duyuru, KartDurumu, Urun, Uye } from './tipler';
 
 interface Veri {
@@ -42,8 +43,12 @@ export function VeriSaglayici({ children }: { children: ReactNode }) {
 
   const yenile = useCallback(async () => {
     try {
-      const [m, d] = await Promise.all([kaynak.menu(), kaynak.duyurular()]);
-      setMenu(m); setDuyurular(d);
+      // Menü: önce cihazda saklanan son site menüsü (hızlı açılış), sonra siteden güncel hali (siteMenu.ts)
+      const [m, d, sakli] = await Promise.all([kaynak.menu(), kaynak.duyurular(), saklananMenu()]);
+      setMenu(sakli ? { ...m, ...sakli } : m); setDuyurular(d);
+      setHazir(true);
+      const site = await siteMenusuGetir();
+      if (site) setMenu({ ...m, ...site });
       await oturumYenile();
       setHata(null);
     } catch (e) {

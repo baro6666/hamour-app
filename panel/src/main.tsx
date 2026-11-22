@@ -68,7 +68,7 @@ function Uygulama() {
           <Route path="*" element={<Navigate to="/yonetim" replace />} />
         </Routes>
       ) : (
-        <div className="sayfa"><p className="soluk">Menü ve duyuru yönetimi yalnız yöneticiler içindir.</p></div>
+        <div className="sayfa"><p className="soluk">Duyuru ve personel yönetimi yalnız yöneticiler içindir.</p></div>
       )}
     </>
   );

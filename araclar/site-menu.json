@@ -1,8 +1,6 @@
 [
  {
   "ad": "Royal Breakfast",
-  "baslik": "Güne Hamour'da Başla!",
-  "metin": "Hamour’da yapılan kahvaltı, özenle seçilmiş malzemelerle hazırlanan özel lezzetlerle güne başlamak isteyenlere unutulmaz bir deneyim sunuyor. Sağlıklı, doyurucu ve zarif sunumlarıyla her damak zevkine hitap eden bu kahvaltı, gününüze taptaze bir dokunuş katıyor.",
   "gruplar": [
    {
     "ad": null,
@@ -10,112 +8,134 @@
      {
       "ad": "AVOCADO TOAST",
       "aciklama": "Poşe yumurta, kızarmış ekşi mayalı ekmek, avokado, lime, Buffa mozzarella peyniri, bernez sos",
-      "foto": "/media/cache/ur_avakado-tost.jpg"
+      "foto": "/media/cache/ur_avakado-tost.jpg",
+      "fiyat": "745"
      },
      {
       "ad": "SCRAMBLED EGGS",
       "aciklama": "Trüf yağı, istiridye mantarı, organik yumurta, kızarmış ekşi mayalı ekmek, avokado",
-      "foto": "/media/cache/ur_Scrambled-egg.jpg"
+      "foto": "/media/cache/ur_Scrambled-egg.jpg",
+      "fiyat": "715"
      },
      {
       "ad": "CLASSIC EGGS BENEDICT",
       "aciklama": "Poşe yumurta, sote ıspanak, krem peynir, kızarmış ekşi mayalı ekmek ve hollandez sos.",
-      "foto": "/media/cache/ur_classic-eggs-benedcit.jpg"
+      "foto": "/media/cache/ur_classic-eggs-benedcit.jpg",
+      "fiyat": "665"
      },
      {
       "ad": "HAMOUR OMLET",
       "aciklama": "Üç adet köy yumurtası, kestane mantarı, Kars gravyeri, baby patates, yeşillik",
-      "foto": "/media/cache/ur_Hamour-omlette.jpg"
+      "foto": "/media/cache/ur_Hamour-omlette.jpg",
+      "fiyat": "485"
      },
      {
       "ad": "BRIOCHE & AVOCADO",
       "aciklama": "Brioche ekmeği, organik poşe yumurta, guacamole, mikro filiz",
-      "foto": "/media/cache/ur_briosche-avacado.jpg"
+      "foto": "/media/cache/ur_briosche-avacado.jpg",
+      "fiyat": "765"
      },
      {
       "ad": "BREAKFAST AT CROISSANT",
       "aciklama": "Çırpılmış yumurta, stracciatella peyniri, frenk soğanı",
-      "foto": "/media/cache/ur_breakfast-at-crossiant.jpg"
+      "foto": "/media/cache/ur_breakfast-at-crossiant.jpg",
+      "fiyat": "765"
      },
      {
       "ad": "CROISSANT ROLL",
       "aciklama": "Poşe yumurta, sote ıspanak, dana bacon, stracciatella peyniri ve hollandez sos",
-      "foto": "/media/cache/ur_Kuruvasan-roll.jpg"
+      "foto": "/media/cache/ur_Kuruvasan-roll.jpg",
+      "fiyat": "740"
      },
      {
       "ad": "MORNING SALAD",
       "aciklama": "Çengelköy salatalık, mini mozzarella peyniri, kalamata zeytin, fesleğen, çeri domates",
-      "foto": "/media/cache/ur_morning_salad.jpg"
+      "foto": "/media/cache/ur_morning_salad.jpg",
+      "fiyat": "675"
      },
      {
       "ad": "SPECULOOS PANCAKE",
       "aciklama": "Çilek, böğürtlen, blueberry, muz, yenilebilir menekşe, pudra şekeri, süt reçeli / maple şurubu",
-      "foto": "/media/cache/ur_Speculoos-pancake.jpg"
+      "foto": "/media/cache/ur_Speculoos-pancake.jpg",
+      "fiyat": "765"
      },
      {
       "ad": "FRENCH TOAST",
       "aciklama": "Brioche ekmeği, muz, böğürtlen, çilek, blueberry, maple şurup",
-      "foto": "/media/cache/ur_French-toast.jpg"
+      "foto": "/media/cache/ur_French-toast.jpg",
+      "fiyat": "860"
      },
      {
       "ad": "ACAI BOWL",
       "aciklama": "Mevsim meyveleri, ev yapımı granola, muz, hindistan cevizi tozu",
-      "foto": "/media/cache/ur_acai-bowl-2.jpg"
+      "foto": "/media/cache/ur_acai-bowl-2.jpg",
+      "fiyat": "745"
      },
      {
       "ad": "GRANOLA",
       "aciklama": "Ev yapımı granola, mevsim meyveleri, süzme yoğurt",
-      "foto": "/media/cache/ur_Granola.jpg"
+      "foto": "/media/cache/ur_Granola.jpg",
+      "fiyat": "665"
      },
      {
       "ad": "ROYAL CHEESE",
       "aciklama": "Ezine peyniri, cevizli sepet peyniri, Bergama tulumu, Trakya kaşar peyniri",
-      "foto": "/media/cache/ur_royal-cheese.jpg"
+      "foto": "/media/cache/ur_royal-cheese.jpg",
+      "fiyat": "725"
      },
      {
       "ad": "SWEET START",
       "aciklama": "Ev yapımı marmelat, bal, Nutella",
-      "foto": null
+      "foto": null,
+      "fiyat": "465"
      },
      {
       "ad": "PEANUT WITH BANANA BOWL",
       "aciklama": "Yer fıstığı ve ezmesi, muz, ev yapımı granola, yulaf sütü, bitter çikolata",
-      "foto": "/media/cache/ur_peanut-banana-bowol.jpg"
+      "foto": "/media/cache/ur_peanut-banana-bowol.jpg",
+      "fiyat": "690"
      },
      {
       "ad": "BREAKFAST AVOCADO TOST KRUVASAN",
       "aciklama": "Kruvasan, guacamole sos, poşe yumurta, hollandaise sos, roka, parmesan",
-      "foto": null
+      "foto": null,
+      "fiyat": "725"
      },
      {
       "ad": "ÇILBIR",
       "aciklama": "Yumurta , Süzme Yoğurt , Tereyağ",
-      "foto": null
+      "foto": null,
+      "fiyat": "475"
      },
      {
       "ad": "ENGLISH BREAKFAST",
       "aciklama": "Yumurta, dana füme, hellim peyniri, sosis, istiridye ve kestane mantarı,domates, avokado,mozarella,maydanoz",
-      "foto": null
+      "foto": null,
+      "fiyat": "790"
      },
      {
       "ad": "MADAM TOST",
       "aciklama": "Mozzarella peyniri, dana füme, cheddar, beşamel sos, ekmek, karışık yeşillik",
-      "foto": null
+      "foto": null,
+      "fiyat": "645"
      },
      {
       "ad": "MENEMEN",
       "aciklama": "Poşe yumurta, domates, reyhan, sivri biber, zeytinyağı",
-      "foto": null
+      "foto": null,
+      "fiyat": "485"
      },
      {
       "ad": "PİŞİ FÜME",
       "aciklama": "Pişi hamuru, istiridye mantarı, domates sos, füme et, yumurta, frenk soğanı",
-      "foto": "/media/cache/ur_PISI-FUME.jpg"
+      "foto": "/media/cache/ur_PISI-FUME.jpg",
+      "fiyat": "690"
      },
      {
       "ad": "PİŞİ HELLİM",
       "aciklama": "Pişi hamuru, domates sos, hellim peyniri, füme et, istiridye mantarı, yumurta, frenk soğanı",
-      "foto": "/media/cache/ur_HELLIM-PISI.jpg"
+      "foto": "/media/cache/ur_HELLIM-PISI.jpg",
+      "fiyat": "670"
      }
     ]
    }
@@ -123,8 +143,6 @@
  },
  {
   "ad": "Ana Yemekler",
-  "baslik": "Hamour Lezzetleriyle Tanışın!",
-  "metin": "Hamour’un mutfağında doğallık ve kalite buluşuyor. Organik ve taze ürünlerle hazırlanan ana yemeklerimiz, her lokmada sağlığı ve lezzeti bir araya getiriyor. Özenle seçilmiş malzemelerle hazırlanan bu özel menü, unutulmaz bir tat deneyimi sunuyor.",
   "gruplar": [
    {
     "ad": "PIZZAS",
@@ -132,37 +150,44 @@
      {
       "ad": "4 PEYNİRLİ PİZZA",
       "aciklama": "Suda mozzarella, rende mozzarella, parmesan, rokfor, taze kekik, mor üzüm, krema",
-      "foto": null
+      "foto": null,
+      "fiyat": "875"
      },
      {
       "ad": "BONFİLE PİZZA",
       "aciklama": "Bonfile, domates sos, rende mozzarella, sarı ve kırmızı biber",
-      "foto": null
+      "foto": null,
+      "fiyat": "990"
      },
      {
       "ad": "FÜME SOMONLU PİZZA",
       "aciklama": "Somon füme, domates sos, rende mozzarella, kapari, dereotu, roka",
-      "foto": null
+      "foto": null,
+      "fiyat": "990"
      },
      {
       "ad": "KABURGA PİZZA",
       "aciklama": "Yavaş pişirilmiş kaburga eti, domates sos, rende mozzarella, roka, reçel, mayonez",
-      "foto": null
+      "foto": null,
+      "fiyat": "950"
      },
      {
       "ad": "KARİDES PİZZA",
       "aciklama": "Karides, domates sos, rende mozzarella, kapari, jalapeño, dereotu, roka, zeytinyağı",
-      "foto": null
+      "foto": null,
+      "fiyat": "990"
      },
      {
       "ad": "MANTARLI PİZZA",
       "aciklama": "İstiridye ve kestane mantarı, domates sos, karamelize soğan, roka, barbekü sos, sriracha",
-      "foto": null
+      "foto": null,
+      "fiyat": "875"
      },
      {
       "ad": "MARGARİTA PİZZA",
       "aciklama": "Domates sos, rende mozzarella, mini mozzarella, taze fesleğen, yeşil yağ",
-      "foto": null
+      "foto": null,
+      "fiyat": "825"
      }
     ]
    },
@@ -172,52 +197,62 @@
      {
       "ad": "SALMON BOWL",
       "aciklama": "Nohut püresi, brokoli, karnabahar, kinoa, basmati pirinç",
-      "foto": "/media/cache/ur_Somon-bowl.jpg"
+      "foto": "/media/cache/ur_Somon-bowl.jpg",
+      "fiyat": "975"
      },
      {
       "ad": "CHICKEN BOWL",
       "aciklama": "Kereviz sapı, brokoli, tatlı patates, ıspanak",
-      "foto": "/media/cache/ur_chicken-bowl.jpg"
+      "foto": "/media/cache/ur_chicken-bowl.jpg",
+      "fiyat": "870"
      },
      {
       "ad": "CAESAR SALAD (TAVUK)",
       "aciklama": "Ev yapımı sezar sos, yedikule, brioche kruton, tavuk göğsü",
-      "foto": "/media/cache/ur_sezar-tavuklu.jpeg"
+      "foto": "/media/cache/ur_sezar-tavuklu.jpeg",
+      "fiyat": "865"
      },
      {
       "ad": "CAESAR SALAD (KARİDES)",
       "aciklama": "Ev yapımı sezar sos, yedikule, brioche kruton, haşlanmış karides",
-      "foto": "/media/cache/ur_Sezar-karides.jpg"
+      "foto": "/media/cache/ur_Sezar-karides.jpg",
+      "fiyat": "965"
      },
      {
       "ad": "CAESAR SALAD (ET)",
       "aciklama": "Ev yapımı sezar sos, yedikule, brioche kruton, ızgara bonfile",
-      "foto": "/media/cache/ur_Sezar-etli-salata-caesar-salad.jpg"
+      "foto": "/media/cache/ur_Sezar-etli-salata-caesar-salad.jpg",
+      "fiyat": "985"
      },
      {
       "ad": "ASPARAGUS & AVOCADO SALAD",
       "aciklama": "Enginar, kuşkonmaz, avokado, parmesan peyniri, yedikule, mevsim yeşillikleri",
-      "foto": "/media/cache/ur_asparagus-avacado-salad.jpg"
+      "foto": "/media/cache/ur_asparagus-avacado-salad.jpg",
+      "fiyat": "885"
      },
      {
       "ad": "QUINOA & BEETROOT SALAD",
       "aciklama": "Kinoa, pancar, yeşil zeytin, salata sosu",
-      "foto": "/media/cache/ur_Quinoa-beetroot-salad.jpg"
+      "foto": "/media/cache/ur_Quinoa-beetroot-salad.jpg",
+      "fiyat": "875"
      },
      {
       "ad": "BEEF BOWL",
       "aciklama": "Dana bonfile, katsu sos, nohut püresi, brokoli, karnabahar ve tatlı patates",
-      "foto": "/media/cache/ur_beef-bowl.jpg"
+      "foto": "/media/cache/ur_beef-bowl.jpg",
+      "fiyat": "1150"
      },
      {
       "ad": "BONFİLE ILIK SALATA",
       "aciklama": "Roka, semizotu, kabak çekirdeği, süzme yoğurt, bonfile, parmesan, çilek, zeytinyağı",
-      "foto": "/media/cache/ur_bonfile-ilik-salata.jpeg"
+      "foto": "/media/cache/ur_bonfile-ilik-salata.jpeg",
+      "fiyat": "1100"
      },
      {
       "ad": "MAŞ SALATASI",
       "aciklama": "Maş fasulyesi, kuru kayısı, yedikule marul, ceviz, kabak çekirdeği, hardal sos, zeytinyağı, taze fesleğen, maldon tuz",
-      "foto": "/media/cache/ur_mas-salatasi-2.jpg"
+      "foto": "/media/cache/ur_mas-salatasi-2.jpg",
+      "fiyat": "745"
      }
     ]
    },
@@ -227,52 +262,62 @@
      {
       "ad": "SHRIMP TEMPURA",
       "aciklama": "Kızarmış karides, acılı aioli, ince kıyım yedikule, frenk soğanı",
-      "foto": "/media/cache/ur_shrimp_tempura.jpg"
+      "foto": "/media/cache/ur_shrimp_tempura.jpg",
+      "fiyat": "985"
      },
      {
       "ad": "QUINOA ARTICHOKE",
       "aciklama": "Çanak enginar, kinoa, pancar, portakal, narenciye sosu",
-      "foto": "/media/cache/ur_quinia-articohe.jpg"
+      "foto": "/media/cache/ur_quinia-articohe.jpg",
+      "fiyat": "865"
      },
      {
       "ad": "BURRATA",
       "aciklama": "Burrata, mevsim yeşillikleri, mevsim meyveleri",
-      "foto": "/media/cache/ur_buratta.jpg"
+      "foto": "/media/cache/ur_buratta.jpg",
+      "fiyat": "925"
      },
      {
       "ad": "TOMATO CARPACCIO",
       "aciklama": "Pembe domates, sarı domates, şeker domates, parmesan peyniri, strechella peyniri, balzamik sos, glaze, çıtır soğan",
-      "foto": "/media/cache/ur_Domates-carpaccio.jpg"
+      "foto": "/media/cache/ur_Domates-carpaccio.jpg",
+      "fiyat": "745"
      },
      {
       "ad": "ZUCCHINI ARTICHOKE",
       "aciklama": "Çanak enginar, kabak, kabak çekirdeği, dereotu, avokado, narenciye sosu",
-      "foto": "/media/cache/ur_zucchini-artioche.jpg"
+      "foto": "/media/cache/ur_zucchini-artioche.jpg",
+      "fiyat": "850"
      },
      {
       "ad": "ARANCINI",
       "aciklama": "Kestane mantarı, parmesan peyniri, havuç püresi, soğan, sarımsak, krema, cips pancar",
-      "foto": null
+      "foto": null,
+      "fiyat": "770"
      },
      {
       "ad": "AVOCADO SHRIMP COCKTAIL",
       "aciklama": "Karides, avokado, acı mayonez, susam, çörek otu, kişniş, mikrofiliz",
-      "foto": null
+      "foto": null,
+      "fiyat": "770 / 770"
      },
      {
       "ad": "CHICKEN TEMPURA",
       "aciklama": "Tempura tavuk göğsü, parmak patates, acılı aioli sos",
-      "foto": "/media/cache/ur_chicken-tempura.webp"
+      "foto": "/media/cache/ur_chicken-tempura.webp",
+      "fiyat": "845"
      },
      {
       "ad": "Çıtır Tavuk",
       "aciklama": "Kajun baharatlı tavuk, panko kaplama, kajunlu patates kızartması, sweet chili sos",
-      "foto": null
+      "foto": null,
+      "fiyat": "850"
      },
      {
       "ad": "SWEET CHILI SHRIMP",
       "aciklama": "Karides, sweet chili sos, yedikule marul",
-      "foto": null
+      "foto": null,
+      "fiyat": "890"
      }
     ]
    },
@@ -282,37 +327,44 @@
      {
       "ad": "CHEESE BURGER",
       "aciklama": "Ev yapımı burger köftesi, dana bacon, cheddar peyniri, karamelize soğan, trüflü patates",
-      "foto": "/media/cache/ur_CHESE-BURGER.jpg"
+      "foto": "/media/cache/ur_CHESE-BURGER.jpg",
+      "fiyat": "965"
      },
      {
       "ad": "HAMOUR PİZZA",
       "aciklama": "Dana kaburga, füme antrikot, mozzarella, fesleğen, domates sosu, kruvasan",
-      "foto": "/media/cache/ur_Hamour-pizza.jpg"
+      "foto": "/media/cache/ur_Hamour-pizza.jpg",
+      "fiyat": "1395"
      },
      {
       "ad": "HAMOUR BURGER",
       "aciklama": "Burger köftesi, dana bacon, cheddar peyniri, karamelize soğan, patlıcan köz sosu, kibrit patates",
-      "foto": "/media/cache/ur_hamour-burger.jpeg"
+      "foto": "/media/cache/ur_hamour-burger.jpeg",
+      "fiyat": "1210"
      },
      {
       "ad": "CHICKEN BURGER",
       "aciklama": "Çıtır tavuk, sweet chili sos, coleslaw salatası, trüflü patates kızartması",
-      "foto": "/media/cache/ur_chicken-burger.jpeg"
+      "foto": "/media/cache/ur_chicken-burger.jpeg",
+      "fiyat": "890"
      },
      {
       "ad": "CHICKEN KATSU SANDO",
       "aciklama": "Taze baharatlı tavuk but, iceberg coleslaw, sezar sos, trüflü patates kızartması",
-      "foto": "/media/cache/ur_chicken-katsu-sando.jpeg"
+      "foto": "/media/cache/ur_chicken-katsu-sando.jpeg",
+      "fiyat": "890"
      },
      {
       "ad": "MARUL BURGER",
       "aciklama": "Iceberg marul içerisinde burger köftesi, cheddar peyniri, karamelize soğan, karnabahar ve brokoli",
-      "foto": "/media/cache/ur_marul-burger.jpg"
+      "foto": "/media/cache/ur_marul-burger.jpg",
+      "fiyat": "925"
      },
      {
       "ad": "MİNİ BURGER",
       "aciklama": "3'lü mini burger: köfte, tavuk ve tiftik; karamelize soğan, çıtır soğan, cheddar peyniri, trüflü mayonez, patates kızartması, coleslaw",
-      "foto": "/media/cache/ur_miniburger.webp"
+      "foto": "/media/cache/ur_miniburger.webp",
+      "fiyat": "850"
      }
     ]
    },
@@ -322,7 +374,8 @@
      {
       "ad": "HAMOUR CLUB SANDWICH",
       "aciklama": "Cheddar peyniri, füme et, ızgara tavuk, yumurta, sezar sos, pain de mie ekmeği, iceberg, domates",
-      "foto": "/media/cache/ur_club-sandiwch.jpg"
+      "foto": "/media/cache/ur_club-sandiwch.jpg",
+      "fiyat": "795"
      }
     ]
    },
@@ -332,32 +385,38 @@
      {
       "ad": "FETTUCCINE (KREMALI MANTARLI)",
       "aciklama": "Fettuccine makarna, kestane mantarı, soğan, sarımsak, krema, parmesan peyniri",
-      "foto": "/media/cache/ur_fettucine-kremali-mantarli.jpg"
+      "foto": "/media/cache/ur_fettucine-kremali-mantarli.jpg",
+      "fiyat": "770"
      },
      {
       "ad": "BURRATA PACCHERI",
       "aciklama": "Paccheri makarna, parmesan peyniri, burrata özel domates sosu",
-      "foto": "/media/cache/ur_paccheri-buratta.jpg"
+      "foto": "/media/cache/ur_paccheri-buratta.jpg",
+      "fiyat": "830"
      },
      {
       "ad": "MAC & CHEESE",
       "aciklama": "Krema, cheddar peyniri, panco bread, parmesan peyniri, soğan, sarımsak",
-      "foto": "/media/cache/ur_mac-and-chees.jpg"
+      "foto": "/media/cache/ur_mac-and-chees.jpg",
+      "fiyat": "770"
      },
      {
       "ad": "RAGU FUSİLLİ",
       "aciklama": "Fusilli makarna, dana ragu sosu, domates sos, sarımsak, soğan",
-      "foto": null
+      "foto": null,
+      "fiyat": "850"
      },
      {
       "ad": "SPAGETTİ BOLOGNEZ",
       "aciklama": "Linguine makarna, bolonez sos ve parmesan peyniri",
-      "foto": "/media/cache/ur_SPAGETTI-BOLONEZ.jpg"
+      "foto": "/media/cache/ur_SPAGETTI-BOLONEZ.jpg",
+      "fiyat": "880"
      },
      {
       "ad": "TRÜFLÜ MANTAR RİSOTTO",
       "aciklama": "Trüf yağı, parmesan peyniri ve tereyağı ile hazırlanan risotto, kestane mantarı, istiridye mantarı, taze kekik, rozmarin ve baharatlar",
-      "foto": null
+      "foto": null,
+      "fiyat": "870"
      }
     ]
    },
@@ -367,32 +426,38 @@
      {
       "ad": "CAFÉ DE PARIS",
       "aciklama": "Izgara dana bonfile, trüflü patates, Café de Paris sos",
-      "foto": "/media/cache/ur_cafe_de_paris.jpg"
+      "foto": "/media/cache/ur_cafe_de_paris.jpg",
+      "fiyat": "1925"
      },
      {
       "ad": "CHICKEN SCHNITZEL",
       "aciklama": "Tavuk göğsü, hardallı patates salatası, parmesan, metrdotel tereyağı, roka, limon, balzamik sos",
-      "foto": "/media/cache/ur_chicken-snitzel.jpg"
+      "foto": "/media/cache/ur_chicken-snitzel.jpg",
+      "fiyat": "945"
      },
      {
       "ad": "BEEF SCHNITZEL",
       "aciklama": "Dana eti, hardallı patates salatası, roka, balzamik sos, parmesan, metrdotel tereyağı, limon",
-      "foto": "/media/cache/ur_Dana-sinitzel.jpg"
+      "foto": "/media/cache/ur_Dana-sinitzel.jpg",
+      "fiyat": "1750"
      },
      {
       "ad": "HAMOUR BEEF",
       "aciklama": "Izgara bonfile madalyon dilimleri, soya chili sos, karamelize soğanlı patates püresi, ponzu soslu mevsim sebzeleri",
-      "foto": "/media/cache/ur_Hamour-beef.jpg"
+      "foto": "/media/cache/ur_Hamour-beef.jpg",
+      "fiyat": "1960"
      },
      {
       "ad": "SOMON IZGARA",
       "aciklama": "Somon fileto, ıspanak, frenk üzümü, kuşkonmaz, istiridye mantarı, krema, beurre blanc sos, zeytinyağı",
-      "foto": "/media/cache/ur_somon-izgara_1.jpg"
+      "foto": "/media/cache/ur_somon-izgara_1.jpg",
+      "fiyat": "985"
      },
      {
       "ad": "TAVUK IZGARA",
       "aciklama": "Izgara tavuk but, brokoli, karnabahar, taze patates ve cheddar sos",
-      "foto": "/media/cache/ur_izgara-tavuk.jpg"
+      "foto": "/media/cache/ur_izgara-tavuk.jpg",
+      "fiyat": "875"
      }
     ]
    }
@@ -400,8 +465,6 @@
  },
  {
   "ad": "Alkollü İçecekler",
-  "baslik": "Her Yudumda Eşsiz Lezzet!",
-  "metin": "Hamour’un alkollü içecek menüsü, dünya standartlarında kırmızı ve beyaz şaraplardan şampanyaya, özenle hazırlanan kokteyllerden özel viski çeşitlerine kadar geniş bir yelpaze sunuyor. Kaliteli ve seçkin içeceklerle, lezzet deneyiminizi en üst düzeye çıkarıyor; her damakta unutulmaz izler bırakıyoruz.",
   "gruplar": [
    {
     "ad": "RED WINES",
@@ -409,47 +472,56 @@
      {
       "ad": "URLA NEXUS",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "3260"
      },
      {
       "ad": "URLA TEMPUS",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "4940"
      },
      {
       "ad": "URLA CABERNET SAUVIGNON 2022",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "750 / 3570"
      },
      {
       "ad": "URLA BOĞAZKERE",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "3050"
      },
      {
       "ad": "URLA KARASI & NERO d'AVOLA",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "750 / 3500"
      },
      {
       "ad": "VOURLA 2022",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "715 / 3050"
      },
      {
       "ad": "SF. CABERNET SAUVIGNON",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "3050"
      },
      {
       "ad": "SF. MERLOT",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "905 / 3150"
      },
      {
       "ad": "SF. SHIRAZ",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "4040"
      }
     ]
    },
@@ -459,12 +531,14 @@
      {
       "ad": "CIELO PINOT GRIGIO",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "750 / 3500"
      },
      {
       "ad": "SF. MERLOT CAB. FRANC",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "4040"
      }
     ]
    },
@@ -474,32 +548,38 @@
      {
       "ad": "URLA CHARDONNAY",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "705 / 3250"
      },
      {
       "ad": "URLA SAUVIGNON BLANC",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "3250"
      },
      {
       "ad": "URLA SYMPOSIUM 50 CL",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "2310"
      },
      {
       "ad": "SF. FÜME BLANC",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "4040"
      },
      {
       "ad": "SF. SAUVIGNON BLANC",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "800 / 4200"
      },
      {
       "ad": "SF. CHARDONNAY",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "3050"
      }
     ]
    },
@@ -509,22 +589,26 @@
      {
       "ad": "DOM PERIGNON",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "34020"
      },
      {
       "ad": "RUFFINO",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "965 / 5040"
      },
      {
       "ad": "MOET & CHANDON",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "11340"
      },
      {
       "ad": "BOTTEGA",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "6300"
      }
     ]
    },
@@ -534,32 +618,38 @@
      {
       "ad": "PURPLE BASIL",
       "aciklama": "Gin, reyhan, limon",
-      "foto": "/media/cache/ur_purple_basil.jpg"
+      "foto": "/media/cache/ur_purple_basil.jpg",
+      "fiyat": "760"
      },
      {
       "ad": "TUXEDO",
       "aciklama": "Viski, bergamot, şeftali, vanilya",
-      "foto": null
+      "foto": null,
+      "fiyat": "760"
      },
      {
       "ad": "WHISKEY SOUR SATSUMA",
       "aciklama": "Viski, Bodrum Mandalinası, turunç karışımı",
-      "foto": "/media/cache/ur_whiskey_sour_satsuma.jpg"
+      "foto": "/media/cache/ur_whiskey_sour_satsuma.jpg",
+      "fiyat": "760"
      },
      {
       "ad": "PASSION MARTINI",
       "aciklama": "Vodka, çarkıfelek meyvesi, vanilya, turunç karışımı",
-      "foto": "/media/cache/ur_passion-martini-2.jpg"
+      "foto": "/media/cache/ur_passion-martini-2.jpg",
+      "fiyat": "760"
      },
      {
       "ad": "GRASS",
       "aciklama": "Gin, kuzukulağı, limon otu, turunç karışımı, yeşil erik",
-      "foto": "/media/cache/ur_grass.jpg"
+      "foto": "/media/cache/ur_grass.jpg",
+      "fiyat": "760"
      },
      {
       "ad": "VAI - VAI",
       "aciklama": "Tekila, çarkıfelek meyvesi, turunç karışımı, patchuli",
-      "foto": "/media/cache/ur_vai_vai.jpg"
+      "foto": "/media/cache/ur_vai_vai.jpg",
+      "fiyat": "760"
      }
     ]
    },
@@ -569,12 +659,14 @@
      {
       "ad": "WHITE PEACH",
       "aciklama": "Prosecco, beyaz şeftali, beyaz çay",
-      "foto": "/media/cache/ur_white-peach.jpg"
+      "foto": "/media/cache/ur_white-peach.jpg",
+      "fiyat": "760"
      },
      {
       "ad": "SALTED CARAMEL",
       "aciklama": "Prosecco, tuzlu karamel, beyaz çay",
-      "foto": null
+      "foto": null,
+      "fiyat": "760"
      }
     ]
    },
@@ -584,12 +676,14 @@
      {
       "ad": "CHILI MANGO MARGARITA",
       "aciklama": "Tekila, Malibu, mango, patchuli, turunç karışımı",
-      "foto": "/media/cache/ur_chili_mango_margarita.jpg"
+      "foto": "/media/cache/ur_chili_mango_margarita.jpg",
+      "fiyat": "840"
      },
      {
       "ad": "CLASSIC",
       "aciklama": "Tekila, agave, limon, misket limonu",
-      "foto": "/media/cache/ur_classic.jpg"
+      "foto": "/media/cache/ur_classic.jpg",
+      "fiyat": "840"
      }
     ]
    },
@@ -599,17 +693,20 @@
      {
       "ad": "ESPRESSO MARTINI",
       "aciklama": "Vodka, kahlua, espresso",
-      "foto": "/media/cache/ur_esprosso_martini.jpg"
+      "foto": "/media/cache/ur_esprosso_martini.jpg",
+      "fiyat": "760"
      },
      {
       "ad": "NEGRONI",
       "aciklama": "Campari, Gin, tatlı vermut",
-      "foto": null
+      "foto": null,
+      "fiyat": "760"
      },
      {
       "ad": "APEROL SPRITZ",
       "aciklama": "Aperol, Prosecco",
-      "foto": null
+      "foto": null,
+      "fiyat": "760"
      }
     ]
    },
@@ -619,12 +716,14 @@
      {
       "ad": "TANGERINE & TEA",
       "aciklama": "Bodrum Mandalinası, siyah çay",
-      "foto": null
+      "foto": null,
+      "fiyat": "590"
      },
      {
       "ad": "CRANBERRY HIBISCUS",
       "aciklama": "Turna yemişi, hibiskus",
-      "foto": null
+      "foto": null,
+      "fiyat": "590"
      }
     ]
    },
@@ -634,42 +733,50 @@
      {
       "ad": "BLUE LABEL",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "2570 / 34070"
      },
      {
       "ad": "BLACK LABEL",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "785 / 10130"
      },
      {
       "ad": "GENTLEMAN JACK",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "785 / 10760"
      },
      {
       "ad": "TALISKER",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "890 / 11970"
      },
      {
       "ad": "ABERLOUR 12Y.",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "890 / 12020"
      },
      {
       "ad": "MACALLAN 12Y.",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "1210"
      },
      {
       "ad": "WOODFORD",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "785 / 8870"
      },
      {
       "ad": "CHIVAS 18Y.",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "1250 / 15170"
      }
     ]
    },
@@ -679,52 +786,62 @@
      {
       "ad": "HENDRICKS",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "765 / 8870"
      },
      {
       "ad": "TANQUERAY",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "725 / 8240"
      },
      {
       "ad": "BELVEDERE",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "885 / 11080"
      },
      {
       "ad": "KAUFMANN",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "885 / 11080"
      },
      {
       "ad": "BELUGA",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "1840 / 25460"
      },
      {
       "ad": "OLMECA",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "785 / 10130"
      },
      {
       "ad": "DON JULIO",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "885 / 10240"
      },
      {
       "ad": "PATRÓN",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "885 / 10970"
      },
      {
       "ad": "LASAIGOS",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "1305 / 16540"
      },
      {
       "ad": "KETEL ONE",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "1045 / 11500"
      }
     ]
    },
@@ -734,32 +851,38 @@
      {
       "ad": "BAILEYS",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "595"
      },
      {
       "ad": "MARGEN BLACK",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "630"
      },
      {
       "ad": "HENNESSY VS.",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "960 / 10660"
      },
      {
       "ad": "HENNESSY VSOP.",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "1100 / 15170"
      },
      {
       "ad": "HENNESSY XO.",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "2840 / 38060"
      },
      {
       "ad": "REMY MARTIN",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "595"
      }
     ]
    },
@@ -769,22 +892,26 @@
      {
       "ad": "BLANC 1664",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "480"
      },
      {
       "ad": "HEINEKEN",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "495"
      },
      {
       "ad": "BUDWEISER",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "495"
      },
      {
       "ad": "DAURA DAMM",
       "aciklama": "(GLUTENSİZ)",
-      "foto": null
+      "foto": null,
+      "fiyat": "510"
      }
     ]
    }
@@ -792,8 +919,6 @@
  },
  {
   "ad": "İçecekler",
-  "baslik": "Hamour'da Her An Kutlamaya Değer!",
-  "metin": "Hamour’un içecek menüsü, zengin çay çeşitleri, sağlıklı smoothie’ler ve eşsiz kahve seçenekleriyle her anınıza eşlik ediyor. Doğal aromalarla hazırlanan sıcak ve soğuk içeceklerimiz, her damak zevkine hitap eden keyifli bir deneyim sunuyor.",
   "gruplar": [
    {
     "ad": "MATCHAS",
@@ -801,12 +926,14 @@
      {
       "ad": "MATCHA LATTE",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "560"
      },
      {
       "ad": "STRAWBERRY MATCHA",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "560"
      }
     ]
    },
@@ -816,22 +943,26 @@
      {
       "ad": "GREEN JUICE",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "490"
      },
      {
       "ad": "ORANGE JUICE",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "395"
      },
      {
       "ad": "AVOCADO SMOOTHIE",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "575"
      },
      {
       "ad": "GINGER SHOT",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "295"
      }
     ]
    },
@@ -841,67 +972,80 @@
      {
       "ad": "ESPRESSO",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "290"
      },
      {
       "ad": "DOUBLE ESPRESSO",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "410"
      },
      {
       "ad": "AMERICANO",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "370"
      },
      {
       "ad": "RISTRETTO",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "380"
      },
      {
       "ad": "CAPPUCCINO",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "390"
      },
      {
       "ad": "LATTE",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "390"
      },
      {
       "ad": "LATTE MACCHIATO",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "420"
      },
      {
       "ad": "ESPRESSO MACCHIATO",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "330"
      },
      {
       "ad": "FİLTRE KAHVE",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "330"
      },
      {
       "ad": "TÜRK KAHVESİ",
       "aciklama": "Double",
-      "foto": null
+      "foto": null,
+      "fiyat": "290"
      },
      {
       "ad": "DOUBLE TÜRK KAHVESİ",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "410"
      },
      {
       "ad": "AROMALAR",
-      "aciklama": "Vanilya Karamel Fındık",
-      "foto": null
+      "aciklama": "Vanilya, Karamel, Fındık",
+      "foto": null,
+      "fiyat": null
      },
      {
       "ad": "SÜTLER",
-      "aciklama": "Badem Sütü Hindistan Cevizi Sütü Soya Sütü",
-      "foto": null
+      "aciklama": "Badem Sütü, Hindistan Cevizi Sütü, Soya Sütü",
+      "foto": null,
+      "fiyat": "50"
      }
     ]
    },
@@ -911,62 +1055,74 @@
      {
       "ad": "TEA",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "190"
      },
      {
       "ad": "BIG TEA",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "270"
      },
      {
       "ad": "CHINESE SPRING",
       "aciklama": "Beyaz çay, çarkıfelek, kadife çiçeği",
-      "foto": null
+      "foto": null,
+      "fiyat": "395"
      },
      {
       "ad": "MORGENTAU",
-      "aciklama": "Yeşil çay, mango, ayçiçeği, gül, peygamber çiçeği",
-      "foto": null
+      "aciklama": "Yeşil çay, mango, ayçiçeği,, gül, peygamber çiçeği",
+      "foto": null,
+      "fiyat": "395"
      },
      {
       "ad": "GINGER TWIST",
       "aciklama": "Yeşil çay, ayva, zencefil",
-      "foto": null
+      "foto": null,
+      "fiyat": "395"
      },
      {
       "ad": "IRISH MALT",
       "aciklama": "Siyah çay, İrlanda kreması aroması, kakao kabukları",
-      "foto": null
+      "foto": null,
+      "fiyat": "395"
      },
      {
       "ad": "ROOIBOS HOT CHOCOLATE",
       "aciklama": "Rooibos, kakao kabukları, vanilya",
-      "foto": null
+      "foto": null,
+      "fiyat": "395"
      },
      {
       "ad": "CHILL OUT WITH HERBS",
       "aciklama": "Rooibos, portakal, melisa, ayçiçeği, peygamber çiçeği",
-      "foto": null
+      "foto": null,
+      "fiyat": "395"
      },
      {
       "ad": "GET THE POWER",
       "aciklama": "Hibiskus, elma, böğürtlen yaprakları, frenk üzümü",
-      "foto": null
+      "foto": null,
+      "fiyat": "395"
      },
      {
       "ad": "FRUITY CAMOMILE",
       "aciklama": "Papatya, portakal çiçekleri",
-      "foto": null
+      "foto": null,
+      "fiyat": "395"
      },
      {
       "ad": "JASMINE PEARLS",
       "aciklama": "Yeşil çay, yasemin çiçekleri",
-      "foto": null
+      "foto": null,
+      "fiyat": "395"
      },
      {
       "ad": "MILKY OOLONG",
       "aciklama": "Süt buharında bekletilmiş Oolong",
-      "foto": null
+      "foto": null,
+      "fiyat": "395"
      }
     ]
    },
@@ -976,57 +1132,68 @@
      {
       "ad": "COCA COLA",
       "aciklama": "Normal • Light • Zero",
-      "foto": null
+      "foto": null,
+      "fiyat": "240"
      },
      {
       "ad": "SPRITE",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "240"
      },
      {
       "ad": "FANTA",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "240"
      },
      {
       "ad": "FUSE TEA",
       "aciklama": "Limon • Şeftali",
-      "foto": null
+      "foto": null,
+      "fiyat": "240"
      },
      {
       "ad": "CAPPY",
       "aciklama": "Vişne • Şeftali • Kayısı • Karışık • Portakal",
-      "foto": null
+      "foto": null,
+      "fiyat": "240"
      },
      {
       "ad": "ULUDAĞ 330 ML",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "260"
      },
      {
       "ad": "ULUDAĞ 750 ML",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "460"
      },
      {
       "ad": "S. PELLEGRINO 330 ML",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "345"
      },
      {
       "ad": "S. PELLEGRINO 750 ML",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "720"
      },
      {
       "ad": "TAŞKESTİ SU 330 ML",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "160"
      },
      {
       "ad": "TAŞKESTİ SU 750 ML",
       "aciklama": null,
-      "foto": null
+      "foto": null,
+      "fiyat": "380"
      }
     ]
    }
@@ -1034,14 +1201,10 @@
  },
  {
   "ad": "Patiseri",
-  "baslik": "Güne Anlam Katan Hamour Lezzetleri!",
-  "metin": "Hamour’un patiseri bölümü, günlük taze kruvasanlar, özenle hazırlanan ekmekler, pastalar ve tatlılarla lezzet dolu anlar sunuyor. Her biri özenle hazırlanan bu özel tatlar, Hamour’un zarif dokunuşlarıyla buluşarak, misafirlerimize Fransız esintili bir tatlı deneyimi yaşatıyor.",
   "gruplar": []
  },
  {
   "ad": "Pasta",
-  "baslik": "Özel Günlere Anlam Katan Hamour Pastaları!",
-  "metin": "Hamour’un pasta bölümü, günlük taze hazırlanan pastaları, özenle seçilmiş malzemelerle tasarlanan özel tatlıları ve zarif sunumlarıyla unutulmaz anlara eşlik ediyor. Her biri titizlikle hazırlanan bu pastalar, Hamour’un zarif dokunuşlarıyla birleşerek misafirlerimize sadece bir tatlı değil, özel günlerini taçlandıracak Fransız esintili bir lezzet deneyimi sunuyor.",
   "gruplar": []
  }
 ]

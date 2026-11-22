@@ -112,7 +112,7 @@ function FotoluUrun({ urun: u }: { urun: Urun }) {
       <View style={{ flex: 1, gap: 6 }}>
         <Yazi style={{ fontFamily: yazi.kalin, fontSize: 15, letterSpacing: 0.8, color: renk.kahve }}>{u.ad}</Yazi>
         {u.aciklama ? <Yazi numberOfLines={4} style={{ fontSize: 13.5, lineHeight: 19 }}>{u.aciklama}</Yazi> : null}
-        {u.fiyat != null ? <Yazi tur="fiyat">{tl(u.fiyat)}</Yazi> : null}
+        {u.fiyat != null ? <Yazi tur="fiyat">{u.fiyat_metni ?? tl(u.fiyat)}</Yazi> : null}
       </View>
     </Pressable>
   );
@@ -123,7 +123,7 @@ function YaziliUrun({ urun: u, ilk }: { urun: Urun; ilk: boolean }) {
     <View style={{ paddingVertical: 13, gap: 3, borderTopWidth: ilk ? 0 : 1, borderTopColor: renk.cizgi }}>
       <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 10 }}>
         <Yazi style={{ flex: 1, fontFamily: yazi.orta, fontSize: 14.5, letterSpacing: 0.6, color: renk.kahve }}>{u.ad}</Yazi>
-        {u.fiyat != null ? <Yazi tur="fiyat" style={{ fontSize: 14 }}>{tl(u.fiyat)}</Yazi> : null}
+        {u.fiyat != null ? <Yazi tur="fiyat" style={{ fontSize: 14 }}>{u.fiyat_metni ?? tl(u.fiyat)}</Yazi> : null}
       </View>
       {u.aciklama ? <Yazi tur="kucuk">{u.aciklama}</Yazi> : null}
     </View>

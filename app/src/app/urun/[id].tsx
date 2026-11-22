@@ -41,7 +41,7 @@ export default function UrunSayfasi() {
           <Yazi tur="buyukBaslik" style={{ fontSize: 27, lineHeight: 33 }}>{urun?.ad ?? 'Ürün bulunamadı'}</Yazi>
           {urun?.ad_en && urun.ad_en !== urun.ad ? <Yazi tur="italik" style={{ fontSize: 15 }}>{urun.ad_en}</Yazi> : null}
           {urun?.aciklama ? <Yazi style={{ fontSize: 16, lineHeight: 25 }}>{urun.aciklama}</Yazi> : null}
-          {urun?.fiyat != null ? <Yazi tur="fiyat" style={{ fontSize: 18 }}>{tl(urun.fiyat)}</Yazi> : null}
+          {urun?.fiyat != null ? <Yazi tur="fiyat" style={{ fontSize: 18 }}>{urun.fiyat_metni ?? tl(urun.fiyat)}</Yazi> : null}
           {urun?.alerjenler ? <Yazi tur="kucuk">Alerjen: {urun.alerjenler}</Yazi> : null}
           {urun?.kalori != null ? <Yazi tur="kucuk">{urun.kalori} kcal</Yazi> : null}
           <Dugme yazi="Sipariş ve bilgi için arayın" onPress={() => ara(ILETISIM.telefonlar[0].numara)} style={{ marginTop: 8 }} />

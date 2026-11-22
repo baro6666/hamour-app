@@ -1,12 +1,12 @@
 // Supabase bağlanmadan uygulamanın açılabilmesi için örnek veri.
-// Menü hamour.com.tr'den (menuVerisi.ts, araclar/menu_aktar.py üretir). Sitede fiyat yok: fiyatlar boş.
+// Menü hamour.com.tr/tr/menu/'den (menuVerisi.ts, araclar/menu_aktar.py üretir). Uygulama açılışta siteden günceller.
 import { siteKategoriler, siteUrunler } from './menuVerisi';
 import type { Duyuru, Kategori, Sube, Urun } from './tipler';
 
 export const ornekKategoriler: Kategori[] = siteKategoriler;
 
 export const ornekUrunler: Urun[] = siteUrunler.map((u) => ({
-  ...u, ad_en: null, fiyat: null, alerjenler: null, kalori: null, eslik_urun_id: null,
+  ...u, ad_en: null, alerjenler: null, kalori: null, eslik_urun_id: null,
   vitrin_durumu: 'normal', vitrin_notu: null, on_siparis: false,
 }));
 

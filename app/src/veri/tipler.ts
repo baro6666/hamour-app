@@ -12,6 +12,7 @@ export interface Urun {
   ad_en: string | null;
   aciklama: string | null;
   fiyat: number | null;
+  fiyat_metni?: string | null; // birden çok fiyat (ör. kadeh / şişe): '750 ₺ / 3.570 ₺'
   alerjenler: string | null;
   kalori: number | null;
   foto_url: string | null;

@@ -20,6 +20,7 @@ export default function SekmeDuzeni() {
     >
       <Tabs.Screen name="index" options={{ title: 'Keşfet', tabBarIcon: ikon('compass') }} />
       <Tabs.Screen name="menu" options={{ title: 'Menü', tabBarIcon: ikon('book-open') }} />
+      <Tabs.Screen name="kart" options={{ title: 'Kart', tabBarIcon: ikon('credit-card') }} />
       <Tabs.Screen name="hamour" options={{ title: 'Hamour', tabBarIcon: ikon('feather') }} />
       <Tabs.Screen name="iletisim" options={{ title: 'İletişim', tabBarIcon: ikon('map-pin') }} />
     </Tabs>

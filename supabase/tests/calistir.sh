@@ -12,6 +12,7 @@ PSQL="psql -h $DIZIN -p 54329 -U postgres -d postgres -v ON_ERROR_STOP=1 -q"
 $PSQL -f supabase/tests/supabase_taklit.sql
 for f in supabase/migrations/*.sql; do $PSQL -f "$f"; done
 $PSQL -f supabase/tests/kurallar.test.sql 2>&1 | sed 's/^psql:[^ ]* NOTICE:  /  /' | grep -v '^$'
+$PSQL -f supabase/tests/kampanya.test.sql 2>&1 | sed 's/^psql:[^ ]* NOTICE:  /  /' | grep -v '^$'
 
 # Başlangıç verisi temiz bir veritabanına sorunsuz yükleniyor mu?
 psql -h "$DIZIN" -p 54329 -U postgres -d postgres -q -c 'create database tohum'

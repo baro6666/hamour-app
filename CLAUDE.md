@@ -9,9 +9,16 @@ Kapsam ve kararlar: `docs/kapsam.md`.
 
 - `app/` — müşteri uygulaması (Expo SDK 58, Expo Router, TypeScript). Ekranlar `app/src/app/`.
   `app/AGENTS.md`'deki Expo kurallarına uy (paket eklerken `npx expo install`).
-  - `src/veri/kaynak.ts`: Supabase ayarlıysa canlı, değilse cihaz içi örnek veri (`ornekMod`, SMS kodu 123456).
-  - **Tanıtım ve vitrin menüsü uygulaması** (Kasım 2026 kararı): üyelik, giriş, kahve kartı, sipariş yok.
-    Sekmeler: Keşfet, Menü (sitedeki 6 bölüm), Hamour (hikâye, kurumsal yapı, işbirlikleri, sosyal medya), İletişim.
+  - `src/veri/kaynak.ts`: Supabase ayarlıysa canlı, değilse cihaz içi örnek veri (`ornekMod`, e-posta kodu 123456).
+  - **Tanıtım ve vitrin menüsü uygulaması**; sipariş, ödeme, kahve kartı (damga) yok.
+    Sekmeler: Keşfet, Menü (sitedeki 6 bölüm), Kart, Hamour (hikâye, kurumsal yapı, işbirlikleri, sosyal medya), İletişim.
+  - **Hamour Kartı** (22.11.2026 kararı): **e-posta + 6 haneli kod** ile üyelik (SMS YOK — sahibin kararı; telefon
+    numarası istenmez). `src/app/giris.tsx`, `src/app/(sekmeler)/kart.tsx`. Kart dakikada değişen imzalı QR gösterir;
+    kasiyer panelde "İndirim okut" (`panel/src/Kasa.tsx`) ile okutur → `kasa_kampanyalar` / `kampanya_uygula`.
+    **Hoş geldin indirimi: %5, yalnız ilk ziyaret, alkollü içecekler hariç** (kampanyalar.tur = 'hosgeldin', tek).
+    Diğer kampanyalar panelde (`panel/src/yonetim/Kampanyalar.tsx`): oran, kapsam, süre, kişi başı bir kez / sınırsız,
+    isteğe bağlı anlık bildirim (yalnız kampanya_izni olan üyelere). Kullanım yalnız SECURITY DEFINER fonksiyonla yazılır.
+    Hesap silme ve aydınlatma metni (`src/app/kvkk.tsx`, taslak) uygulamada.
     Sabit marka içeriği `src/veri/icerik.ts` (bilinmeyen alan null → ekranda görünmez).
     **Rezervasyon** `src/app/rezervasyon.tsx`: gün / öğün / saat / kişi / ad / not → WhatsApp'ta hazır mesaj
     (`wa.me/<ILETISIM.whatsapp>`); hiçbir yere kaydedilmez, onay Hamour'da.
@@ -29,17 +36,18 @@ Kapsam ve kararlar: `docs/kapsam.md`.
     `foto_url` = `yerel:<kimlik>` (uygulama içi) ya da sitedeki adres (yeni ürün). Mekân görselleri `assets/gorsel/`.
   - `bilesenler/Logo.tsx`: `Logo` (yazı) ve `Simge` (üç yaprak) Hamour_Logo.ai'den vektör; kiremit kartlarda simge
     silik filigran (doku). Uygulama simgeleri `assets/*.png` aynı dosyadan üretildi.
-- `panel/` — yönetim paneli: duyurular, personel (Vite + React, HashRouter; yayın `panel/README.md`).
+- `panel/` — kasa ("İndirim okut", tüm personel) ve yönetim: kampanyalar, duyurular, personel (Vite + React, HashRouter; yayın `panel/README.md`).
   Renkler `panel/src/stil.css`. Denetim: `cd panel && npm run build`.
-- `supabase/functions/` — `personel-ekle`, `bildirim-gonder`, `sms-gonder` (SMS sağlayıcı bekliyor).
+- `supabase/functions/` — `personel-ekle`, `bildirim-gonder` (`sms-gonder` butter'dan kaldı, kullanılmıyor).
 - `supabase/migrations/` — şema ve RLS (butter'dan kalan kahve kartı tabloları/fonksiyonları uygulamada kullanılmıyor).
   `supabase/seed.sql` başlangıç verisi (menü hamour.com.tr'den, fiyatsız; alkollü içecek kategorileri gizli).
 - `supabase/tests/calistir.sh` — yerel PostgreSQL'de Supabase taklidiyle kural testleri.
 
 ## Kurallar
 
-- **Sipariş, ödeme, üyelik, kahve kartı yok.** Bunları eklemeden önce kullanıcıya sor.
-- Kişisel veri (telefon, ad, doğum günü) işlenir: loglara, hata mesajlarına, commit'lere gerçek veri koyma.
+- **Sipariş, ödeme, kahve kartı (damga), SMS yok.** Bunları eklemeden önce kullanıcıya sor.
+- Kampanya kullanımı / indirim yalnız SECURITY DEFINER fonksiyonlarla değişir; tablolara istemciden yazma yetkisi açma.
+- Kişisel veri (ad, e-posta) işlenir: loglara, hata mesajlarına, commit'lere gerçek veri koyma.
 - Fiyat, saat, istatistik uydurma; bilinmeyen değer `null` / köşeli parantezli yer tutucu.
 - Değişiklikten sonra:
   - `cd app && npx tsc --noEmit && npx expo lint`

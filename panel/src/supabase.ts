@@ -15,6 +15,8 @@ const HATALAR: Record<string, string> = {
   ONAY_GEREKLI: 'Bu üyeye son 10 dakika içinde damga verildi. Tekrar vermek için yönetici onayı gerekir.',
   ADET_GECERSIZ: 'Adet 1 ile 10 arasında olmalı.',
   HAK_YOK: 'Üyenin kullanılabilir bedava kahve hakkı yok.',
+  KULLANILDI: 'Bu indirim bu müşteri için daha önce kullanıldı; tekrar uygulanamaz.',
+  KAMPANYA_GECERSIZ: 'Kampanya artık geçerli değil (süresi doldu ya da durduruldu).',
   'Invalid login credentials': 'E-posta ya da şifre hatalı.',
 };
 

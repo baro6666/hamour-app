@@ -1,3 +1,5 @@
+> **Kullanılmıyor (22.11.2026):** Hamour'un kararıyla SMS yok; Hamour Kartı e-posta koduyla çalışır (`docs/altyapi.md`).
+
 # Telefonla giriş: SMS kurulumu
 
 Uygulamada şifre yok; giriş, telefona gelen 6 haneli kodla yapılır. Kod Supabase tarafından üretilir, SMS'i

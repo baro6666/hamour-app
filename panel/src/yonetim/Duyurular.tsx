@@ -3,7 +3,7 @@ import { useOturum } from '../Oturum';
 import { al, hataMetni, sb, tarihSaat } from '../supabase';
 import { Durum, useYukle } from './ortak';
 
-const TURLER = [['firin', 'Fırından çıktı'], ['vitrin', 'Vitrin'], ['kampanya', 'Kampanya'], ['yeni', 'Yeni ürün'], ['etkinlik', 'Etkinlik'], ['kart', 'Kahve kartı']] as const;
+const TURLER = [['firin', 'Fırından çıktı'], ['vitrin', 'Vitrin'], ['kampanya', 'Kampanya'], ['yeni', 'Yeni ürün'], ['etkinlik', 'Etkinlik'], ['kart', 'Hamour Kartı']] as const;
 type Tur = (typeof TURLER)[number][0];
 // Kime gider (veritabanındaki bildirim_alicilari ile aynı kural)
 const BILDIRIM_KIME: Record<Tur, string> = {

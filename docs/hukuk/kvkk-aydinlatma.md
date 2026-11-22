@@ -1,8 +1,9 @@
 # Hamour mobil uygulaması — Kişisel Verilerin İşlenmesine İlişkin Aydınlatma Metni
 
-> **TASLAK.** Yayından önce bir avukat tarafından gözden geçirilmelidir. Köşeli parantezli alanlar doldurulacak.
+> **TASLAK (22.11.2026).** Yayından önce bir avukat tarafından gözden geçirilmelidir. Köşeli parantezli alanlar doldurulacak.
+> Uygulamadaki kısa hali: `app/src/app/kvkk.tsx` (ikisi birlikte güncellenir).
 
-**Veri sorumlusu:** [Hamour'un şirket unvanı], [adres], MERSİS: [__], e-posta: [kvkk@…]
+**Veri sorumlusu:** [Hamour'un şirket unvanı], Acarlar Mah. 9. Cad., Beykoz / İstanbul, MERSİS: [__], e-posta: info@hamour.com.tr
 
 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, Hamour mobil uygulamasını ("Uygulama")
 kullanmanız sırasında işlenen kişisel verileriniz hakkında sizi bilgilendiririz.
@@ -11,54 +12,31 @@ kullanmanız sırasında işlenen kişisel verileriniz hakkında sizi bilgilendi
 
 | Veri | Ne zaman |
 |---|---|
-| Cep telefonu numarası | Üye olurken (giriş ve hesabınızı tanımak için) |
-| Ad, soyad | Üye olurken |
-| Doğum günü (isteğe bağlı) | Siz girerseniz |
-| Kahve kartı hareketleri: damga, bedava kahve, tarih, şube | Kasada QR kodunuz okutulduğunda |
-| Ziyaret puanınız ve notunuz | Siz verirseniz |
-| Favori ürünleriniz, okuduğunuz duyurular | Uygulamayı kullanırken |
-| Ön sipariş talepleriniz | Talep bıraktığınızda |
-| Bildirim izinleriniz ve bildirim anahtarı (push token) | İzin verdiğinizde |
-| Davet kodu ilişkisi (sizi kimin davet ettiği) | Davet koduyla üye olursanız |
+| Ad soyad, e-posta adresi | Hamour Kartı'na üye olduğunuzda |
+| İndirim / kampanya kullanım tarihleri ve şube | Kasada Hamour Kartı okutulduğunda |
+| Bildirim anahtarı (push token) | Bildirimlere izin verdiğinizde |
+| Ticari ileti onayı ve tarihi | Kampanya bildirimlerine onay verdiğinizde |
 
-Uygulama ödeme bilgisi, konum ya da rehber verisi **toplamaz**.
+Telefon numarası, konum, ödeme bilgisi toplanmaz. Menü, rezervasyon ve iletişim bölümleri üyeliksiz kullanılır;
+WhatsApp rezervasyon mesajı Uygulama'da saklanmaz (WhatsApp'ta sizin gönderdiğiniz mesajdır).
 
-## 2. Amaçlar ve hukuki sebepler
+## 2. Amaç ve hukuki sebep
 
-- **Üyelik ve kahve kartı hizmetinin sunulması** (damga, bedava kahve, davet, gizli menü):
-  sözleşmenin kurulması ve ifası (KVKK m.5/2-c).
-- **Ön sipariş talebinize dönüş yapılması**, ziyaret puanınızın değerlendirilmesi: sözleşmenin ifası (m.5/2-c),
-  meşru menfaat (m.5/2-f).
-- **Hile ve kötüye kullanımın önlenmesi** (ör. aynı kişiye kısa sürede tekrar damga), işlem kayıtlarının tutulması:
-  meşru menfaat (m.5/2-f), hukuki yükümlülük (m.5/2-ç).
-- **Doğum günü ikramı:** doğum gününüzü kendiniz paylaştığınızda, hizmetin ifası (m.5/2-c).
-- **Kampanya ve tanıtım iletileri (SMS, bildirim):** yalnız ayrıca verdiğiniz **ticari elektronik ileti onayı**
-  ile (6563 sayılı Kanun ve İleti Yönetim Sistemi). Onayınızı Uygulama → Hesap → Bildirimler'den her an geri alabilirsiniz.
+- Üyeliğin kurulması, hoş geldin indiriminin bir kez uygulanması ve kampanyaların kasada tanınması — sözleşmenin
+  kurulması ve ifası (KVKK m. 5/2-c).
+- Kampanya ve etkinlik bildirimleri — açık rızanız / ticari ileti onayınız (6563 sayılı Kanun); dilediğiniz an
+  Hamour Kartı ekranından kapatabilirsiniz.
 
 ## 3. Aktarım
 
-Verileriniz, hizmetin yürütülmesi için hizmet aldığımız şu tedarikçilerle paylaşılır:
+Veriler barındırma hizmeti için Avrupa Birliği'ndeki (Frankfurt) sunucularda tutulur (Supabase); bildirimler Expo
+(Expo Push) üzerinden iletilir. Bu nedenle yurt dışına aktarım söz konusudur: [KVKK m. 9 kapsamındaki dayanak — avukat].
+Veriler üçüncü kişilerle pazarlama amacıyla paylaşılmaz.
 
-- **Barındırma ve veritabanı:** Supabase (sunucular Avrupa Birliği'nde, Frankfurt). [Yurt dışına aktarım için
-  KVKK m.9 kapsamındaki dayanak avukatla belirlenecek: standart sözleşme vb.]
-- **SMS gönderimi:** [Netgsm / seçilen sağlayıcı] (yalnız telefon numarası ve gönderilecek metin).
-- **Anlık bildirim:** Apple (APNs), Google (FCM), Expo (bildirim anahtarı ve metin).
+## 4. Saklama süresi
 
-Kanunen yetkili kurum ve kuruluşlara, talep hâlinde aktarılabilir. Verileriniz satılmaz, reklam amacıyla üçüncü
-kişilerle paylaşılmaz.
+Hesabınızı Uygulama'dan sildiğiniz anda üyelik ve indirim kayıtlarınız silinir. [Yasal saklama yükümlülüğü varsa — avukat]
 
-## 4. Toplama yöntemi
+## 5. Haklarınız
 
-Uygulama üzerinden elektronik olarak; kasada QR kodunuz personelimizce okutulduğunda.
-
-## 5. Saklama süresi
-
-Üyeliğiniz süresince. **Hesabınızı Uygulama → Hesap → "Hesabımı sil" ile kendiniz silebilirsiniz;** silindiğinde
-üyelik, kart ve hareket kayıtlarınız silinir. Yasal saklama yükümlülüğü olan kayıtlar bu yükümlülük süresince saklanır.
-[Süreler avukatla netleştirilecek.]
-
-## 6. Haklarınız (KVKK m.11)
-
-Verilerinizin işlenip işlenmediğini öğrenme, bilgi talep etme, amacını öğrenme, aktarıldığı kişileri bilme,
-düzeltilmesini, silinmesini isteme, itiraz etme ve zararın giderilmesini talep etme haklarına sahipsiniz.
-Başvurularınızı [kvkk@…] adresine ya da [posta adresi]'ne iletebilirsiniz. Başvurular en geç 30 gün içinde yanıtlanır.
+KVKK m. 11 kapsamındaki taleplerinizi info@hamour.com.tr adresine iletebilirsiniz.

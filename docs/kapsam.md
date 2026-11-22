@@ -10,6 +10,9 @@
 >   Pastalar), 175 ürün (111'i görünür), 59 ürün fotoğrafı. Patiseri ve pasta ürünleri sitede yok: arama düğmesi.
 > - Rezervasyon: WhatsApp (0532 050 27 17, Hamour teyit etti) üzerinden hazır mesaj; uygulama bilgi saklamaz.
 > - Renk: Hamour'un seçtiği "baskı tonu" (C). Fotoğraflar sitedeki çekimlerden; Hamour kendi çekimlerini verince değişir.
+> - **Hamour Kartı (22.11.2026):** e-posta + kod ile üyelik (SMS yok). Kasada okutulan, dakikada değişen QR.
+>   Hoş geldin indirimi %5, yalnız ilk ziyaret, alkollü içecekler hariç. Panelden kampanya (oran, kapsam, süre,
+>   kişi başı bir kez / sınırsız) ve anlık bildirim ("Bugün patiseride %5 sizi bekliyor", etkinlikler).
 > - Hamour'dan beklenenler: çalışma saatleri, şirket unvanı / kuruluş, işbirlikleri listesi (ad, görsel),
 >   patiseri ve pasta ürünleri.
 

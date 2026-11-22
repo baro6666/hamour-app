@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 import { bildirimKaydet } from './bildirim';
 import { kaynak, supabase, type BildirimAyari, type Menu } from './kaynak';
 import { saklananMenu, siteMenusuGetir } from './siteMenu';
-import type { Duyuru, KartDurumu, Urun, Uye } from './tipler';
+import type { Duyuru, Kampanya, KartDurumu, Urun, Uye } from './tipler';
 
 interface Veri {
   hazir: boolean;
@@ -14,6 +14,7 @@ interface Veri {
   favoriler: Set<string>;
   uye: Uye | null;
   kart: KartDurumu | null;
+  kampanyalar: Kampanya[];
   urun(id: string | null | undefined): Urun | undefined;
   yenile(): Promise<void>;
   favoriDegistir(id: string): Promise<void>;
@@ -34,10 +35,12 @@ export function VeriSaglayici({ children }: { children: ReactNode }) {
   const [favoriler, setFavoriler] = useState<Set<string>>(new Set());
   const [uye, setUye] = useState<Uye | null>(null);
   const [kart, setKart] = useState<KartDurumu | null>(null);
+  const [kampanyalar, setKampanyalar] = useState<Kampanya[]>([]);
 
   const oturumYenile = useCallback(async () => {
-    const [u, k, f, o] = await Promise.all([kaynak.uye(), kaynak.kart(), kaynak.favoriler(), kaynak.okunanlar()]);
-    setUye(u); setKart(k); setFavoriler(new Set(f)); setOkunan(new Set(o));
+    const [u, k, f, o, km] = await Promise.all([kaynak.uye(), kaynak.kart(), kaynak.favoriler(), kaynak.okunanlar(),
+      kaynak.kampanyalar().catch(() => [] as Kampanya[])]);
+    setUye(u); setKart(k); setFavoriler(new Set(f)); setOkunan(new Set(o)); setKampanyalar(km);
     if (u) bildirimKaydet();
   }, []);
 
@@ -68,7 +71,7 @@ export function VeriSaglayici({ children }: { children: ReactNode }) {
   const deger = useMemo<Veri>(() => {
     const harita = new Map(menu.urunler.map((u) => [u.id, u]));
     return {
-      hazir, hata, menu, duyurular, okunan, favoriler, uye, kart,
+      hazir, hata, menu, duyurular, okunan, favoriler, uye, kart, kampanyalar,
       okunmamis: uye ? duyurular.filter((d) => !okunan.has(d.id)).length : 0,
       urun: (id) => (id ? harita.get(id) : undefined),
       yenile,
@@ -91,7 +94,7 @@ export function VeriSaglayici({ children }: { children: ReactNode }) {
         await kaynak.bildirimAyari(a);
       },
     };
-  }, [hazir, hata, menu, duyurular, okunan, favoriler, uye, kart, yenile, oturumYenile]);
+  }, [hazir, hata, menu, duyurular, okunan, favoriler, uye, kart, kampanyalar, yenile, oturumYenile]);
 
   return <Baglam.Provider value={deger}>{children}</Baglam.Provider>;
 }

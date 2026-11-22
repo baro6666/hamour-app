@@ -13,12 +13,21 @@ Hamour için **ayrı** bir Supabase projesi açılacak (butter'ınki kullanılma
 
 Kurulunca `app/.env` ve `panel/.env` (depoya girmez) doldurulur, sırayla yüklenir:
 
-1. `supabase/migrations/20261120090000_baslangic.sql`
-2. `supabase/migrations/20261121090000_bildirim.sql`
-3. `supabase/seed.sql`
+1. `supabase/migrations/` içindeki dosyalar, tarih sırasıyla
+2. `supabase/seed.sql`
 4. Edge Functions: `personel-ekle`, `bildirim-gonder` (ve SMS sağlayıcı gelince `sms-gonder`)
 
 **Gizli anahtarlar (service_role, veritabanı şifresi) hiçbir dosyaya ve sohbete yazılmaz.**
+
+### E-posta ile giriş (Hamour Kartı; SMS yok)
+
+Supabase → Authentication:
+1. **Sign In / Providers → Email:** açık; "Confirm email" açık. Phone sağlayıcısı kapalı kalır.
+2. **Emails → Templates → Magic Link:** kodun görünmesi için gövdede `{{ .Token }}` olmalı (bağlantı değil). Önerilen:
+   konu "Hamour doğrulama kodunuz", gövde "Kodunuz: <b>{{ .Token }}</b> — 10 dakika geçerli. Bu kodu kimseyle paylaşmayın."
+3. **SMTP:** Supabase'in yerleşik postası saatte birkaç e-postayla sınırlı. Yayından önce özel SMTP (ör. Gmail / Google
+   Workspace uygulama şifresi, Resend, Brevo) **Settings → Auth → SMTP** altına girilir; gönderen ör. `kart@hamour.com.tr`.
+4. **Rate limits:** e-posta gönderimi ve OTP doğrulama sınırları varsayılan kalabilir.
 
 ### Bildirim zamanlayıcısı
 

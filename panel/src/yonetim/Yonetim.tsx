@@ -1,10 +1,11 @@
 import { NavLink, Navigate, Route, Routes } from 'react-router-dom';
 import { Duyurular } from './Duyurular';
+import { Kampanyalar } from './Kampanyalar';
 import { Personel } from './Personel';
 
 const SEKMELER = [
   // Menü hamour.com.tr/tr/menu/'den uygulamaya otomatik gelir; panelde menü düzenlenmez.
-  ['duyurular', 'Duyurular', Duyurular], ['personel', 'Personel', Personel],
+  ['kampanyalar', 'Kampanyalar', Kampanyalar], ['duyurular', 'Duyurular', Duyurular], ['personel', 'Personel', Personel],
 ] as const;
 
 export function Yonetim() {
@@ -19,7 +20,7 @@ export function Yonetim() {
       </nav>
       <Routes>
         {SEKMELER.map(([yol, , Bilesen]) => <Route key={yol} path={yol} element={<Bilesen />} />)}
-        <Route path="*" element={<Navigate to="duyurular" replace />} />
+        <Route path="*" element={<Navigate to="kampanyalar" replace />} />
       </Routes>
     </div>
   );

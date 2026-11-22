@@ -2,8 +2,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { Platform } from 'react-native';
-import { ornekDuyurular, ornekKategoriler, ornekSube, ornekUrunler } from './ornek';
-import type { Duyuru, KartDurumu, Kategori, SonZiyaret, Sube, Urun, Uye } from './tipler';
+import { ornekDuyurular, ornekKampanyalar, ornekKategoriler, ornekSube, ornekUrunler } from './ornek';
+import type { Duyuru, Kampanya, KartDurumu, Kategori, SonZiyaret, Sube, Urun, Uye } from './tipler';
 
 const URL = process.env.EXPO_PUBLIC_SUPABASE_URL;
 const ANAHTAR = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
@@ -40,8 +40,9 @@ export interface Kaynak {
   onSiparisTalebi(urunId: string, not: string | null): Promise<void>;
   // Oturum
   uye(): Promise<Uye | null>;
-  smsGonder(telefon: string): Promise<void>;
-  smsDogrula(telefon: string, kod: string): Promise<boolean>; // true: kayıtlı üye
+  kodGonder(eposta: string): Promise<void>;
+  kodDogrula(eposta: string, kod: string): Promise<boolean>; // true: kayıtlı üye
+  kampanyalar(): Promise<Kampanya[]>; // geçerli kampanyalar; üyeyse kullanım durumuyla
   uyeOl(b: UyeOlBilgisi): Promise<Uye>;
   bildirimAyari(a: Partial<BildirimAyari>): Promise<void>;
   pushToken(token: string): Promise<void>;
@@ -53,11 +54,10 @@ function hata(e: { message: string } | null) {
   if (e) throw new Error(e.message);
 }
 
-// Türkiye cep numarası → E.164 (905xxxxxxxxx)
-export function telefonDuzelt(giris: string): string | null {
-  const r = giris.replace(/\D/g, '').replace(/^0+/, '');
-  const yerel = r.startsWith('90') ? r.slice(2) : r;
-  return /^5\d{9}$/.test(yerel) ? '+90' + yerel : null;
+// E-posta biçimi (sunucu ayrıca doğrular)
+export function epostaDuzelt(giris: string): string | null {
+  const e = giris.trim().toLowerCase();
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e) ? e : null;
 }
 
 // ─────────────────────────── Supabase ───────────────────────────
@@ -138,16 +138,30 @@ function supabaseKaynak(sb: SupabaseClient): Kaynak {
     },
     async uye() {
       if (!(await kim())) return null;
-      const r = await sb.from('uyeler').select('id, ad, telefon, dogum_gunu, davet_kodu, bildirim_firin, bildirim_favori, kampanya_izni, olusturma').maybeSingle();
+      const r = await sb.from('uyeler').select('id, ad, telefon, eposta, dogum_gunu, davet_kodu, bildirim_firin, bildirim_favori, kampanya_izni, olusturma').maybeSingle();
       hata(r.error);
       return r.data as Uye | null;
     },
-    async smsGonder(telefon) {
-      hata((await sb.auth.signInWithOtp({ phone: telefon })).error);
+    // E-posta ile 6 haneli kod (Supabase Auth; SMS yok). Kod e-postası şablonu: docs/altyapi.md
+    async kodGonder(eposta) {
+      hata((await sb.auth.signInWithOtp({ email: eposta, options: { shouldCreateUser: true } })).error);
     },
-    async smsDogrula(telefon, kod) {
-      hata((await sb.auth.verifyOtp({ phone: telefon, token: kod, type: 'sms' })).error);
+    async kodDogrula(eposta, kod) {
+      hata((await sb.auth.verifyOtp({ email: eposta, token: kod, type: 'email' })).error);
       return !!(await this.uye());
+    },
+    async kampanyalar() {
+      if (await kim()) {
+        const r = await sb.rpc('benim_kampanyalarim');
+        hata(r.error);
+        return (r.data ?? []) as Kampanya[];
+      }
+      const r = await sb.from('kampanyalar').select('id, tur, baslik, metin, oran, kapsam, bitis, tek_kullanim')
+        .order('baslangic', { ascending: false });
+      hata(r.error);
+      return ((r.data ?? []) as Omit<Kampanya, 'kullanildi'>[])
+        .map((k) => ({ ...k, kullanildi: null }))
+        .sort((a, b) => Number(b.tur === 'hosgeldin') - Number(a.tur === 'hosgeldin'));
     },
     async uyeOl(b) {
       const r = await sb.rpc('uye_ol', { p_ad: b.ad, p_dogum_gunu: b.dogumGunu, p_davet_kodu: b.davetKodu, p_kampanya_izni: b.kampanyaIzni });
@@ -201,11 +215,12 @@ function ornekKaynak(): Kaynak {
     puanla: async (_h, p) => { durum.puan = p; },
     onSiparisTalebi: () => bekle(undefined),
     uye: () => bekle(durum.uye),
-    smsGonder: () => bekle(undefined),
-    smsDogrula: async (_t, kod) => { if (kod !== '123456') throw new Error('Kod hatalı (örnek modda 123456)'); return !!durum.uye; },
+    kodGonder: () => bekle(undefined),
+    kodDogrula: async (_e, kod) => { if (kod !== '123456') throw new Error('Kod hatalı (örnek modda 123456)'); return !!durum.uye; },
+    kampanyalar: () => bekle(ornekKampanyalar.map((k) => ({ ...k, kullanildi: null }))),
     uyeOl: async (b) => {
       durum.uye = {
-        id: 'ornek', ad: b.ad, telefon: null, dogum_gunu: b.dogumGunu, davet_kodu: 'ORNEK1',
+        id: 'ornek', ad: b.ad, telefon: null, eposta: 'ornek@hamour.test', dogum_gunu: b.dogumGunu, davet_kodu: 'ORNEK1',
         bildirim_firin: true, bildirim_favori: true, kampanya_izni: b.kampanyaIzni, olusturma: new Date().toISOString(),
       };
       return durum.uye;

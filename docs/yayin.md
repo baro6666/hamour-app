@@ -17,12 +17,12 @@ Karar: uygulama, şirket değil **T. Baran Dinç'in kişisel geliştirici hesapl
 
 ## Gerekenler
 
-- Uygulama adı: **Hamour** (alt başlık önerisi: "Menü, kahve kartı ve kutlama pastası")
+- Uygulama adı: **Hamour** (alt başlık önerisi: "Menü, rezervasyon ve kutlama pastası")
 - Gizlilik politikası adresi (KVKK metni yayımlanacak bir web sayfası)
 - Ekran görüntüleri (6,7" iPhone ve Android telefon) — uygulamadan alınır
-- App Store "Uygulama Gizliliği" ve Google "Veri güvenliği" formları: `docs/hukuk/kvkk-aydinlatma.md`'deki veri
-  listesine göre doldurulur (telefon, ad, isteğe bağlı doğum günü; izleme/reklam yok)
-- İnceleme için **demo hesap**: SMS'siz giriş yapılabilen bir test numarası (Supabase'te test OTP olarak tanımlanır)
+- App Store "Uygulama Gizliliği" ve Google "Veri güvenliği" formları: uygulama kişisel veri toplamaz (üyelik yok;
+  rezervasyon WhatsApp'ta kullanıcının kendi gönderdiği mesajla), izleme/reklam yok
+- Demo hesap gerekmez (giriş yok)
 
 ## Derleme
 
@@ -32,7 +32,7 @@ yeniden kullanılabilir.
 
 ## Önizleme (Expo Go)
 
-Expo hesabı `baro6`, proje `@baro6/hamour` (henüz açılmadı: `cd app && npx eas-cli@latest init`). Erişim anahtarı
+Expo hesabı `baro6` (butter ile aynı hesap), proje `@baro6/hamour` (kimlik `787fc91a-7b2e-4064-99fd-0b3758c45f3b`). Erişim anahtarı
 oturum ortamında gizli tutulur (koda/depoya yazılmaz). Yeni önizleme yayınlamak:
 
 ```bash
@@ -40,5 +40,5 @@ cd app
 npx eas-cli@latest update --branch onizleme --environment preview --message "<ne değişti>"
 ```
 
-Telefonda: Expo Go → expo.dev'deki güncelleme sayfasında "Preview" QR kodu. Supabase bilgileri `app/.env`'den
-derlemeye girer.
+Telefonda: Expo Go ile `exp://u.expo.dev/update/<güncelleme grubu kimliği>` QR kodu (expo.dev'deki güncelleme
+sayfasında da "Preview"). İlk önizleme 22.11.2026, dal `onizleme`.

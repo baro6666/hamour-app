@@ -63,11 +63,11 @@ export function Kampanyalar() {
       <div className="satir" style={{ alignItems: 'flex-start' }}>
         <div className="kart" style={{ flex: '1 1 380px' }}>
           <h2>Yeni kampanya</h2>
-          <label className="alan">Başlık<input value={baslik} onChange={(e) => setBaslik(e.target.value)} placeholder="Bugün patiseride %5 sizi bekliyor" maxLength={80} /></label>
+          <label className="alan">Başlık<input value={baslik} onChange={(e) => setBaslik(e.target.value)} placeholder="Bugün Patisserie’de %5 sizi bekliyor" maxLength={80} /></label>
           <label className="alan">Açıklama (isteğe bağlı)<textarea rows={2} value={metin} onChange={(e) => setMetin(e.target.value)} maxLength={200} /></label>
           <div className="satir">
             <label className="alan" style={{ width: 120 }}>İndirim %<input type="number" min={1} max={50} value={oran} onChange={(e) => setOran(Math.max(1, Math.min(50, Number(e.target.value) || 1)))} /></label>
-            <label className="alan ara">Kapsam (boş: tüm menü)<input value={kapsam} onChange={(e) => setKapsam(e.target.value)} placeholder="Yalnız patiseri ürünleri" maxLength={80} /></label>
+            <label className="alan ara">Kapsam (boş: tüm menü)<input value={kapsam} onChange={(e) => setKapsam(e.target.value)} placeholder="Yalnız Patisserie ürünleri" maxLength={80} /></label>
           </div>
           <div className="satir">
             <label className="alan ara">Başlangıç (boş: hemen)<input type="datetime-local" value={baslangic} onChange={(e) => setBaslangic(e.target.value)} /></label>

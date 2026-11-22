@@ -6,25 +6,25 @@
 > (kahve kartı kuralları vb.) yalnız arşiv bilgisidir.
 >
 > - Menü: **hamour.com.tr/tr/menu/ sayfasından canlı** (uygulama açılışta okur; sitede değişen ürün, fiyat ve
->   fotoğraf yeni sürüm gerekmeden gelir). 6 bölüm (Royal Breakfast, Ana yemekler, İçecekler, Bar [gizli], Patiseri,
->   Pastalar), 175 ürün (111'i görünür), 59 ürün fotoğrafı. Patiseri ve pasta ürünleri sitede yok: arama düğmesi.
+>   fotoğraf yeni sürüm gerekmeden gelir). 6 bölüm (Royal Breakfast, Ana yemekler, İçecekler, Bar [gizli], Patisserie,
+>   Pastalar), 175 ürün (111'i görünür), 59 ürün fotoğrafı. Patisserie ve pasta ürünleri sitede yok: arama düğmesi.
 > - Rezervasyon: WhatsApp (0532 050 27 17, Hamour teyit etti) üzerinden hazır mesaj; uygulama bilgi saklamaz.
 > - Renk: Hamour'un seçtiği "baskı tonu" (C). Fotoğraflar sitedeki çekimlerden; Hamour kendi çekimlerini verince değişir.
 > - **Hamour Kartı (22.11.2026):** e-posta + kod ile üyelik (SMS yok). Kasada okutulan, dakikada değişen QR.
 >   Hoş geldin indirimi %5, yalnız ilk ziyaret, alkollü içecekler hariç. Panelden kampanya (oran, kapsam, süre,
->   kişi başı bir kez / sınırsız) ve anlık bildirim ("Bugün patiseride %5 sizi bekliyor", etkinlikler).
+>   kişi başı bir kez / sınırsız) ve anlık bildirim ("Bugün Patisserie’de %5 sizi bekliyor", etkinlikler).
 > - Hamour'dan beklenenler: çalışma saatleri, şirket unvanı / kuruluş, işbirlikleri listesi (ad, görsel),
->   patiseri ve pasta ürünleri.
+>   Patisserie ve pasta ürünleri.
 
 Bu belge Hamour'un ilk sürümünü tanımlar. İskelet ve kurallar butter uygulamasından alındı (Kasım 2026).
 Uygulama yalnız Hamour'a aittir; Fincosto'dan ve butter'dan bağımsızdır, başka firmalara açılmaz.
 
 ## Hamour'a uyarlananlar
 
-- **Marka:** hamour.com.tr'den ilham; Paris esintili patiseri, brasserie, bistro. Renkler hamour_pantoneler.pdf'ten
+- **Marka:** hamour.com.tr'den ilham; Paris esintili patisserie, brasserie, bistro. Renkler hamour_pantoneler.pdf'ten
   (%60 krem `#F6DCAF`, %30 kiremit `#B45A3C`, %10 koyu kahve `#3D1D0E`), logo ve simge Hamour_Logo.ai'den.
 - **Menü:** sitedeki kategoriler ve ürün adları (`supabase/seed.sql`). **Sitede fiyat yok**, fiyatlar panelden girilir.
-  Patiseri ve pasta ürün adları sitede yok; Hamour'dan alınacak.
+  Patisserie ve pasta ürün adları sitede yok; Hamour'dan alınacak.
 - **Alkollü içecekler** kategorisi var ama gizli (`gorunur = false`); mağaza yaş sınırı kuralları nedeniyle.
 - **Kahve kartı:** butter'daki gibi kahve ve çay damga verir; diğer kategoriler vermez (panelden değişir).
 - **Ön sipariş:** kutlama pastası ve kruvasan kutusu ("Günü Hamour'da kutlayalım").

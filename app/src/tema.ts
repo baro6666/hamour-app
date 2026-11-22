@@ -36,6 +36,16 @@ export const yazi = {
   fiyat: 'Montserrat_700Bold',
 };
 
+// Arapça: Jost / Playfair / Montserrat Arapça harf içermez → Tajawal (gövde) ve Amiri (başlık)
+const ARAPCA_YAZI: Record<string, string> = {
+  Jost_400Regular: 'Tajawal_400Regular', Jost_500Medium: 'Tajawal_500Medium', Jost_500Medium_Italic: 'Tajawal_500Medium',
+  Jost_700Bold: 'Tajawal_700Bold', PlayfairDisplay_700Bold: 'Amiri_700Bold', PlayfairDisplay_500Medium_Italic: 'Amiri_400Regular',
+  Montserrat_700Bold: 'Tajawal_700Bold',
+};
+export function yaziAilesi(aile: string | undefined, arapca: boolean): string | undefined {
+  return arapca && aile ? ARAPCA_YAZI[aile] ?? aile : aile;
+}
+
 export function tl(n: number | null | undefined): string {
   if (n == null) return '';
   return n.toLocaleString('tr-TR', { maximumFractionDigits: 2 }) + ' ₺';

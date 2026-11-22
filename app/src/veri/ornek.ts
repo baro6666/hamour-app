@@ -23,9 +23,9 @@ export const ornekSube: Sube = {
   id: 'beykoz', ad: 'Hamour Beykoz', adres: 'Acarlar Mah. 9. Cad., Beykoz / İstanbul', telefon: '0216 525 50 50', calisma_saatleri: null, enlem: null, boylam: null,
 };
 
-// Örnek modda kampanyalar: hoş geldin (Hamour'un kararı) ve Hamour'un verdiği örnek "Bugün patiseride %5".
+// Örnek modda kampanyalar: hoş geldin (Hamour'un kararı) ve Hamour'un verdiği örnek "Bugün Patisserie’de %5".
 const aksam = new Date(); aksam.setHours(19, 0, 0, 0);
 export const ornekKampanyalar: Omit<Kampanya, 'kullanildi'>[] = [
   { id: 'hosgeldin', tur: 'hosgeldin', baslik: 'Hoş geldin indirimi', metin: 'Uygulamayı indirdiğiniz için ilk ziyaretinizde %5 indirim.', oran: 5, kapsam: 'Alkollü içecekler hariç', bitis: null, tek_kullanim: true },
-  { id: 'patiseri', tur: 'kampanya', baslik: 'Bugün patiseride %5 sizi bekliyor', metin: null, oran: 5, kapsam: 'Yalnız patiseri ürünleri', bitis: aksam.toISOString(), tek_kullanim: false },
+  { id: 'patiseri', tur: 'kampanya', baslik: 'Bugün Patisserie’de %5 sizi bekliyor', metin: null, oran: 5, kapsam: 'Yalnız Patisserie ürünleri', bitis: aksam.toISOString(), tek_kullanim: false },
 ];

@@ -2,6 +2,7 @@
 """hamour.com.tr menüsünü uygulamaya ve veritabanı başlangıç verisine aktarır.
 
 Girdi : --html <dosya> verilirse hamour.com.tr/tr/menu/ sayfası (fiyatlı menü) ayrıştırılıp
+        --html-en <dosya>: hamour.com.tr/en/menu/ (İngilizce adlar ve açıklamalar; araclar/site-menu-en.html'e saklanır)
         araclar/site-menu.json anlık görüntüsü yenilenir; verilmezse mevcut anlık görüntü kullanılır.
         --foto <klasör> verilirse sitenin /media/cache/ fotoğrafları (ur_*.jpg)
 Uygulama aynı sayfayı çalışırken de okur (app/src/veri/siteMenu.ts); bu araç yalnız uygulamanın içindeki
@@ -70,7 +71,50 @@ def fiyat_coz(metin):
     bicim = lambda n: f'{n:,}'.replace(',', '.') + ' ₺'
     return sayilar[0], ' / '.join(bicim(n) for n in sayilar)
 
+# İngilizce sayfada bazı gruplar alfabetik sıralı: ürünler fotoğraf → grupta tek fiyat → aynı fiyattakiler sırayla eşlenir.
+# Aynı fiyatlı ve fotoğrafsız ikililer yanlış eşleşebilir; bilinenler burada elle (TR kimlik → EN ad).
+# Değer: İngilizce sayfadaki ad (açıklaması oradan alınır) ya da (ad, açıklama) — sitenin kendi hatası için.
+ELLE_EN = {
+    'fume-somonlu-pizza': 'SMOKED SALMON PIZZA', 'karides-pizza': 'PRAWN PIZZA',
+    # İngilizce sayfada iki "SODA"nın marka açıklamaları ters (260 ₺ Uludağ, 345 ₺ S. Pellegrino; Kasım 2026)
+    'uludag-330-ml': ('ULUDAĞ SODA 330 ML', None), 's-pellegrino-330-ml': ('S. PELLEGRINO 330 ML', None),
+}
+
+def en_esle(tr_menu, en_menu):
+    """TR menü sırasındaki her ürün için (ad_en, aciklama_en) listesi; gruplar uyuşmazsa None."""
+    sonuc = []
+    for bt, be in zip(tr_menu, en_menu):
+        if len(bt['gruplar']) != len(be['gruplar']): return None
+        for gt, ge in zip(bt['gruplar'], be['gruplar']):
+            a, b = gt['urunler'], ge['urunler']
+            if len(a) != len(b): return None
+            kalan = list(range(len(b))); es = {}
+            for i, u in enumerate(a):
+                if u['foto']:
+                    j = next((j for j in kalan if b[j]['foto'] == u['foto']), None)
+                    if j is not None: es[i] = j; kalan.remove(j)
+            for i, u in enumerate(a):
+                if i in es: continue
+                ayni = [j for j in kalan if b[j]['fiyat'] == u['fiyat']]
+                if len(ayni) == 1 and sum(1 for k, x in enumerate(a) if k not in es and x['fiyat'] == u['fiyat']) == 1:
+                    es[i] = ayni[0]; kalan.remove(ayni[0])
+            for i, u in enumerate(a):
+                if i in es: continue
+                ayni = [j for j in kalan if b[j]['fiyat'] == u['fiyat']] or kalan
+                es[i] = ayni[0]; kalan.remove(ayni[0])
+            for i in range(len(a)):
+                sonuc.append((b[es[i]]['ad'], b[es[i]]['aciklama']))
+    return sonuc
+
 def main():
+    en_liste = None
+    if '--html-en' in sys.argv:
+        en_html = Path(sys.argv[sys.argv.index('--html-en') + 1]).read_text(encoding='utf-8')
+        (KOK / 'araclar/site-menu-en.html').write_text(en_html, encoding='utf-8')
+    if (KOK / 'araclar/site-menu-en.html').exists():
+        en_menu = ayristir((KOK / 'araclar/site-menu-en.html').read_text(encoding='utf-8'))
+    else:
+        en_menu = None
     if '--html' in sys.argv:
         kaynak_html = Path(sys.argv[sys.argv.index('--html') + 1]).read_text(encoding='utf-8')
         menu = ayristir(kaynak_html)
@@ -79,6 +123,9 @@ def main():
         json.dump(menu, open(KOK / 'araclar/site-menu.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     foto_klasor = Path(sys.argv[sys.argv.index('--foto') + 1]) if '--foto' in sys.argv else None
     site = json.load(open(KOK / 'araclar/site-menu.json', encoding='utf-8'))
+    en_liste = en_esle(site, en_menu) if en_menu else None
+    if en_menu and en_liste is None: print('UYARI: İngilizce menünün grupları Türkçeyle uyuşmuyor; İngilizce adlar atlandı.')
+    en_sira = 0
     kategoriler, urunler, fotolar = [], [], {}
     ksira = usira = 0
     kullanilan = set()
@@ -106,8 +153,16 @@ def main():
                     foto = f'yerel:{uid}'
                     fotolar[uid] = f'../../assets/menu/{uid}.jpg'
                 fiyat, fiyat_metni = fiyat_coz(u.get('fiyat'))
+                ad_en, aciklama_en = (en_liste[en_sira] if en_liste else (None, None))
+                en_sira += 1
+                if uid in ELLE_EN and en_menu:
+                    if isinstance(ELLE_EN[uid], tuple):
+                        ad_en, aciklama_en = ELLE_EN[uid]
+                    else:
+                        ad_en = ELLE_EN[uid]
+                        aciklama_en = next((x['aciklama'] for b in en_menu for g in b['gruplar'] for x in g['urunler'] if x['ad'] == ad_en), aciklama_en)
                 urunler.append(dict(id=uid, kategori_id=kid, ad=u['ad'], aciklama=u['aciklama'], foto_url=foto, sira=usira,
-                                    fiyat=fiyat, fiyat_metni=fiyat_metni))
+                                    fiyat=fiyat, fiyat_metni=fiyat_metni, ad_en=ad_en, aciklama_en=aciklama_en))
 
     # app/src/veri/menuVerisi.ts
     j = lambda x: json.dumps(x, ensure_ascii=False)
@@ -122,6 +177,22 @@ def main():
            for u in urunler if u['kategori_id'] in gorunen]
     ts += ['];', '']
     (KOK / 'app/src/veri/menuVerisi.ts').write_text('\n'.join(ts), encoding='utf-8')
+
+    # app/src/veri/menuCeviri.ts — İngilizce siteden, Arapça araclar/ceviri-ar.json'dan (Claude çevirisi, gözden geçirilmeli)
+    ar_yol = KOK / 'araclar/ceviri-ar.json'
+    ar = json.load(open(ar_yol, encoding='utf-8')) if ar_yol.exists() else {}
+    gorunur_urun = [u for u in urunler if u['kategori_id'] in gorunen]
+    eksik_ar = [u['id'] for u in gorunur_urun if u['id'] not in ar]
+    cs = ['// OTOMATİK ÜRETİLDİ: araclar/menu_aktar.py. İngilizce: hamour.com.tr/en/menu/; Arapça: araclar/ceviri-ar.json.',
+          '// Burada olmayan (yeni) ürün: Arapçada İngilizcesi, o da yoksa Türkçesi gösterilir.',
+          "export type Ceviri = { ad: string; aciklama: string | null };", '',
+          'export const menuEn: Record<string, Ceviri> = {']
+    cs += [f"  {j(u['id'])}: {{ ad: {j(u['ad_en'])}, aciklama: {j(u['aciklama_en'])} }}," for u in gorunur_urun if u.get('ad_en')]
+    cs += ['};', '', 'export const menuAr: Record<string, Ceviri> = {']
+    cs += [f"  {j(k)}: {{ ad: {j(v['ad'])}, aciklama: {j(v.get('aciklama'))} }}," for k, v in ar.items() if any(u['id'] == k for u in gorunur_urun)]
+    cs += ['};', '']
+    (KOK / 'app/src/veri/menuCeviri.ts').write_text('\n'.join(cs), encoding='utf-8')
+    if eksik_ar: print(f'Arapça çevirisi eksik {len(eksik_ar)} ürün:', ', '.join(eksik_ar[:20]))
 
     # app/src/veri/fotolar.ts
     fs = ['// OTOMATİK ÜRETİLDİ: araclar/menu_aktar.py. Ürün fotoğrafları uygulamanın içinde (hamour.com.tr\'den, 720 px).',

@@ -7,19 +7,22 @@ import { Dugme, Ikon, Yazi } from '../bilesenler/ortak';
 import { ara, Perde, whatsapp } from '../bilesenler/vitrin';
 import { renk, yazi } from '../tema';
 import { GORSEL, ILETISIM } from '../veri/icerik';
+import { useDil } from '../dil/DilSaglayici';
 
 // WhatsApp ile rezervasyon: bilgiler hiçbir yere kaydedilmez; yalnız WhatsApp'ta hazır mesaj açılır.
 const OGUN = ['Kahvaltı', 'Öğle', 'Akşam'] as const;
 
-function gunler(): { etiket: string; uzun: string }[] {
+// uzun: WhatsApp mesajı için Türkçe tarih (Hamour okur); etiket: ekranda seçili dilde
+function gunler(yerel: string, t: (m: string) => string): { etiket: string; uzun: string }[] {
   const bugun = new Date();
   return Array.from({ length: 10 }, (_, i) => {
     const g = new Date(bugun.getFullYear(), bugun.getMonth(), bugun.getDate() + i);
     const uzun = g.toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long' });
-    const etiket = i === 0 ? 'Bugün' : i === 1 ? 'Yarın' : g.toLocaleDateString('tr-TR', { weekday: 'short', day: 'numeric', month: 'short' });
+    const etiket = i === 0 ? t('Bugün') : i === 1 ? t('Yarın') : g.toLocaleDateString(yerel, { weekday: 'short', day: 'numeric', month: 'short' });
     return { etiket, uzun };
   });
 }
+const DIL_ADI: Record<string, string> = { en: 'İngilizce', ar: 'Arapça' };
 
 function Cip({ metin, secili, onPress }: { metin: string; secili: boolean; onPress: () => void }) {
   return (
@@ -34,7 +37,7 @@ function Alan({ etiket, style, ...p }: { etiket: string } & TextInputProps) {
   return (
     <View style={{ gap: 6 }}>
       <Yazi tur="ust">{etiket}</Yazi>
-      <TextInput accessibilityLabel={etiket} placeholderTextColor={renk.sekmeSoluk}
+      <TextInput accessibilityLabel={useDil().t(etiket)} placeholderTextColor={renk.sekmeSoluk}
         {...p}
         style={[{ minHeight: 50, borderRadius: 14, borderWidth: 1, borderColor: renk.cizgi, backgroundColor: renk.kart, paddingHorizontal: 16, paddingVertical: 12, fontFamily: yazi.normal, fontSize: 16, color: renk.kahve }, style]} />
     </View>
@@ -43,7 +46,8 @@ function Alan({ etiket, style, ...p }: { etiket: string } & TextInputProps) {
 
 export default function Rezervasyon() {
   const ic = useSafeAreaInsets();
-  const [liste] = useState(gunler);
+  const { t, yerel, dil } = useDil();
+  const [liste] = useState(() => gunler(yerel, t));
   const [gun, setGun] = useState(0);
   const [ogun, setOgun] = useState<(typeof OGUN)[number] | null>(null);
   const [saat, setSaat] = useState('');
@@ -61,6 +65,7 @@ export default function Rezervasyon() {
       saat.trim() || ogun ? `Saat: ${[ogun, saat.trim()].filter(Boolean).join(', ')}` : null,
       `Kişi sayısı: ${kisi}`,
       not.trim() ? `Not: ${not.trim()}` : null,
+      DIL_ADI[dil] ? `Misafirin dili: ${DIL_ADI[dil]}` : null,
     ].filter((x) => x !== null);
     whatsapp(ILETISIM.whatsapp, satirlar.join('\n'));
   };
@@ -76,8 +81,8 @@ export default function Rezervasyon() {
             <Yazi tur="buyukBaslik" style={{ color: renk.krem, fontSize: 32, lineHeight: 38 }}>Rezervasyon</Yazi>
           </View>
         </View>
-        <Pressable accessibilityRole="button" accessibilityLabel="Kapat" onPress={kapat}
-          style={{ position: 'absolute', top: ic.top + 10, right: 16, width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(61,29,14,0.55)', alignItems: 'center', justifyContent: 'center' }}>
+        <Pressable accessibilityRole="button" accessibilityLabel={t('Kapat')} onPress={kapat}
+          style={{ position: 'absolute', top: ic.top + 10, end: 16, width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(61,29,14,0.55)', alignItems: 'center', justifyContent: 'center' }}>
           <Ikon ad="x" renkKodu={renk.krem} />
         </Pressable>
 
@@ -96,25 +101,25 @@ export default function Rezervasyon() {
             </View>
           </View>
 
-          <Alan etiket="Saat (isteğe bağlı)" value={saat} onChangeText={setSaat} placeholder="ör. 19:30" keyboardType="numbers-and-punctuation" maxLength={5} />
+          <Alan etiket="Saat (isteğe bağlı)" value={saat} onChangeText={setSaat} placeholder={t('ör. 19:30')} keyboardType="numbers-and-punctuation" maxLength={5} />
 
           <View style={{ gap: 10 }}>
             <Yazi tur="ust">Kişi sayısı</Yazi>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 18 }}>
-              <Pressable accessibilityRole="button" accessibilityLabel="Azalt" onPress={() => setKisi(Math.max(1, kisi - 1))}
+              <Pressable accessibilityRole="button" accessibilityLabel={t('Azalt')} onPress={() => setKisi(Math.max(1, kisi - 1))}
                 style={{ width: 48, height: 48, borderRadius: 24, borderWidth: 1, borderColor: renk.cizgi, backgroundColor: renk.kart, alignItems: 'center', justifyContent: 'center' }}>
                 <Ikon ad="minus" renkKodu={renk.kahve} />
               </Pressable>
               <Yazi style={{ fontFamily: yazi.baslik, fontSize: 30, color: renk.kahve, minWidth: 40, textAlign: 'center' }}>{kisi}</Yazi>
-              <Pressable accessibilityRole="button" accessibilityLabel="Artır" onPress={() => setKisi(Math.min(30, kisi + 1))}
+              <Pressable accessibilityRole="button" accessibilityLabel={t('Artır')} onPress={() => setKisi(Math.min(30, kisi + 1))}
                 style={{ width: 48, height: 48, borderRadius: 24, borderWidth: 1, borderColor: renk.cizgi, backgroundColor: renk.kart, alignItems: 'center', justifyContent: 'center' }}>
                 <Ikon ad="plus" renkKodu={renk.kahve} />
               </Pressable>
             </View>
           </View>
 
-          <Alan etiket="Adınız" value={ad} onChangeText={setAd} placeholder="Ad Soyad" autoComplete="name" textContentType="name" />
-          <Alan etiket="Not (isteğe bağlı)" value={not} onChangeText={setNot} placeholder="Doğum günü, bebek sandalyesi, alerji…" multiline style={{ minHeight: 84, textAlignVertical: 'top' }} />
+          <Alan etiket="Adınız" value={ad} onChangeText={setAd} placeholder={t('Ad Soyad')} autoComplete="name" textContentType="name" />
+          <Alan etiket="Not (isteğe bağlı)" value={not} onChangeText={setNot} placeholder={t('Doğum günü, bebek sandalyesi, alerji…')} multiline style={{ minHeight: 84, textAlignVertical: 'top' }} />
 
           <Pressable accessibilityRole="button" onPress={gonder}
             style={({ pressed }) => ({ height: 56, borderRadius: 28, backgroundColor: renk.kahve, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, opacity: pressed ? 0.75 : 1 })}>

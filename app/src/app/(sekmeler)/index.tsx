@@ -3,18 +3,22 @@ import { useState } from 'react';
 import { Linking, Pressable, RefreshControl, ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Foto, fotoKaynak } from '../../bilesenler/Foto';
+import { DilSecici } from '../../bilesenler/DilSecici';
 import { Logo } from '../../bilesenler/Logo';
 import { Dugme, Ikon, Yazi } from '../../bilesenler/ortak';
 import { ara, BolumBaslik, FotoKart, menuyeGit, Perde, rezervasyonAc, Sus } from '../../bilesenler/vitrin';
 import { renk, yazi } from '../../tema';
 import { BOLUMLER, GORSEL, HIKAYE, ILETISIM } from '../../veri/icerik';
 import { useVeri } from '../../veri/VeriSaglayici';
+import { useDil } from '../../dil/DilSaglayici';
+import { urunMetni } from '../../dil/menuMetni';
 
 // Ana sayfada yatay şeritte gösterilecek tabaklar (fotoğrafı olan ürünlerden; sıra elle seçildi)
 const SERIT = ['avocado-toast', 'classic-eggs-benedict', 'speculoos-pancake', 'burrata', 'cafe-de-paris', 'hamour-burger', 'somon-bowl', 'french-toast'];
 
 export default function Kesfet() {
   const v = useVeri();
+  const { dil, t, rtl, yuzde } = useDil();
   const ic = useSafeAreaInsets();
   const [yenileniyor, setYenileniyor] = useState(false);
   const serit = SERIT.map((id) => v.menu.urunler.find((u) => u.id === id || u.foto_url === `yerel:${id}`)).filter((u) => u && u.foto_url);
@@ -31,6 +35,7 @@ export default function Kesfet() {
       <View style={{ height: 560 + ic.top, backgroundColor: renk.kahve }}>
         <Foto kaynak={GORSEL.giris} style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }} />
         <Perde guc={0.92} />
+        <View style={{ position: 'absolute', top: ic.top + 12, end: 16, zIndex: 2 }}><DilSecici /></View>
         <View style={{ flex: 1, justifyContent: 'flex-end', padding: 24, paddingBottom: 30, gap: 14 }}>
           <Logo boy={210} renkKodu={renk.krem} />
           <Yazi style={{ color: renk.krem, letterSpacing: 4, fontSize: 12, fontFamily: yazi.orta }}>PÂTISSERIE · BRASSERIE · BISTRO</Yazi>
@@ -46,12 +51,12 @@ export default function Kesfet() {
       {!v.uye || v.kampanyalar.some((k) => k.tur === 'hosgeldin' && !k.kullanildi) ? (
         <Pressable accessibilityRole="button" onPress={() => router.navigate('/kart')}
           style={{ marginHorizontal: 20, marginTop: -6, borderRadius: 20, backgroundColor: renk.ana, padding: 18, flexDirection: 'row', alignItems: 'center', gap: 16 }}>
-          <Yazi style={{ fontFamily: yazi.baslik, fontSize: 34, color: renk.krem }}>%5</Yazi>
+          <Yazi style={{ fontFamily: yazi.baslik, fontSize: 34, color: renk.krem }} cevirme>{yuzde(5)}</Yazi>
           <View style={{ flex: 1, gap: 2 }}>
             <Yazi style={{ fontFamily: yazi.kalin, fontSize: 16, color: renk.krem }}>{v.uye ? 'Hoş geldin indiriminiz hazır' : 'Uygulamaya özel hoş geldin indirimi'}</Yazi>
             <Yazi tur="kucuk" style={{ color: renk.anaUstuSoluk }}>{v.uye ? 'Kasada Hamour Kartı’nızı gösterin.' : 'İlk ziyaretinizde %5 · alkollü içecekler hariç'}</Yazi>
           </View>
-          <Ikon ad="chevron-right" renkKodu={renk.krem} />
+          <Ikon ad={rtl ? 'chevron-left' : 'chevron-right'} renkKodu={renk.krem} />
         </Pressable>
       ) : null}
 
@@ -60,7 +65,7 @@ export default function Kesfet() {
         <BolumBaslik ust="Menü" baslik="Gün boyu Hamour" sag="Tümü" onSag={() => menuyeGit()} />
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20, gap: 12 }}>
           {bolumler.map((b) => (
-            <Pressable key={b.id} accessibilityRole="button" accessibilityLabel={b.ad} onPress={() => menuyeGit(b.id)}
+            <Pressable key={b.id} accessibilityRole="button" accessibilityLabel={t(b.ad)} onPress={() => menuyeGit(b.id)}
               style={({ pressed }) => ({ width: 150, borderRadius: 20, backgroundColor: renk.kart, borderWidth: 1, borderColor: renk.cizgi, padding: 14, gap: 10, opacity: pressed ? 0.7 : 1 })}>
               <Foto kaynak={b.gorsel} contentFit="contain" transition={0} style={{ height: 104 }} />
               <Yazi style={{ fontFamily: yazi.baslik, fontSize: 17, color: renk.kahve }}>{b.ad}</Yazi>
@@ -75,14 +80,14 @@ export default function Kesfet() {
           <BolumBaslik ust="Hamour mutfağından" baslik="Zarif tabaklar" />
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20, gap: 12 }}>
             {serit.map((u) => (
-              <Pressable key={u!.id} accessibilityRole="button" accessibilityLabel={u!.ad}
+              <Pressable key={u!.id} accessibilityRole="button" accessibilityLabel={urunMetni(u!, dil).ad}
                 onPress={() => router.push({ pathname: '/urun/[id]', params: { id: u!.id } })}
                 style={{ width: 210, height: 290, borderRadius: 20, overflow: 'hidden', backgroundColor: renk.kahve }}>
                 <Foto kaynak={fotoKaynak(u!.foto_url)} style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }} />
                 <Perde />
                 <View style={{ flex: 1, justifyContent: 'flex-end', padding: 16, gap: 4 }}>
-                  <Yazi style={{ color: renk.krem, fontFamily: yazi.kalin, fontSize: 15, letterSpacing: 0.8 }}>{u!.ad}</Yazi>
-                  {u!.aciklama ? <Yazi numberOfLines={2} style={{ color: renk.anaUstuSoluk, fontSize: 13, lineHeight: 18 }}>{u!.aciklama}</Yazi> : null}
+                  <Yazi style={{ color: renk.krem, fontFamily: yazi.kalin, fontSize: 15, letterSpacing: 0.8 }} cevirme>{urunMetni(u!, dil).ad}</Yazi>
+                  {urunMetni(u!, dil).aciklama ? <Yazi cevirme numberOfLines={2} style={{ color: renk.anaUstuSoluk, fontSize: 13, lineHeight: 18 }}>{urunMetni(u!, dil).aciklama}</Yazi> : null}
                 </View>
               </Pressable>
             ))}
